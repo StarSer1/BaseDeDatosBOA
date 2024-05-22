@@ -10,6 +10,5 @@ namespace BOALogica
 {
     public class CLogica
     {
-        
     }
 }
