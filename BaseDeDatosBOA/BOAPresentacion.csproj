@@ -80,5 +80,15 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BOAEntidad\BOAEntidad.csproj">
+      <Project>{201fcc36-928e-42b5-b366-209197aeb31f}</Project>
+      <Name>BOAEntidad</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BOALogica\BOALogica.csproj">
+      <Project>{09eb8082-80c1-4ac7-ae62-afc027a8e408}</Project>
+      <Name>BOALogica</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
