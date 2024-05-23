@@ -8,102 +8,109 @@ namespace BOAEntidad
 {
     public class Computadora
     {
-        public int idComputadora { get; set; }
-        public string modelo { get; set; }
-        public string idRam { get; set; }
-        public string idProcesador { get; set; }
-        public string idGrafica { get; set; }
-        public string idAlmacenamiento { get; set; }
-        public string idTarjetaMadre { get; set; }
-        public string idFuentePoder { get; set; }
+        public string IdComputadora { get; set; }
+        public string Modelo { get; set; }
+        public string IdRam { get; set; }
+        public string IdProcesador { get; set; }
+        public string IdGrafica { get; set; }
+        public string IdAlmacenamiento { get; set; }
+        public string IdTarjetaMadre { get; set; }
+        public string IdFuentePoder { get; set; }
     }
+
     public class Ram
     {
-        public string idRam { get; set; }
-        public string Nombre { get; set; }
-        public string tipoRam { get; set; }
-        public int frecuencia { get; set; }
-        public int tamaño { get; set; }
-        public int velocidadTransferencia { get; set; }
+        public string IdRam { get; set; }
+        public string Marca { get; set; }
+        public string TipoRam { get; set; }
+        public int Frecuencia { get; set; }
+        public int Tamaño { get; set; }
+        public int VelocidadTransferencia { get; set; }
     }
 
     public class TarjetaMadre
     {
-        public string idTarjetaMadre { get; set; }
-        public string marca { get; set; }
-        public string modelo { get; set; }
-        public int Ranuras { get; set; }
-        public string socket { get; set; }
-        public string dimensiones { get; set; }
+        public string IdTarjetaMadre { get; set; }
+        public string Marca { get; set; }
+        public string Modelo { get; set; }
+        public int RanurasDIMM { get; set; }
+        public string Socket { get; set; }
+        public string Dimensiones { get; set; }
+    }
 
-    }
-    public class Fuentepoder
+    public class FuentePoder
     {
-        public string idFuentePoder { get; set; }
-        public string marca { get; set; }
-        public string modelo { get; set; }
-        public int potencia { get; set; }
-        public string tipo { get; set; }
-        public string certificacion { get; set; }
+        public string IdFuentePoder { get; set; }
+        public string Marca { get; set; }
+        public string Modelo { get; set; }
+        public int Potencia { get; set; }
+        public string Tipo { get; set; }
+        public string Certificacion { get; set; }
     }
+
     public class Procesador
     {
-        public string idProcesador { get; set; }
-        public string marca { get; set; }
-        public string modelo { get; set; }
+        public string IdProcesador { get; set; }
+        public string Marca { get; set; }
+        public string Modelo { get; set; }
     }
+
     public class Grafica
     {
-        public string idGrafica { get; set; }
-        public string marca { get; set; }
-        public string modelo { get; set; }
-        public string tipo { get; set; }
-        public int vram { get; set; }
+        public string IdGrafica { get; set; }
+        public string Marca { get; set; }
+        public string Modelo { get; set; }
+        public string Tipo { get; set; }
+        public int Vram { get; set; }
     }
+
     public class Almacenamiento
     {
-        public string idAlmacenamiento { get; set; }
-        public string marca { get; set; }
-        public string tipo { get; set; }
-        public int capacidad { get; set; }
-        public int frecuencia { get; set; }
-        public int velocidadTransferencia { get; set; }
+        public string IdAlmacenamiento { get; set; }
+        public string Marca { get; set; }
+        public string Tipo { get; set; }
+        public int Capacidad { get; set; }
+        public int Frecuencia { get; set; }
+        public int VelocidadTransferencia { get; set; }
     }
+
     public class Empleado
     {
-        public string idEmpleado { get; set; }
-        public string nombre { get; set; }
-        public string apellidoP { get; set; }
-        public string apellidoM { get; set; }
-        public string rfc { get; set; }
-        public int sueldo { get; set; }
+        public string IdEmpleado { get; set; }
+        public string Nombre { get; set; }
+        public string ApellidoP { get; set; }
+        public string ApellidoM { get; set; }
+        public string RFC { get; set; }
+        public int Sueldo { get; set; }
     }
-    public class Ventas
+
+    public class Venta
     {
-        public string idVentas { get; set; }
-        public string idEmpleado { get; set; }
-        public string idComputadora { get; set; }
-        public string idCliente { get; set; }
-        public string fechaVenta { get; set; }
-        public int precioFinal { get; set; }
-        public int precioBase { get; set; }
+        public string IdVenta { get; set; }
+        public string IdEmpleado { get; set; }
+        public string IdComputadora { get; set; }
+        public string IdCliente { get; set; }
+        public string FechaVenta { get; set; }
+        public int PrecioFinal { get; set; }
+        public int PrecioBase { get; set; }
         public int Descuento { get; set; }
     }
+
     public class Inventario
     {
-        public string idInventario { get; set; }
-        public string idComputadora { get; set; }
-        public string fechaLlegada { get; set; }
-        public int precioLlegada { get; set; }
-        public int stock { get; set; }
-
+        public string IdInventario { get; set; }
+        public string IdComputadora { get; set; }
+        public string FechaLlegada { get; set; }
+        public int PrecioLlegada { get; set; }
+        public int Stock { get; set; }
     }
-    public class Clientes
+
+    public class Cliente
     {
-        public string idCliente { get; set; }
-        public string nombre { get; set; }
-        public string apellidoP { get; set; }
-        public string apellidoM { get; set; }
-        public string correo { get; set; }
+        public string IdCliente { get; set; }
+        public string Nombre { get; set; }
+        public string ApellidoP { get; set; }
+        public string ApellidoM { get; set; }
+        public string Correo { get; set; }
     }
 }
