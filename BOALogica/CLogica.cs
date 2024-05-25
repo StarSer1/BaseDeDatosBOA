@@ -13,7 +13,7 @@ namespace BOALogica
         {
             datos = new CDatos();
         }
-
+        //xd
         public List<Computadora> ObtenerComputadoras()
         {
             return datos.ObtenerComputadoras();
