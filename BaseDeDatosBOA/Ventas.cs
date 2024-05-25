@@ -1,5 +1,6 @@
 ﻿using BOAEntidad;
 using BOALogica;
+using Guna.UI2.WinForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -35,11 +36,7 @@ namespace BaseDeDatosBOA
             }
         }
 
-        private void Ventas_Load(object sender, EventArgs e)
-        {
-            LoadData();
-        }
-
+  
         private void dgvVentas_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             DataGridView dgv = sender as DataGridView;
@@ -57,7 +54,9 @@ namespace BaseDeDatosBOA
             }
         }
 
-        private void BtnInsertar_Click(object sender, EventArgs e)
+
+
+        private void btnInsertar_Click_1(object sender, EventArgs e)
         {
             Venta venta = null;
             try
@@ -65,13 +64,13 @@ namespace BaseDeDatosBOA
                 venta = new Venta
                 {
                     IdVenta = txtIdVenta.Text,
-                    IdEmpleado = txtIdEmp.Text,
-                    IdComputadora = txtIdComp.Text,
+                    IdEmpleado = txtIdEmpleado.Text,
+                    IdComputadora = txtIdComputadora.Text,
                     IdCliente = txtIdCliente.Text,
-                    FechaVenta = txtFecha.Text,
-                    PrecioFinal = int.Parse(txtPrecioF.Text),
-                    PrecioBase = int.Parse(txtPrecioB.Text),
-                    Descuento = int.Parse(txtDesc.Text)
+                    FechaVenta = txtFechaCliente.Text,
+                    PrecioFinal = int.Parse(txtPrecioFinal.Text),
+                    PrecioBase = int.Parse(txtPrecioBase.Text),
+                    Descuento = int.Parse(txtDescuento.Text)
                 };
                 logica.RegistrarVenta(venta);
             }
@@ -81,7 +80,7 @@ namespace BaseDeDatosBOA
             }
         }
 
-        private void BtnModificar_Click(object sender, EventArgs e)
+        private void btnModificar_Click_1(object sender, EventArgs e)
         {
             Venta venta = null;
             try
@@ -89,13 +88,13 @@ namespace BaseDeDatosBOA
                 venta = new Venta
                 {
                     IdVenta = txtIdVenta.Text,
-                    IdEmpleado = txtIdEmp.Text,
-                    IdComputadora = txtIdComp.Text,
+                    IdEmpleado = txtIdEmpleado.Text,
+                    IdComputadora = txtIdComputadora.Text,
                     IdCliente = txtIdCliente.Text,
-                    FechaVenta = txtFecha.Text,
-                    PrecioFinal = int.Parse(txtPrecioF.Text),
-                    PrecioBase = int.Parse(txtPrecioB.Text),
-                    Descuento = int.Parse(txtDesc.Text)
+                    FechaVenta = txtFechaCliente.Text,
+                    PrecioFinal = int.Parse(txtPrecioFinal.Text),
+                    PrecioBase = int.Parse(txtPrecioBase.Text),
+                    Descuento = int.Parse(txtDescuento.Text)
                 };
                 logica.ModificarVenta(venta);
             }
@@ -104,6 +103,12 @@ namespace BaseDeDatosBOA
                 MessageBox.Show(exe.Message);
             }
         }
+
+        private void Ventas_Load_1(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+    
         private void AbrirEliminar(string tablaDondeViene)
         {
             Eliminar formEliminar = new Eliminar();
@@ -113,6 +118,11 @@ namespace BaseDeDatosBOA
         private void BtnEliminarVenta_Click(object sender, EventArgs e)
         {
             AbrirEliminar("idVenta");
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
