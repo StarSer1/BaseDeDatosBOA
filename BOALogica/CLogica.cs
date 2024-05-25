@@ -18,5 +18,22 @@ namespace BOALogica
         {
             return datos.ObtenerComputadoras();
         }
+        public List<Venta> ObtenerVentas()
+        {
+            return datos.ObtenerVentas();
+        }
+        public void RegistrarVenta(Venta venta)
+        {
+            //Falta validacion
+            datos.InsertarVentas(venta);
+        }
+        public void ModificarVenta(Venta venta)
+        {
+            datos.ActualizarVentas(venta);
+        }
+        public void Eliminar(string id, string tablaDelId)
+        {
+            datos.Eliminar(id, tablaDelId);
+        }
     }
 }
