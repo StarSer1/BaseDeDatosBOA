@@ -13,7 +13,7 @@ namespace BOALogica
         {
             datos = new CDatos();
         }
-
+        #region Obtener Tablas
         public List<Computadora> ObtenerComputadoras()
         {
             return datos.ObtenerTabla("COMPUTADORA", datos.MapComputadora);
@@ -34,6 +34,32 @@ namespace BOALogica
         {
             return datos.ObtenerTabla("EMPLEADO", datos.MapEmpleado);
         }
+        public List<TarjetaMadre> ObtenerTarjetaMadres()
+        {
+            return datos.ObtenerTabla("TARJETAMADRE", datos.MapTarjetaMadre);
+        }
+        public List<Procesador> ObtenerProcesadores()
+        {
+            return datos.ObtenerTabla("PROCESADOR", datos.MapProcesador);
+        }
+        public List<Grafica> ObtenerGraficas()
+        {
+            return datos.ObtenerTabla("GRAFICA", datos.MapGrafica);
+        }
+        public List<Ram> ObtenerRam()
+        {
+            return datos.ObtenerTabla("RAM", datos.MapRam);
+        }
+        public List<Almacenamiento> ObtenerAlmacenamientos()
+        {
+            return datos.ObtenerTabla("ALMACENAMIENTO", datos.MapAlmacenamiento);
+        }
+        public List<FuentePoder> ObtenerFuentesDePoder()
+        {
+            return datos.ObtenerTabla("FUENTEPODER", datos.MapFuentePoder);
+        }
+        #endregion
+        #region Registros
         public void RegistrarVenta(Venta venta)
         {
             //Falta validacion
@@ -51,6 +77,36 @@ namespace BOALogica
         {
             datos.Insertar("CLIENTES", empleado, datos.ConfigureEmployeeParameters);
         }
+        public void RegistrarComputadora(Computadora computadora)
+        {
+            datos.Insertar("COMPUTADORA", computadora, datos.ConfigureComputadoraParameters);
+        }
+        public void RegistrarTarjetasMadre(TarjetaMadre tarjetaMadre)
+        {
+            datos.Insertar("TARJETAMADRE", tarjetaMadre, datos.ConfigureTarjetaMadreParameters);
+        }
+        public void RegistrarProcesador(Procesador procesador)
+        {
+            datos.Insertar("PROCESADOR", procesador, datos.ConfigureProcesadorParameters);
+        }
+        public void RegistrarGrafica(Grafica grafica)
+        {
+            datos.Insertar("GRAFICA", grafica, datos.ConfigureGraficaParameters);
+        }
+        public void RegistrarRam(Ram ram)
+        {
+            datos.Insertar("RAM", ram, datos.ConfigureRamParameters);
+        }
+        public void RegistrarAlmacenamiento(Almacenamiento almacenamiento)
+        {
+            datos.Insertar("ALMACENAMIENTO", almacenamiento, datos.ConfigureAlmacenamientoParameters);
+        }
+        public void RegistrarFuentesPoder(FuentePoder fuentePoder)
+        {
+            datos.Insertar("FUENTEPODER", fuentePoder, datos.ConfigureFuentePoderParameters);
+        }
+        #endregion
+        #region Modificaciones
         public void ModificarVenta(Venta venta)
         {
             datos.ActualizarVentas(venta);
@@ -67,10 +123,41 @@ namespace BOALogica
         {
             datos.ActualizarEmpleados(empleado);
         }
+        public void ModificarComputadora(Computadora computadora)
+        {
+            datos.ActualizarComputadora(computadora);
+        }
+        public void ModificarTarjetasMadre(TarjetaMadre tarjetaMadre)
+        {
+            datos.ActualizarTarjetaMadre(tarjetaMadre);
+        }
+        public void ModificarProcesadores(Procesador procesador)
+        {
+            datos.ActualizarProcesadores(procesador);
+        }
+        public void ModificarGraficas(Grafica grafica)
+        {
+            datos.ActualizarGraficas(grafica);
+        }
+        public void ModificarRam(Ram ram)
+        {
+            datos.ActualizarRam(ram);
+        }
+        public void ModificarAlmacenamientos(Almacenamiento almacenamiento)
+        {
+            datos.ActualizarAlmacenamientos(almacenamiento);
+        }
+        public void ModificarFuentesPoder(FuentePoder fuentePoder)
+        {
+            datos.ActualizarFuentePoder(fuentePoder);
+        }
+
+        #endregion
         public void Eliminar(string id, string tablaDelId)
         {
             datos.Eliminar(id, tablaDelId);
         }
+        #region Consultas
         public List<Venta> ConsultarVenta(string id)
         {
             return datos.Consultar("VENTAS", "idVenta", id, datos.MapVenta);
@@ -87,6 +174,35 @@ namespace BOALogica
         {
             return datos.Consultar("EMPLEADO", "idEmpleado", id, datos.MapEmpleado);
         }
+        public List<Computadora> ConsultarComputadora(string id)
+        {
+            return datos.Consultar("COMPUTADORA", "idComputadora", id, datos.MapComputadora);
+        }
+        public List<TarjetaMadre> ConsultarTarjetaMadre(string id)
+        {
+            return datos.Consultar("TARJETAMADRE", "idTarjetaMadre", id, datos.MapTarjetaMadre);
+        }
+        public List<Procesador> ConsultarProcesador(string id)
+        {
+            return datos.Consultar("PROCESADOR", "idProcesador", id, datos.MapProcesador);
+        }
+        public List<Grafica> ConsultarGrafica(string id)
+        {
+            return datos.Consultar("GRAFICA", "idGrafica", id, datos.MapGrafica);
+        }
+        public List<Ram> ConsultarRam(string id)
+        {
+            return datos.Consultar("RAM", "idRam", id, datos.MapRam);
+        }
+        public List<Almacenamiento> ConsultarAlmacenamiento(string id)
+        {
+            return datos.Consultar("ALMACENAMIENTO", "idAlmacenamiento", id, datos.MapAlmacenamiento);
+        }
+        public List<FuentePoder> ConsultarFuentePoder(string id)
+        {
+            return datos.Consultar("FUENTEPODER", "idFuentePoder", id, datos.MapFuentePoder);
+        }
+        #endregion
     }
 }
 

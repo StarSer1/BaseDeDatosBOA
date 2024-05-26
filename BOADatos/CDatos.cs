@@ -207,6 +207,89 @@ namespace BOADatos
             command.Parameters.AddWithValue("@rfc", empleado.RFC);
             command.Parameters.AddWithValue("@sueldo", empleado.Sueldo);
         }
+
+        public void ConfigureAlmacenamientoParameters(SqlCommand command, object item)
+        {
+            Almacenamiento almacenamiento = (Almacenamiento)item;
+            command.CommandText = "INSERT INTO ALMACENAMIENTO (idAlmacenamiento, marca, tipo, capacidad, frecuencia, velocidadTransferencia) VALUES (@idA, @ma, @ti, @ca, @fre, @vF)";
+            command.Parameters.AddWithValue("@idA", almacenamiento.IdAlmacenamiento);
+            command.Parameters.AddWithValue("@ma", almacenamiento.Marca);
+            command.Parameters.AddWithValue("@ti", almacenamiento.Tipo);
+            command.Parameters.AddWithValue("@ca", almacenamiento.Capacidad);
+            command.Parameters.AddWithValue("@fre", almacenamiento.Frecuencia);
+            command.Parameters.AddWithValue("@vF", almacenamiento.VelocidadTransferencia);
+        }
+
+        public void ConfigureFuentePoderParameters(SqlCommand command, object item)
+        {
+            FuentePoder fuentePoder = (FuentePoder)item;
+            command.CommandText = "INSERT INTO FUENTEPODER (idFuentePoder, marca, modelo, potencia, tipo, certificacion) VALUES (@idFP, @marca, @modelo, @potencia, @tipo, @certificacion)";
+            command.Parameters.AddWithValue("@idFP", fuentePoder.IdFuentePoder);
+            command.Parameters.AddWithValue("@marca", fuentePoder.Marca);
+            command.Parameters.AddWithValue("@modelo", fuentePoder.Modelo);
+            command.Parameters.AddWithValue("@potencia", fuentePoder.Potencia);
+            command.Parameters.AddWithValue("@tipo", fuentePoder.Tipo);
+            command.Parameters.AddWithValue("@certificacion", fuentePoder.Certificacion);
+        }
+
+        public void ConfigureGraficaParameters(SqlCommand command, object item)
+        {
+            Grafica grafica = (Grafica)item;
+            command.CommandText = "INSERT INTO GRAFICA (idGrafica, marca, modelo, tipo, vram) VALUES (@idGraf, @marca, @modelo, @tipo, @vram)";
+            command.Parameters.AddWithValue("@idGraf", grafica.IdGrafica);
+            command.Parameters.AddWithValue("@marca", grafica.Marca);
+            command.Parameters.AddWithValue("@modelo", grafica.Modelo);
+            command.Parameters.AddWithValue("@tipo", grafica.Tipo);
+            command.Parameters.AddWithValue("@vram", grafica.Vram);
+        }
+
+        public void ConfigureProcesadorParameters(SqlCommand command, object item)
+        {
+            Procesador procesador = (Procesador)item;
+            command.CommandText = "INSERT INTO PROCESADOR (idProcesador, marca, modelo) VALUES (@idProc, @marca, @modelo)";
+            command.Parameters.AddWithValue("@idProc", procesador.IdProcesador);
+            command.Parameters.AddWithValue("@marca", procesador.Marca);
+            command.Parameters.AddWithValue("@modelo", procesador.Modelo);
+        }
+
+        public void ConfigureRamParameters(SqlCommand command, object item)
+        {
+            Ram ram = (Ram)item;
+            command.CommandText = "INSERT INTO RAM (idRam, marca, tipoRam, frecuencia, tamaño, velocidadTransferencia) VALUES (@idRam, @marca, @tipoRam, @frecuencia, @tam, @velTrans)";
+            command.Parameters.AddWithValue("@idRam", ram.IdRam);
+            command.Parameters.AddWithValue("@marca", ram.Marca);
+            command.Parameters.AddWithValue("@tipoRam", ram.TipoRam);
+            command.Parameters.AddWithValue("@frecuencia", ram.Frecuencia);
+            command.Parameters.AddWithValue("@tam", ram.Tamaño);
+            command.Parameters.AddWithValue("@velTrans", ram.VelocidadTransferencia);
+        }
+
+        public void ConfigureTarjetaMadreParameters(SqlCommand command, object item)
+        {
+            TarjetaMadre tarjetaMadre = (TarjetaMadre)item;
+            command.CommandText = "INSERT INTO TARJETAMADRE (idTarjetaMadre, marca, modelo, ranurasDIMM, socket, dimensiones) VALUES (@idTM, @marca, @modelo, @ranurasDIMM, @socket, @dimensiones)";
+            command.Parameters.AddWithValue("@idTM", tarjetaMadre.IdTarjetaMadre);
+            command.Parameters.AddWithValue("@marca", tarjetaMadre.Marca);
+            command.Parameters.AddWithValue("@modelo", tarjetaMadre.Modelo);
+            command.Parameters.AddWithValue("@ranurasDIMM", tarjetaMadre.RanurasDIMM);
+            command.Parameters.AddWithValue("@socket", tarjetaMadre.Socket);
+            command.Parameters.AddWithValue("@dimensiones", tarjetaMadre.Dimensiones);
+        }
+
+        public void ConfigureComputadoraParameters(SqlCommand command, object item)
+        {
+            Computadora computadora = (Computadora)item;
+            command.CommandText = "INSERT INTO COMPUTADORA (idComputadora, modelo, idRam, idProcesador, idGrafica, idAlmacenamiento, idTarjetaMadre, idFuentePoder) VALUES (@idComp, @modelo, @idRam, @idProc, @idGraf, @idAlm, @idTM, @idFP)";
+            command.Parameters.AddWithValue("@idComp", computadora.IdComputadora);
+            command.Parameters.AddWithValue("@modelo", computadora.Modelo);
+            command.Parameters.AddWithValue("@idRam", computadora.IdRam);
+            command.Parameters.AddWithValue("@idProc", computadora.IdProcesador);
+            command.Parameters.AddWithValue("@idGraf", computadora.IdGrafica);
+            command.Parameters.AddWithValue("@idAlm", computadora.IdAlmacenamiento);
+            command.Parameters.AddWithValue("@idTM", computadora.IdTarjetaMadre);
+            command.Parameters.AddWithValue("@idFP", computadora.IdFuentePoder);
+        }
+
         #endregion
 
         #region GetTables
@@ -301,6 +384,7 @@ namespace BOADatos
             var setClause = string.Join(", ", properties.Select(p => $"{p.Name}=@{p.Name}"));
             return setClause;
         }
+        #region Actualizar Tablas
         public void ActualizarVentas(Venta venta)
         {
             using (SqlConnection conex = new SqlConnection(connectionString))
@@ -344,6 +428,7 @@ namespace BOADatos
                 conex.Close();
             }
         }
+
         public void ActualizarClientes(Cliente cliente)
         {
             using (SqlConnection conex = new SqlConnection(connectionString))
@@ -385,6 +470,151 @@ namespace BOADatos
                 conex.Close();
             }
         }
+        public void ActualizarComputadora(Computadora computadora)
+        {
+            using (SqlConnection conex = new SqlConnection(connectionString))
+            {
+                conex.Open();
+                string CdSql = "UPDATE COMPUTADORA SET modelo=@modelo, idRam=@idRam, idProcesador=@idProc, idGrafica=@idGraf, idAlmacenamiento=@idAlm, idTarjetaMadre=@idTM, idFuentePoder=@idFP WHERE idComputadora=@idComp";
+                using (SqlCommand Cmd = new SqlCommand(CdSql, conex))
+                {
+                    Cmd.Parameters.AddWithValue("@idComp", computadora.IdComputadora);
+                    Cmd.Parameters.AddWithValue("@modelo", computadora.Modelo);
+                    Cmd.Parameters.AddWithValue("@idRam", computadora.IdRam);
+                    Cmd.Parameters.AddWithValue("@idProc", computadora.IdProcesador);
+                    Cmd.Parameters.AddWithValue("@idGraf", computadora.IdGrafica);
+                    Cmd.Parameters.AddWithValue("@idAlm", computadora.IdAlmacenamiento);
+                    Cmd.Parameters.AddWithValue("@idTM", computadora.IdTarjetaMadre);
+                    Cmd.Parameters.AddWithValue("@idFP", computadora.IdFuentePoder);
+                    Cmd.ExecuteNonQuery();
+                    Cmd.Dispose();
+                }
+                conex.Close();
+            }
+        }
+
+        public void ActualizarAlmacenamientos(Almacenamiento almacenamiento)
+        {
+            using (SqlConnection conex = new SqlConnection(connectionString))
+            {
+                conex.Open();
+                string CdSql = "UPDATE ALMACENAMIENTO SET marca=@marca, tipo=@tipo, capacidad=@capacidad, frecuencia=@frecuencia, velocidadTransferencia=@velTrans WHERE idAlmacenamiento=@idAlm";
+                using (SqlCommand Cmd = new SqlCommand(CdSql, conex))
+                {
+                    Cmd.Parameters.AddWithValue("@idAlm", almacenamiento.IdAlmacenamiento);
+                    Cmd.Parameters.AddWithValue("@marca", almacenamiento.Marca);
+                    Cmd.Parameters.AddWithValue("@tipo", almacenamiento.Tipo);
+                    Cmd.Parameters.AddWithValue("@capacidad", almacenamiento.Capacidad);
+                    Cmd.Parameters.AddWithValue("@frecuencia", almacenamiento.Frecuencia);
+                    Cmd.Parameters.AddWithValue("@velTrans", almacenamiento.VelocidadTransferencia);
+                    Cmd.ExecuteNonQuery();
+                    Cmd.Dispose();
+                }
+                conex.Close();
+            }
+        }
+
+        public void ActualizarFuentePoder(FuentePoder fuentePoder)
+        {
+            using (SqlConnection conex = new SqlConnection(connectionString))
+            {
+                conex.Open();
+                string CdSql = "UPDATE FUENTEPODER SET marca=@marca, modelo=@modelo, potencia=@potencia, tipo=@tipo, certificacion=@certificacion WHERE idFuentePoder=@idFP";
+                using (SqlCommand Cmd = new SqlCommand(CdSql, conex))
+                {
+                    Cmd.Parameters.AddWithValue("@idFP", fuentePoder.IdFuentePoder);
+                    Cmd.Parameters.AddWithValue("@marca", fuentePoder.Marca);
+                    Cmd.Parameters.AddWithValue("@modelo", fuentePoder.Modelo);
+                    Cmd.Parameters.AddWithValue("@potencia", fuentePoder.Potencia);
+                    Cmd.Parameters.AddWithValue("@tipo", fuentePoder.Tipo);
+                    Cmd.Parameters.AddWithValue("@certificacion", fuentePoder.Certificacion);
+                    Cmd.ExecuteNonQuery();
+                    Cmd.Dispose();
+                }
+                conex.Close();
+            }
+        }
+
+        public void ActualizarGraficas(Grafica grafica)
+        {
+            using (SqlConnection conex = new SqlConnection(connectionString))
+            {
+                conex.Open();
+                string CdSql = "UPDATE GRAFICA SET marca=@marca, modelo=@modelo, tipo=@tipo, vram=@vram WHERE idGrafica=@idGraf";
+                using (SqlCommand Cmd = new SqlCommand(CdSql, conex))
+                {
+                    Cmd.Parameters.AddWithValue("@idGraf", grafica.IdGrafica);
+                    Cmd.Parameters.AddWithValue("@marca", grafica.Marca);
+                    Cmd.Parameters.AddWithValue("@modelo", grafica.Modelo);
+                    Cmd.Parameters.AddWithValue("@tipo", grafica.Tipo);
+                    Cmd.Parameters.AddWithValue("@vram", grafica.Vram);
+                    Cmd.ExecuteNonQuery();
+                    Cmd.Dispose();
+                }
+                conex.Close();
+            }
+        }
+
+        public void ActualizarProcesadores(Procesador procesador)
+        {
+            using (SqlConnection conex = new SqlConnection(connectionString))
+            {
+                conex.Open();
+                string CdSql = "UPDATE PROCESADOR SET marca=@marca, modelo=@modelo WHERE idProcesador=@idProc";
+                using (SqlCommand Cmd = new SqlCommand(CdSql, conex))
+                {
+                    Cmd.Parameters.AddWithValue("@idProc", procesador.IdProcesador);
+                    Cmd.Parameters.AddWithValue("@marca", procesador.Marca);
+                    Cmd.Parameters.AddWithValue("@modelo", procesador.Modelo);
+                    Cmd.ExecuteNonQuery();
+                    Cmd.Dispose();
+                }
+                conex.Close();
+            }
+        }
+
+        public void ActualizarRam(Ram ram)
+        {
+            using (SqlConnection conex = new SqlConnection(connectionString))
+            {
+                conex.Open();
+                string CdSql = "UPDATE RAM SET marca=@marca, tipoRam=@tipoRam, frecuencia=@frecuencia, tamaño=@tam, velocidadTransferencia=@velTrans WHERE idRam=@idRam";
+                using (SqlCommand Cmd = new SqlCommand(CdSql, conex))
+                {
+                    Cmd.Parameters.AddWithValue("@idRam", ram.IdRam);
+                    Cmd.Parameters.AddWithValue("@marca", ram.Marca);
+                    Cmd.Parameters.AddWithValue("@tipoRam", ram.TipoRam);
+                    Cmd.Parameters.AddWithValue("@frecuencia", ram.Frecuencia);
+                    Cmd.Parameters.AddWithValue("@tam", ram.Tamaño);
+                    Cmd.Parameters.AddWithValue("@velTrans", ram.VelocidadTransferencia);
+                    Cmd.ExecuteNonQuery();
+                    Cmd.Dispose();
+                }
+                conex.Close();
+            }
+        }
+
+        public void ActualizarTarjetaMadre(TarjetaMadre tarjetaMadre)
+        {
+            using (SqlConnection conex = new SqlConnection(connectionString))
+            {
+                conex.Open();
+                string CdSql = "UPDATE TARJETAMADRE SET marca=@marca, modelo=@modelo, ranurasDIMM=@ranurasDIMM, socket=@socket, dimensiones=@dimensiones WHERE idTarjetaMadre=@idTM";
+                using (SqlCommand Cmd = new SqlCommand(CdSql, conex))
+                {
+                    Cmd.Parameters.AddWithValue("@idTM", tarjetaMadre.IdTarjetaMadre);
+                    Cmd.Parameters.AddWithValue("@marca", tarjetaMadre.Marca);
+                    Cmd.Parameters.AddWithValue("@modelo", tarjetaMadre.Modelo);
+                    Cmd.Parameters.AddWithValue("@ranurasDIMM", tarjetaMadre.RanurasDIMM);
+                    Cmd.Parameters.AddWithValue("@socket", tarjetaMadre.Socket);
+                    Cmd.Parameters.AddWithValue("@dimensiones", tarjetaMadre.Dimensiones);
+                    Cmd.ExecuteNonQuery();
+                    Cmd.Dispose();
+                }
+                conex.Close();
+            }
+        }
+        #endregion
         public void Eliminar(string id, string tablaDelId)
         {
             string fromTable = "";
