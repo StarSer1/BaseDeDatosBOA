@@ -1,6 +1,6 @@
 ﻿namespace BaseDeDatosBOA
 {
-    partial class Almacenamiento
+    partial class Almacenamientos
     {
         /// <summary>
         /// Required designer variable.
@@ -75,6 +75,7 @@
             this.btnEliminar.PressedState.Parent = this.btnEliminar;
             this.btnEliminar.Size = new System.Drawing.Size(41, 30);
             this.btnEliminar.TabIndex = 0;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click_1);
             // 
             // btnConsulta
             // 
@@ -384,7 +385,7 @@
             this.dgvAlmacenamiento.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvAlmacenamiento.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             // 
-            // Almacenamiento
+            // Almacenamientos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -406,7 +407,7 @@
             this.Controls.Add(this.txtMarca);
             this.Controls.Add(this.txtIdAlmacenamiento);
             this.Controls.Add(this.dgvAlmacenamiento);
-            this.Name = "Almacenamiento";
+            this.Name = "Almacenamientos";
             this.Text = "Almacenamiento";
             this.flowLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvAlmacenamiento)).EndInit();

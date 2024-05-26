@@ -28,7 +28,7 @@ namespace BaseDeDatosBOA
             {
                 List<Venta> ventas = logica.ObtenerVentas();
                 dgvVentas.DataSource = ventas;
-                dgvVentas.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(dgvVentas_DataBindingComplete);
+                //dgvVentas.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(dgvVentas_DataBindingComplete);
             }
             catch (Exception ex)
             {
@@ -37,22 +37,22 @@ namespace BaseDeDatosBOA
         }
 
   
-        private void dgvVentas_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {
-            DataGridView dgv = sender as DataGridView;
+        //private void dgvVentas_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        //{
+        //    DataGridView dgv = sender as DataGridView;
 
-            if (dgv != null)
-            {
-                dgv.Columns["idVenta"].Width = 55;
-                dgv.Columns["idEmpleado"].Width = 95;
-                dgv.Columns["idComputadora"].Width = 115;
-                dgv.Columns["idCliente"].Width = 65;
-                dgv.Columns["fechaVenta"].Width = 100;
-                dgv.Columns["precioFinal"].Width = 90;
-                dgv.Columns["precioBase"].Width = 90;
-                dgv.Columns["Descuento"].Width = 80;
-            }
-        }
+        //    if (dgv != null)
+        //    {
+        //        dgv.Columns["idVenta"].Width = 55;
+        //        dgv.Columns["idEmpleado"].Width = 95;
+        //        dgv.Columns["idComputadora"].Width = 115;
+        //        dgv.Columns["idCliente"].Width = 65;
+        //        dgv.Columns["fechaVenta"].Width = 100;
+        //        dgv.Columns["precioFinal"].Width = 90;
+        //        dgv.Columns["precioBase"].Width = 90;
+        //        dgv.Columns["Descuento"].Width = 80;
+        //    }
+        //}
 
 
 
@@ -120,10 +120,6 @@ namespace BaseDeDatosBOA
             AbrirEliminar("idVenta");
         }
 
-        private void btnEliminar_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void btnActualizar_Click(object sender, EventArgs e)
         {

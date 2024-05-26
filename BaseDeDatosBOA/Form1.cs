@@ -192,7 +192,7 @@ namespace BaseDeDatosBOA
         private void BtnAlmacenamiento_Click(object sender, EventArgs e)
         {
             ActivarBoton(sender, almacenarRGB.color1);
-            formularioHijo(new Almacenamiento());
+            formularioHijo(new Almacenamientos());
         }
 
         private void BtnFuenteDePoder_Click(object sender, EventArgs e)

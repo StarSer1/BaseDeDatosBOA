@@ -30,7 +30,7 @@ namespace BaseDeDatosBOA
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            switch(tablaDeDondeViene)
+            switch (tablaDeDondeViene)
             {
                 case "VENTA":
                     var ventas = logica.ConsultarVenta(txtId.Text);
@@ -47,6 +47,34 @@ namespace BaseDeDatosBOA
                 case "EMPLEADO":
                     var empleado = logica.ConsultarEmpleado(txtId.Text);
                     dgvConsulta.DataSource = empleado;
+                    break;
+                case "COMPUTADORA":
+                    var computadora = logica.ConsultarComputadora(txtId.Text);
+                    dgvConsulta.DataSource = computadora;
+                    break;
+                case "TARJETAMADRE":
+                    var tarjetaMadre = logica.ConsultarTarjetaMadre(txtId.Text);
+                    dgvConsulta.DataSource = tarjetaMadre;
+                    break;
+                case "PROCESADOR":
+                    var procesador = logica.ConsultarProcesador(txtId.Text);
+                    dgvConsulta.DataSource = procesador;
+                    break;
+                case "GRAFICA":
+                    var grafica = logica.ConsultarGrafica(txtId.Text);
+                    dgvConsulta.DataSource = grafica;
+                    break;
+                case "RAM":
+                    var ram = logica.ConsultarRam(txtId.Text);
+                    dgvConsulta.DataSource = ram;
+                    break;
+                case "ALMACENAMIENTO":
+                    var almacenamiento = logica.ConsultarAlmacenamiento(txtId.Text);
+                    dgvConsulta.DataSource = almacenamiento;
+                    break;
+                case "FUENTEPODER":
+                    var fuentePoder = logica.ConsultarFuentePoder(txtId.Text);
+                    dgvConsulta.DataSource = fuentePoder;
                     break;
             }
         }

@@ -44,10 +44,12 @@
             this.btnModificar = new Guna.UI2.WinForms.Guna2Button();
             this.txtCertificacion = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtTipo = new Guna.UI2.WinForms.Guna2TextBox();
-            this.txtIdPotencia = new Guna.UI2.WinForms.Guna2TextBox();
-            this.txtIdMarca = new Guna.UI2.WinForms.Guna2TextBox();
+            this.txtPotencia = new Guna.UI2.WinForms.Guna2TextBox();
+            this.txtMarca = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtIdFuentePoder = new Guna.UI2.WinForms.Guna2TextBox();
             this.dgvFuentesDePoder = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.txtModelo = new Guna.UI2.WinForms.Guna2TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFuentesDePoder)).BeginInit();
             this.SuspendLayout();
@@ -101,7 +103,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(752, 265);
+            this.label5.Location = new System.Drawing.Point(752, 313);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(90, 18);
             this.label5.TabIndex = 45;
@@ -112,7 +114,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(805, 217);
+            this.label4.Location = new System.Drawing.Point(805, 265);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(37, 18);
             this.label4.TabIndex = 44;
@@ -123,22 +125,22 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(765, 171);
+            this.label3.Location = new System.Drawing.Point(776, 219);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(77, 18);
+            this.label3.Size = new System.Drawing.Size(66, 18);
             this.label3.TabIndex = 43;
-            this.label3.Text = "IdPotencia";
+            this.label3.Text = "Potencia";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(781, 122);
+            this.label2.Location = new System.Drawing.Point(792, 121);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(61, 18);
+            this.label2.Size = new System.Drawing.Size(50, 18);
             this.label2.TabIndex = 42;
-            this.label2.Text = "IdMarca";
+            this.label2.Text = "Marca";
             // 
             // label1
             // 
@@ -146,7 +148,7 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(738, 75);
+            this.label1.Location = new System.Drawing.Point(738, 74);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(104, 18);
             this.label1.TabIndex = 41;
@@ -195,7 +197,7 @@
             this.txtCertificacion.FocusedState.Parent = this.txtCertificacion;
             this.txtCertificacion.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtCertificacion.HoverState.Parent = this.txtCertificacion;
-            this.txtCertificacion.Location = new System.Drawing.Point(848, 258);
+            this.txtCertificacion.Location = new System.Drawing.Point(848, 307);
             this.txtCertificacion.Name = "txtCertificacion";
             this.txtCertificacion.PasswordChar = '\0';
             this.txtCertificacion.PlaceholderText = "";
@@ -217,7 +219,7 @@
             this.txtTipo.FocusedState.Parent = this.txtTipo;
             this.txtTipo.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtTipo.HoverState.Parent = this.txtTipo;
-            this.txtTipo.Location = new System.Drawing.Point(848, 210);
+            this.txtTipo.Location = new System.Drawing.Point(848, 259);
             this.txtTipo.Name = "txtTipo";
             this.txtTipo.PasswordChar = '\0';
             this.txtTipo.PlaceholderText = "";
@@ -226,49 +228,49 @@
             this.txtTipo.Size = new System.Drawing.Size(149, 31);
             this.txtTipo.TabIndex = 34;
             // 
-            // txtIdPotencia
+            // txtPotencia
             // 
-            this.txtIdPotencia.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtIdPotencia.DefaultText = "";
-            this.txtIdPotencia.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtIdPotencia.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtIdPotencia.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtIdPotencia.DisabledState.Parent = this.txtIdPotencia;
-            this.txtIdPotencia.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtIdPotencia.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtIdPotencia.FocusedState.Parent = this.txtIdPotencia;
-            this.txtIdPotencia.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtIdPotencia.HoverState.Parent = this.txtIdPotencia;
-            this.txtIdPotencia.Location = new System.Drawing.Point(848, 164);
-            this.txtIdPotencia.Name = "txtIdPotencia";
-            this.txtIdPotencia.PasswordChar = '\0';
-            this.txtIdPotencia.PlaceholderText = "";
-            this.txtIdPotencia.SelectedText = "";
-            this.txtIdPotencia.ShadowDecoration.Parent = this.txtIdPotencia;
-            this.txtIdPotencia.Size = new System.Drawing.Size(149, 31);
-            this.txtIdPotencia.TabIndex = 33;
+            this.txtPotencia.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtPotencia.DefaultText = "";
+            this.txtPotencia.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtPotencia.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtPotencia.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtPotencia.DisabledState.Parent = this.txtPotencia;
+            this.txtPotencia.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtPotencia.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtPotencia.FocusedState.Parent = this.txtPotencia;
+            this.txtPotencia.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtPotencia.HoverState.Parent = this.txtPotencia;
+            this.txtPotencia.Location = new System.Drawing.Point(848, 213);
+            this.txtPotencia.Name = "txtPotencia";
+            this.txtPotencia.PasswordChar = '\0';
+            this.txtPotencia.PlaceholderText = "";
+            this.txtPotencia.SelectedText = "";
+            this.txtPotencia.ShadowDecoration.Parent = this.txtPotencia;
+            this.txtPotencia.Size = new System.Drawing.Size(149, 31);
+            this.txtPotencia.TabIndex = 33;
             // 
-            // txtIdMarca
+            // txtMarca
             // 
-            this.txtIdMarca.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtIdMarca.DefaultText = "";
-            this.txtIdMarca.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtIdMarca.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtIdMarca.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtIdMarca.DisabledState.Parent = this.txtIdMarca;
-            this.txtIdMarca.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtIdMarca.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtIdMarca.FocusedState.Parent = this.txtIdMarca;
-            this.txtIdMarca.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtIdMarca.HoverState.Parent = this.txtIdMarca;
-            this.txtIdMarca.Location = new System.Drawing.Point(848, 115);
-            this.txtIdMarca.Name = "txtIdMarca";
-            this.txtIdMarca.PasswordChar = '\0';
-            this.txtIdMarca.PlaceholderText = "";
-            this.txtIdMarca.SelectedText = "";
-            this.txtIdMarca.ShadowDecoration.Parent = this.txtIdMarca;
-            this.txtIdMarca.Size = new System.Drawing.Size(149, 31);
-            this.txtIdMarca.TabIndex = 32;
+            this.txtMarca.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtMarca.DefaultText = "";
+            this.txtMarca.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtMarca.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtMarca.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtMarca.DisabledState.Parent = this.txtMarca;
+            this.txtMarca.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtMarca.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtMarca.FocusedState.Parent = this.txtMarca;
+            this.txtMarca.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtMarca.HoverState.Parent = this.txtMarca;
+            this.txtMarca.Location = new System.Drawing.Point(848, 115);
+            this.txtMarca.Name = "txtMarca";
+            this.txtMarca.PasswordChar = '\0';
+            this.txtMarca.PlaceholderText = "";
+            this.txtMarca.SelectedText = "";
+            this.txtMarca.ShadowDecoration.Parent = this.txtMarca;
+            this.txtMarca.Size = new System.Drawing.Size(149, 31);
+            this.txtMarca.TabIndex = 32;
             // 
             // txtIdFuentePoder
             // 
@@ -349,6 +351,39 @@
             this.dgvFuentesDePoder.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvFuentesDePoder.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             // 
+            // txtModelo
+            // 
+            this.txtModelo.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtModelo.DefaultText = "";
+            this.txtModelo.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtModelo.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtModelo.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtModelo.DisabledState.Parent = this.txtModelo;
+            this.txtModelo.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtModelo.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtModelo.FocusedState.Parent = this.txtModelo;
+            this.txtModelo.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtModelo.HoverState.Parent = this.txtModelo;
+            this.txtModelo.Location = new System.Drawing.Point(848, 163);
+            this.txtModelo.Name = "txtModelo";
+            this.txtModelo.PasswordChar = '\0';
+            this.txtModelo.PlaceholderText = "";
+            this.txtModelo.SelectedText = "";
+            this.txtModelo.ShadowDecoration.Parent = this.txtModelo;
+            this.txtModelo.Size = new System.Drawing.Size(149, 31);
+            this.txtModelo.TabIndex = 33;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.Black;
+            this.label6.Location = new System.Drawing.Point(784, 169);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(58, 18);
+            this.label6.TabIndex = 43;
+            this.label6.Text = "Modelo";
+            // 
             // Fuentes_De_Poder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -358,6 +393,7 @@
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -365,8 +401,9 @@
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.txtCertificacion);
             this.Controls.Add(this.txtTipo);
-            this.Controls.Add(this.txtIdPotencia);
-            this.Controls.Add(this.txtIdMarca);
+            this.Controls.Add(this.txtModelo);
+            this.Controls.Add(this.txtPotencia);
+            this.Controls.Add(this.txtMarca);
             this.Controls.Add(this.txtIdFuentePoder);
             this.Controls.Add(this.dgvFuentesDePoder);
             this.Name = "Fuentes_De_Poder";
@@ -393,9 +430,11 @@
         private Guna.UI2.WinForms.Guna2Button btnModificar;
         private Guna.UI2.WinForms.Guna2TextBox txtCertificacion;
         private Guna.UI2.WinForms.Guna2TextBox txtTipo;
-        private Guna.UI2.WinForms.Guna2TextBox txtIdPotencia;
-        private Guna.UI2.WinForms.Guna2TextBox txtIdMarca;
+        private Guna.UI2.WinForms.Guna2TextBox txtPotencia;
+        private Guna.UI2.WinForms.Guna2TextBox txtMarca;
         private Guna.UI2.WinForms.Guna2TextBox txtIdFuentePoder;
         private Guna.UI2.WinForms.Guna2DataGridView dgvFuentesDePoder;
+        private Guna.UI2.WinForms.Guna2TextBox txtModelo;
+        private System.Windows.Forms.Label label6;
     }
 }

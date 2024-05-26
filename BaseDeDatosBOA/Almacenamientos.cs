@@ -12,11 +12,10 @@ using System.Windows.Forms;
 
 namespace BaseDeDatosBOA
 {
-    public partial class Procesadores : Form
+    public partial class Almacenamientos : Form
     {
         private CLogica logica;
-
-        public Procesadores()
+        public Almacenamientos()
         {
             logica = new CLogica();
             InitializeComponent();
@@ -25,15 +24,16 @@ namespace BaseDeDatosBOA
         {
             try
             {
-                List<Procesador> procesador = logica.ObtenerProcesadores();
-                dgvProcesadores.DataSource = procesador;
-                //dgvProcesadores.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(dgvVentas_DataBindingComplete);
+                List<Almacenamiento> almacenamiento = logica.ObtenerAlmacenamientos();
+                dgvAlmacenamiento.DataSource = almacenamiento;
+                //dgvAlmacenamiento.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(dgvVentas_DataBindingComplete);
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
+
         //private void dgvVentas_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         //{
         //    DataGridView dgv = sender as DataGridView;
@@ -52,16 +52,19 @@ namespace BaseDeDatosBOA
         //}
         private void btnInsertar_Click(object sender, EventArgs e)
         {
-            Procesador procesador = null;
+            Almacenamiento almacenamiento = null;
             try
             {
-                procesador = new Procesador
+                almacenamiento = new Almacenamiento
                 {
-                    IdProcesador = txtIdProcesador.Text,
+                    IdAlmacenamiento = txtIdAlmacenamiento.Text,
                     Marca = txtMarca.Text,
-                    Modelo = txtModelo.Text,
+                    Tipo = txtTipo.Text,
+                    Capacidad = int.Parse(txtCapacidad.Text),
+                    Frecuencia = int.Parse(txtFrecuencia.Text),
+                    VelocidadTransferencia = int.Parse(txtVelocidadTrans.Text)
                 };
-                logica.RegistrarProcesador(procesador);
+                logica.RegistrarAlmacenamiento(almacenamiento);
             }
             catch (Exception ex)
             {
@@ -71,16 +74,19 @@ namespace BaseDeDatosBOA
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            Procesador procesador = null;
+            Almacenamiento almacenamiento = null;
             try
             {
-                procesador = new Procesador
+                almacenamiento = new Almacenamiento
                 {
-                    IdProcesador = txtIdProcesador.Text,
+                    IdAlmacenamiento = txtIdAlmacenamiento.Text,
                     Marca = txtMarca.Text,
-                    Modelo = txtModelo.Text,
+                    Tipo = txtTipo.Text,
+                    Capacidad = int.Parse(txtCapacidad.Text),
+                    Frecuencia = int.Parse(txtFrecuencia.Text),
+                    VelocidadTransferencia = int.Parse(txtVelocidadTrans.Text)
                 };
-                logica.ModificarProcesadores(procesador);
+                logica.ModificarAlmacenamientos(almacenamiento);
             }
             catch (Exception ex)
             {
@@ -88,7 +94,7 @@ namespace BaseDeDatosBOA
             }
         }
 
-        private void Procesadores_Load(object sender, EventArgs e)
+        private void Almacenamientos_Load(object sender, EventArgs e)
         {
             LoadData();
         }
@@ -101,7 +107,7 @@ namespace BaseDeDatosBOA
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            AbrirEliminar("idProcesador");
+            AbrirEliminar("idAlmacenamiento");
         }
 
         private void btnActualizar_Click(object sender, EventArgs e)
@@ -112,8 +118,13 @@ namespace BaseDeDatosBOA
         private void btnConsulta_Click(object sender, EventArgs e)
         {
             Consulta formConsulta = new Consulta();
-            formConsulta.tablaDeDondeViene = "PROCESADOR";
+            formConsulta.tablaDeDondeViene = "ALMACENAMIENTO";
             formConsulta.ShowDialog();
+        }
+
+        private void btnEliminar_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }
