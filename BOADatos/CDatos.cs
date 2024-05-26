@@ -72,6 +72,19 @@ namespace BOADatos
                 Correo = reader["correo"].ToString()
             };
         }
+        public Almacenamiento MapAlmacenamiento(SqlDataReader reader)
+        {
+            return new Almacenamiento
+            {
+                IdAlmacenamiento = reader["idAlmacenamiento"].ToString(),
+                Marca = reader["marca"].ToString(),
+                Tipo = reader["tipo"].ToString(),
+                Capacidad = (int)reader["capacidad"],
+                Frecuencia = (int)reader["frecuencia"],
+                VelocidadTransferencia = (int)reader["velocidadTransferencia"]
+            };
+        }
+
         public Empleado MapEmpleado(SqlDataReader reader)
         {
             return new Empleado
@@ -84,6 +97,68 @@ namespace BOADatos
                 Sueldo = int.Parse(reader["sueldo"].ToString())
             };
         }
+
+        public FuentePoder MapFuentePoder(SqlDataReader reader)
+        {
+            return new FuentePoder
+            {
+                IdFuentePoder = reader["idFuentePoder"].ToString(),
+                Marca = reader["marca"].ToString(),
+                Modelo = reader["modelo"].ToString(),
+                Potencia = (int)reader["potencia"],
+                Tipo = reader["tipo"].ToString(),
+                Certificacion = reader["certificacion"].ToString()
+            };
+        }
+
+        public Grafica MapGrafica(SqlDataReader reader)
+        {
+            return new Grafica
+            {
+                IdGrafica = reader["idGrafica"].ToString(),
+                Marca = reader["marca"].ToString(),
+                Modelo = reader["modelo"].ToString(),
+                Tipo = reader["tipo"].ToString(),
+                Vram = (int)reader["vram"]
+            };
+        }
+
+        public Procesador MapProcesador(SqlDataReader reader)
+        {
+            return new Procesador
+            {
+                IdProcesador = reader["idProcesador"].ToString(),
+                Marca = reader["marca"].ToString(),
+                Modelo = reader["modelo"].ToString(),
+            };
+        }
+
+        public Ram MapRam(SqlDataReader reader)
+        {
+            return new Ram
+            {
+                IdRam = reader["idRam"].ToString(),
+                Marca = reader["marca"].ToString(),
+                TipoRam = reader["tipoRam"].ToString(),
+                Frecuencia = (int)reader["frecuencia"],
+                Tamaño = (int)reader["tamaño"],
+                VelocidadTransferencia = (int)reader["velocidadTransferencia"]
+            };
+        }
+
+        public TarjetaMadre MapTarjetaMadre(SqlDataReader reader)
+        {
+            return new TarjetaMadre
+            {
+                IdTarjetaMadre = reader["idTarjetaMadre"].ToString(),
+                Marca = reader["marca"].ToString(),
+                Modelo = reader["modelo"].ToString(),
+                RanurasDIMM = (int)reader["RanurasDIMM"],
+                Socket = reader["socket"].ToString(),
+                Dimensiones = reader["dimensiones"].ToString()
+            };
+        }
+
         #endregion
 
         #region Params
@@ -165,19 +240,19 @@ namespace BOADatos
             }
             return items;
         }
-        
+
         #endregion
 
         #region InsertarDatos
 
         public void Insertar<T>(string tableName, T item, ConfigureParameters configureParameters)
         {
-            using (SqlConnection conex = new SqlConnection (connectionString))
+            using (SqlConnection conex = new SqlConnection(connectionString))
             {
                 conex.Open();
                 string CdSql = $"INSERT INTO {tableName} VALUES (@params)";
 
-                using (SqlCommand cmd = new SqlCommand (CdSql, conex))
+                using (SqlCommand cmd = new SqlCommand(CdSql, conex))
                 {
                     configureParameters(cmd, item);
                     cmd.ExecuteNonQuery();
@@ -220,24 +295,6 @@ namespace BOADatos
             return items;
         }
 
-        //public void Actualizar<T>(string tableName, string whereClause, T item, ConfigureParameters configureParameters)
-        //{
-        //    using (SqlConnection conex = new SqlConnection(connectionString))
-        //    {
-        //        conex.Open();
-        //        string setClause = GenerateSetClause(item);
-        //        string CdSql = $"UPDATE {tableName} SET {setClause} WHERE {whereClause}";
-
-        //        using (SqlCommand cmd = new SqlCommand(CdSql, conex))
-        //        {
-        //            configureParameters(cmd, item);
-        //            cmd.ExecuteNonQuery();
-        //            cmd.Dispose();
-        //        }
-
-        //        conex.Close();
-        //    }
-        //}
         private string GenerateSetClause<T>(T item)
         {
             var properties = typeof(T).GetProperties();
