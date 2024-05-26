@@ -61,6 +61,29 @@ namespace BOADatos
                 Stock = (int)reader["stock"]
             };
         }
+        public Cliente MapCliente(SqlDataReader reader)
+        {
+            return new Cliente
+            {
+                IdCliente = reader["idCliente"].ToString(),
+                Nombre = reader["nombre"].ToString(),
+                ApellidoP = reader["apellidoP"].ToString(),
+                ApellidoM = reader["apellidoM"].ToString(),
+                Correo = reader["correo"].ToString()
+            };
+        }
+        public Empleado MapEmpleado(SqlDataReader reader)
+        {
+            return new Empleado
+            {
+                IdEmpleado = reader["idEmpleado"].ToString(),
+                Nombre = reader["nombre"].ToString(),
+                ApellidoP = reader["apellidoP"].ToString(),
+                ApellidoM = reader["apellidoM"].ToString(),
+                RFC = reader["rfc"].ToString(),
+                Sueldo = int.Parse(reader["sueldo"].ToString())
+            };
+        }
         #endregion
 
         #region Params
@@ -88,7 +111,27 @@ namespace BOADatos
             command.Parameters.AddWithValue("@pL", inventario.PrecioLlegada);
             command.Parameters.AddWithValue("@stk", inventario.Stock);
         }
-
+        public void ConfigureClientParameters(SqlCommand command, object item)
+        {
+            Cliente cliente = (Cliente)item;
+            command.CommandText = "INSERT INTO CLIENTES (idCliente, nombre, apellidoP, apellidoM, correo) VALUES (@idC, @nomb, @apeP, @apeM, @correo)";
+            command.Parameters.AddWithValue("@idC", cliente.IdCliente);
+            command.Parameters.AddWithValue("@nomb", cliente.Nombre);
+            command.Parameters.AddWithValue("@apeP", cliente.ApellidoP);
+            command.Parameters.AddWithValue("@apeM", cliente.ApellidoM);
+            command.Parameters.AddWithValue("@correo", cliente.Correo);
+        }
+        public void ConfigureEmployeeParameters(SqlCommand command, object item)
+        {
+            Empleado empleado = (Empleado)item;
+            command.CommandText = "INSERT INTO EMPLEADO (idEmpleado, nombre, apellidoP, apellidoM, rfc, sueldo) VALUES (@idE, @nomb, @apeP, @apeM, @rfc, @sueldo)";
+            command.Parameters.AddWithValue("@idE", empleado.IdEmpleado);
+            command.Parameters.AddWithValue("@nomb", empleado.Nombre);
+            command.Parameters.AddWithValue("@apeP", empleado.ApellidoP);
+            command.Parameters.AddWithValue("@apeM", empleado.ApellidoM);
+            command.Parameters.AddWithValue("@rfc", empleado.RFC);
+            command.Parameters.AddWithValue("@sueldo", empleado.Sueldo);
+        }
         #endregion
 
         #region GetTables
@@ -238,6 +281,47 @@ namespace BOADatos
                     Cmd.Parameters.AddWithValue("@fL", inventario.FechaLlegada);
                     Cmd.Parameters.AddWithValue("@pL", inventario.PrecioLlegada);
                     Cmd.Parameters.AddWithValue("@stk", inventario.Stock);
+                    Cmd.ExecuteNonQuery();
+                    Cmd.Dispose();
+                }
+                conex.Close();
+            }
+        }
+        public void ActualizarClientes(Cliente cliente)
+        {
+            using (SqlConnection conex = new SqlConnection(connectionString))
+            {
+                conex.Open();
+                string CdSql = "UPDATE CLIENTES SET nombre=@nomb, " +
+                    "apellidoP=@apeP, apellidoM=@apeM, correo=@correo WHERE idCliente=@idC";
+                using (SqlCommand Cmd = new SqlCommand(CdSql, conex))
+                {
+                    Cmd.Parameters.AddWithValue("@idC", cliente.IdCliente);
+                    Cmd.Parameters.AddWithValue("@nomb", cliente.Nombre);
+                    Cmd.Parameters.AddWithValue("@apeP", cliente.ApellidoP);
+                    Cmd.Parameters.AddWithValue("@apeM", cliente.ApellidoM);
+                    Cmd.Parameters.AddWithValue("@correo", cliente.Correo);
+                    Cmd.ExecuteNonQuery();
+                    Cmd.Dispose();
+                }
+                conex.Close();
+            }
+        }
+        public void ActualizarEmpleados(Empleado empleado)
+        {
+            using (SqlConnection conex = new SqlConnection(connectionString))
+            {
+                conex.Open();
+                string CdSql = "UPDATE EMPLEADO SET nombre=@nomb, " +
+                    "apellidoP=@apeP, apellidoM=@apeM, rfc=@rfc, sueldo=@sueldo WHERE idEmpleado=@idE";
+                using (SqlCommand Cmd = new SqlCommand(CdSql, conex))
+                {
+                    Cmd.Parameters.AddWithValue("@idE", empleado.IdEmpleado);
+                    Cmd.Parameters.AddWithValue("@nomb", empleado.Nombre);
+                    Cmd.Parameters.AddWithValue("@apeP", empleado.ApellidoP);
+                    Cmd.Parameters.AddWithValue("@apeM", empleado.ApellidoM);
+                    Cmd.Parameters.AddWithValue("@rfc", empleado.RFC);
+                    Cmd.Parameters.AddWithValue("@sueldo", empleado.Sueldo);
                     Cmd.ExecuteNonQuery();
                     Cmd.Dispose();
                 }

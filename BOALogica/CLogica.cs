@@ -26,6 +26,14 @@ namespace BOALogica
         {
             return datos.ObtenerTabla("INVENTARIO", datos.MapInventario);
         }
+        public List<Cliente> ObtenerClientes()
+        {
+            return datos.ObtenerTabla("CLIENTES", datos.MapCliente);
+        }
+        public List<Empleado> ObtenerEmpleado()
+        {
+            return datos.ObtenerTabla("EMPLEADO", datos.MapEmpleado);
+        }
         public void RegistrarVenta(Venta venta)
         {
             //Falta validacion
@@ -35,6 +43,14 @@ namespace BOALogica
         {
             datos.Insertar("INVENTARIO", inventario, datos.ConfigureInventoryParameters);
         }
+        public void RegistrarCliente(Cliente cliente)
+        {
+            datos.Insertar("CLIENTES", cliente, datos.ConfigureClientParameters);
+        }
+        public void RegistrarEmpleado(Empleado empleado)
+        {
+            datos.Insertar("CLIENTES", empleado, datos.ConfigureEmployeeParameters);
+        }
         public void ModificarVenta(Venta venta)
         {
             datos.ActualizarVentas(venta);
@@ -42,6 +58,14 @@ namespace BOALogica
         public void ModificarInventario(Inventario inventario)
         {
             datos.ActualizarInventarios(inventario);
+        }
+        public void ModificarCliente(Cliente cliente)
+        {
+            datos.ActualizarClientes(cliente);
+        }
+        public void ModificarEmpleado(Empleado empleado)
+        {
+            datos.ActualizarEmpleados(empleado);
         }
         public void Eliminar(string id, string tablaDelId)
         {
@@ -55,5 +79,14 @@ namespace BOALogica
         {
             return datos.Consultar("INVENTARIO", "idInventario", id, datos.MapInventario);
         }
+        public List<Cliente> ConsultarCliente(string id)
+        {
+            return datos.Consultar("CLIENTES", "idCliente", id, datos.MapCliente);
+        }
+        public List<Empleado> ConsultarEmpleado(string id)
+        {
+            return datos.Consultar("EMPLEADO", "idEmpleado", id, datos.MapEmpleado);
+        }
     }
 }
+

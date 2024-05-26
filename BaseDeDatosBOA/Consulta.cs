@@ -40,6 +40,14 @@ namespace BaseDeDatosBOA
                     var inventarios = logica.ConsultarInventario(txtId.Text);
                     dgvConsulta.DataSource = inventarios;
                     break;
+                case "CLIENTES":
+                    var clientes = logica.ConsultarCliente(txtId.Text);
+                    dgvConsulta.DataSource = clientes;
+                    break;
+                case "EMPLEADO":
+                    var empleado = logica.ConsultarEmpleado(txtId.Text);
+                    dgvConsulta.DataSource = empleado;
+                    break;
             }
         }
     }
