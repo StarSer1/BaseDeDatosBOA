@@ -121,10 +121,5 @@ namespace BaseDeDatosBOA
             formConsulta.tablaDeDondeViene = "ALMACENAMIENTO";
             formConsulta.ShowDialog();
         }
-
-        private void btnEliminar_Click_1(object sender, EventArgs e)
-        {
-
-        }
     }
 }

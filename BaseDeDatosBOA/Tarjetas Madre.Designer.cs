@@ -75,6 +75,7 @@
             this.btnEliminar.PressedState.Parent = this.btnEliminar;
             this.btnEliminar.Size = new System.Drawing.Size(41, 30);
             this.btnEliminar.TabIndex = 0;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnConsulta
             // 
@@ -86,6 +87,7 @@
             this.btnConsulta.PressedState.Parent = this.btnConsulta;
             this.btnConsulta.Size = new System.Drawing.Size(41, 30);
             this.btnConsulta.TabIndex = 0;
+            this.btnConsulta.Click += new System.EventHandler(this.btnConsulta_Click);
             // 
             // btnActualizar
             // 
@@ -97,6 +99,7 @@
             this.btnActualizar.PressedState.Parent = this.btnActualizar;
             this.btnActualizar.Size = new System.Drawing.Size(41, 30);
             this.btnActualizar.TabIndex = 0;
+            this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
             // 
             // label6
             // 
@@ -201,6 +204,7 @@
             this.btnInsertar.Size = new System.Drawing.Size(149, 44);
             this.btnInsertar.TabIndex = 37;
             this.btnInsertar.Text = "Insertar";
+            this.btnInsertar.Click += new System.EventHandler(this.btnInsertar_Click);
             // 
             // btnModificar
             // 
@@ -216,6 +220,7 @@
             this.btnModificar.Size = new System.Drawing.Size(149, 44);
             this.btnModificar.TabIndex = 36;
             this.btnModificar.Text = "Modificar";
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
             // txtSocket
             // 
@@ -408,6 +413,7 @@
             this.Controls.Add(this.dgvTarjetasMadre);
             this.Name = "Tarjetas_Madre";
             this.Text = "Tarjetas_Madre";
+            this.Load += new System.EventHandler(this.Tarjetas_Madre_Load);
             this.flowLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTarjetasMadre)).EndInit();
             this.ResumeLayout(false);

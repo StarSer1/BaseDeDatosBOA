@@ -126,7 +126,7 @@ namespace BaseDeDatosBOA
         private void btnConsulta_Click_1(object sender, EventArgs e)
         {
             Consulta formConsulta = new Consulta();
-            formConsulta.tablaDeDondeViene = "VENTA";
+            formConsulta.tablaDeDondeViene = "GRAFICA";
             formConsulta.ShowDialog();
         }
     }
