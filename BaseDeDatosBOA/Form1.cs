@@ -143,7 +143,7 @@ namespace BaseDeDatosBOA
         private void BtnInventario_Click(object sender, EventArgs e)
         {
             ActivarBoton(sender, almacenarRGB.color1);
-            formularioHijo(new Inventario());
+            formularioHijo(new Inventarios());
         }
 
         private void BtnClientes_Click(object sender, EventArgs e)

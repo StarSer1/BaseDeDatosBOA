@@ -36,6 +36,10 @@ namespace BaseDeDatosBOA
                     var ventas = logica.ConsultarVenta(txtId.Text);
                     dgvConsulta.DataSource = ventas;
                     break;
+                case "INVENTARIO":
+                    var inventarios = logica.ConsultarInventario(txtId.Text);
+                    dgvConsulta.DataSource = inventarios;
+                    break;
             }
         }
     }

@@ -22,14 +22,26 @@ namespace BOALogica
         {
             return datos.ObtenerTabla("VENTAS", datos.MapVenta);
         }
+        public List<Inventario> ObtenerInventarios()
+        {
+            return datos.ObtenerTabla("INVENTARIO", datos.MapInventario);
+        }
         public void RegistrarVenta(Venta venta)
         {
             //Falta validacion
             datos.Insertar("VENTAS", venta, datos.ConfigureVentaParameters);
         }
+        public void RegistrarInventario(Inventario inventario)
+        {
+            datos.Insertar("INVENTARIO", inventario, datos.ConfigureInventoryParameters);
+        }
         public void ModificarVenta(Venta venta)
         {
             datos.ActualizarVentas(venta);
+        }
+        public void ModificarInventario(Inventario inventario)
+        {
+            datos.ActualizarInventarios(inventario);
         }
         public void Eliminar(string id, string tablaDelId)
         {
@@ -38,6 +50,10 @@ namespace BOALogica
         public List<Venta> ConsultarVenta(string id)
         {
             return datos.Consultar("VENTAS", "idVenta", id, datos.MapVenta);
+        }
+        public List<Inventario> ConsultarInventario(string id)
+        {
+            return datos.Consultar("INVENTARIO", "idInventario", id, datos.MapInventario);
         }
     }
 }

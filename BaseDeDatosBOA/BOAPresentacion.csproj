@@ -113,11 +113,11 @@
     <Compile Include="Graficas.Designer.cs">
       <DependentUpon>Graficas.cs</DependentUpon>
     </Compile>
-    <Compile Include="Inventario.cs">
+    <Compile Include="Inventarios.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Inventario.Designer.cs">
-      <DependentUpon>Inventario.cs</DependentUpon>
+    <Compile Include="Inventarios.Designer.cs">
+      <DependentUpon>Inventarios.cs</DependentUpon>
     </Compile>
     <Compile Include="Procesadores.cs">
       <SubType>Form</SubType>
@@ -172,8 +172,8 @@
     <EmbeddedResource Include="Graficas.resx">
       <DependentUpon>Graficas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Inventario.resx">
-      <DependentUpon>Inventario.cs</DependentUpon>
+    <EmbeddedResource Include="Inventarios.resx">
+      <DependentUpon>Inventarios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Procesadores.resx">
       <DependentUpon>Procesadores.cs</DependentUpon>

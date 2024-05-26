@@ -50,7 +50,17 @@ namespace BOADatos
                 Descuento = (int)reader["Descuento"]
             };
         }
-
+        public Inventario MapInventario(SqlDataReader reader)
+        {
+            return new Inventario
+            {
+                IdInventario = reader["idInventario"].ToString(),
+                IdComputadora = reader["idComputadora"].ToString(),
+                FechaLlegada = reader["fechaLlegada"].ToString(),
+                PrecioLlegada = (int)reader["precioLLegada"],
+                Stock = (int)reader["stock"]
+            };
+        }
         #endregion
 
         #region Params
@@ -68,18 +78,15 @@ namespace BOADatos
             command.Parameters.AddWithValue("@pB", venta.PrecioBase);
             command.Parameters.AddWithValue("@Desc", venta.Descuento);
         }
-
-        public void ConfigureVentaActParameters(SqlCommand command, object item)
+        public void ConfigureInventoryParameters(SqlCommand command, object item)
         {
-            Venta venta = (Venta)item;
-            command.Parameters.AddWithValue("@idV", venta.IdVenta);
-            command.Parameters.AddWithValue("@idE", venta.IdEmpleado);
-            command.Parameters.AddWithValue("@idC", venta.IdComputadora);
-            command.Parameters.AddWithValue("@idCliente", venta.IdCliente);
-            command.Parameters.AddWithValue("@fV", venta.FechaVenta);
-            command.Parameters.AddWithValue("@pF", venta.PrecioFinal);
-            command.Parameters.AddWithValue("@pB", venta.PrecioBase);
-            command.Parameters.AddWithValue("@Desc", venta.Descuento);
+            Inventario inventario = (Inventario)item;
+            command.CommandText = "INSERT INTO INVENTARIO (idInventario, idComputadora, fechaLlegada, precioLlegada, stock) VALUES (@idI, @idC, @fL, @pL, @stk)";
+            command.Parameters.AddWithValue("@idI", inventario.IdInventario);
+            command.Parameters.AddWithValue("@idC", inventario.IdComputadora);
+            command.Parameters.AddWithValue("@fL", inventario.FechaLlegada);
+            command.Parameters.AddWithValue("@pL", inventario.PrecioLlegada);
+            command.Parameters.AddWithValue("@stk", inventario.Stock);
         }
 
         #endregion
@@ -217,6 +224,26 @@ namespace BOADatos
                 conex.Close();
             }
         }
+        public void ActualizarInventarios(Inventario inventario)
+        {
+            using (SqlConnection conex = new SqlConnection(connectionString))
+            {
+                conex.Open();
+                string CdSql = "UPDATE INVENTARIO SET idComputadora=@idC, fechaLlegada=@fL, " +
+                    "precioLlegada=@pL, stock=@stk WHERE idInventario=@idI";
+                using (SqlCommand Cmd = new SqlCommand(CdSql, conex))
+                {
+                    Cmd.Parameters.AddWithValue("@idI", inventario.IdInventario);
+                    Cmd.Parameters.AddWithValue("@idC", inventario.IdComputadora);
+                    Cmd.Parameters.AddWithValue("@fL", inventario.FechaLlegada);
+                    Cmd.Parameters.AddWithValue("@pL", inventario.PrecioLlegada);
+                    Cmd.Parameters.AddWithValue("@stk", inventario.Stock);
+                    Cmd.ExecuteNonQuery();
+                    Cmd.Dispose();
+                }
+                conex.Close();
+            }
+        }
         public void Eliminar(string id, string tablaDelId)
         {
             string fromTable = "";
@@ -224,6 +251,36 @@ namespace BOADatos
             {
                 case "idVenta":
                     fromTable = "VENTAS";
+                    break;
+                case "idInventario":
+                    fromTable = "INVENTARIO";
+                    break;
+                case "idCliente":
+                    fromTable = "CLIENTES";
+                    break;
+                case "idEmpleado":
+                    fromTable = "EMPLEADO";
+                    break;
+                case "idComputadora":
+                    fromTable = "COMPUTADORA";
+                    break;
+                case "idTarjetaMadre":
+                    fromTable = "TARJETAMADRE";
+                    break;
+                case "idProcesador":
+                    fromTable = "PROCESADOR";
+                    break;
+                case "idGrafica":
+                    fromTable = "GRAFICA";
+                    break;
+                case "idRam":
+                    fromTable = "RAM";
+                    break;
+                case "idAlmacenamiento":
+                    fromTable = "ALMACENAMIENTO";
+                    break;
+                case "idFuentePoder":
+                    fromTable = "FUENTEPODER";
                     break;
             }
             using (SqlConnection cone = new SqlConnection(connectionString))
