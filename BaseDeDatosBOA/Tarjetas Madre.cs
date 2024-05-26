@@ -104,5 +104,10 @@ namespace BaseDeDatosBOA
         {
             LoadData();
         }
+
+        private void txtRanurasDIMM_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            logica.SoloNumeros(sender, e);
+        }
     }
 }

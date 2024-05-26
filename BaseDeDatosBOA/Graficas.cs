@@ -129,5 +129,10 @@ namespace BaseDeDatosBOA
             formConsulta.tablaDeDondeViene = "GRAFICA";
             formConsulta.ShowDialog();
         }
+
+        private void txtVram_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            logica.SoloNumeros(sender, e);
+        }
     }
 }

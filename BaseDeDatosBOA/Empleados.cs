@@ -105,5 +105,10 @@ namespace BaseDeDatosBOA
             formConsulta.tablaDeDondeViene = "EMPLEADO";
             formConsulta.ShowDialog();
         }
+
+        private void txtSueldo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            logica.SoloNumeros(sender, e);
+        }
     }
 }

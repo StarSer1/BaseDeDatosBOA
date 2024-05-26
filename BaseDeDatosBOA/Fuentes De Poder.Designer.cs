@@ -254,6 +254,7 @@
             this.txtPotencia.ShadowDecoration.Parent = this.txtPotencia;
             this.txtPotencia.Size = new System.Drawing.Size(149, 31);
             this.txtPotencia.TabIndex = 33;
+            this.txtPotencia.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPotencia_KeyPress);
             // 
             // txtMarca
             // 

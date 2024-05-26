@@ -122,5 +122,9 @@ namespace BaseDeDatosBOA
             formConsulta.ShowDialog();
         }
 
+        private void txtPotencia_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            logica.SoloNumeros(sender, e);
+        }
     }
 }

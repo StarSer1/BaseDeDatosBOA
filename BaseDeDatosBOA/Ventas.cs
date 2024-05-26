@@ -132,5 +132,10 @@ namespace BaseDeDatosBOA
             formConsulta.tablaDeDondeViene = "VENTA";
             formConsulta.ShowDialog();
         }
+
+        private void txtDescuento_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            logica.SoloNumeros(sender, e);
+        }
     }
 }

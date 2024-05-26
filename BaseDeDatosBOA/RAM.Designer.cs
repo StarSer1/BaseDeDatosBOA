@@ -189,6 +189,7 @@
             this.txtVelocidadTrans.ShadowDecoration.Parent = this.txtVelocidadTrans;
             this.txtVelocidadTrans.Size = new System.Drawing.Size(110, 31);
             this.txtVelocidadTrans.TabIndex = 38;
+            this.txtVelocidadTrans.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFrecuencia_KeyPress);
             // 
             // btnInsertar
             // 
@@ -243,6 +244,7 @@
             this.txtTamaño.ShadowDecoration.Parent = this.txtTamaño;
             this.txtTamaño.Size = new System.Drawing.Size(110, 31);
             this.txtTamaño.TabIndex = 35;
+            this.txtTamaño.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFrecuencia_KeyPress);
             // 
             // txtFrecuencia
             // 
@@ -265,6 +267,7 @@
             this.txtFrecuencia.ShadowDecoration.Parent = this.txtFrecuencia;
             this.txtFrecuencia.Size = new System.Drawing.Size(110, 31);
             this.txtFrecuencia.TabIndex = 34;
+            this.txtFrecuencia.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFrecuencia_KeyPress);
             // 
             // txtTipoRam
             // 

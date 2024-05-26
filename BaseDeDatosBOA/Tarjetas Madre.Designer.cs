@@ -265,6 +265,7 @@
             this.txtRanurasDIMM.ShadowDecoration.Parent = this.txtRanurasDIMM;
             this.txtRanurasDIMM.Size = new System.Drawing.Size(149, 31);
             this.txtRanurasDIMM.TabIndex = 34;
+            this.txtRanurasDIMM.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRanurasDIMM_KeyPress);
             // 
             // txtIdModelo
             // 

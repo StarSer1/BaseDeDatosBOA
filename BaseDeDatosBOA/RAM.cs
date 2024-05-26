@@ -106,5 +106,10 @@ namespace BaseDeDatosBOA
         {
             LoadData();
         }
+
+        private void txtFrecuencia_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            logica.SoloNumeros(sender, e);
+        }
     }
 }

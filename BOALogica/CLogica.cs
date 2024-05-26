@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using BOAEntidad;
 using BOADatos;
+using System.Windows.Forms;
 
 namespace BOALogica
 {
@@ -202,6 +203,20 @@ namespace BOALogica
         {
             return datos.Consultar("FUENTEPODER", "idFuentePoder", id, datos.MapFuentePoder);
         }
+        #endregion
+        #region Validaciones
+        public void SoloNumeros(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+        public void RevisionDeDatos()
+        {
+
+        }
+
         #endregion
     }
 }

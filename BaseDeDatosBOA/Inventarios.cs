@@ -103,5 +103,10 @@ namespace BaseDeDatosBOA
             formConsulta.tablaDeDondeViene = "INVENTARIO";
             formConsulta.ShowDialog();
         }
+
+        private void txtPrecioLLegada_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            logica.SoloNumeros(sender, e);
+        }
     }
 }

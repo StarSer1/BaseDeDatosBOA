@@ -121,5 +121,10 @@ namespace BaseDeDatosBOA
             formConsulta.tablaDeDondeViene = "ALMACENAMIENTO";
             formConsulta.ShowDialog();
         }
+
+        private void txtCapacidad_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            logica.SoloNumeros(sender, e);
+        }
     }
 }

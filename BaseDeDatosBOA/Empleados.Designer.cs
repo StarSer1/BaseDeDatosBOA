@@ -142,6 +142,7 @@
             this.txtSueldo.ShadowDecoration.Parent = this.txtSueldo;
             this.txtSueldo.Size = new System.Drawing.Size(149, 31);
             this.txtSueldo.TabIndex = 28;
+            this.txtSueldo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSueldo_KeyPress);
             // 
             // btnInsertar
             // 

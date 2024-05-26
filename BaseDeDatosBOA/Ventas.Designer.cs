@@ -278,6 +278,7 @@
             this.txtPrecioFinal.ShadowDecoration.Parent = this.txtPrecioFinal;
             this.txtPrecioFinal.Size = new System.Drawing.Size(149, 31);
             this.txtPrecioFinal.TabIndex = 9;
+            this.txtPrecioFinal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDescuento_KeyPress);
             // 
             // txtPrecioBase
             // 
@@ -300,6 +301,7 @@
             this.txtPrecioBase.ShadowDecoration.Parent = this.txtPrecioBase;
             this.txtPrecioBase.Size = new System.Drawing.Size(149, 31);
             this.txtPrecioBase.TabIndex = 10;
+            this.txtPrecioBase.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDescuento_KeyPress);
             // 
             // txtDescuento
             // 
@@ -322,6 +324,7 @@
             this.txtDescuento.ShadowDecoration.Parent = this.txtDescuento;
             this.txtDescuento.Size = new System.Drawing.Size(149, 31);
             this.txtDescuento.TabIndex = 11;
+            this.txtDescuento.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDescuento_KeyPress);
             // 
             // label1
             // 
