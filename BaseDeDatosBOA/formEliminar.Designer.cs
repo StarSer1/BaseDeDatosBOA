@@ -40,27 +40,28 @@
             this.btnEliminar.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnEliminar.ForeColor = System.Drawing.Color.White;
             this.btnEliminar.HoverState.Parent = this.btnEliminar;
-            this.btnEliminar.Location = new System.Drawing.Point(108, 154);
+            this.btnEliminar.Location = new System.Drawing.Point(28, 92);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.ShadowDecoration.Parent = this.btnEliminar;
-            this.btnEliminar.Size = new System.Drawing.Size(180, 45);
+            this.btnEliminar.Size = new System.Drawing.Size(185, 45);
             this.btnEliminar.TabIndex = 0;
             this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.Click += new System.EventHandler(this.BtnEliminar_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(94, 83);
+            this.label1.Location = new System.Drawing.Point(54, 34);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(70, 25);
+            this.label1.Size = new System.Drawing.Size(32, 25);
             this.label1.TabIndex = 1;
-            this.label1.Text = "label1";
+            this.label1.Text = "ID";
             // 
             // txtId
             // 
             this.txtId.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtId.Location = new System.Drawing.Point(202, 82);
+            this.txtId.Location = new System.Drawing.Point(92, 33);
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(100, 26);
             this.txtId.TabIndex = 2;
@@ -70,7 +71,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(252)))), ((int)(((byte)(229)))));
-            this.ClientSize = new System.Drawing.Size(422, 259);
+            this.ClientSize = new System.Drawing.Size(257, 259);
             this.Controls.Add(this.txtId);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnEliminar);

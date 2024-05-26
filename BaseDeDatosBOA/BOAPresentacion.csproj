@@ -77,6 +77,12 @@
     <Compile Include="Computadoras.Designer.cs">
       <DependentUpon>Computadoras.cs</DependentUpon>
     </Compile>
+    <Compile Include="Consulta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Consulta.Designer.cs">
+      <DependentUpon>Consulta.cs</DependentUpon>
+    </Compile>
     <Compile Include="Empleados.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -147,6 +153,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Computadoras.resx">
       <DependentUpon>Computadoras.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Consulta.resx">
+      <DependentUpon>Consulta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Empleados.resx">
       <DependentUpon>Empleados.cs</DependentUpon>
@@ -220,6 +229,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\hola1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\eliminar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lupa.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\recargar.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

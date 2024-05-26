@@ -1,4 +1,5 @@
-﻿using BOALogica;
+﻿using BOAEntidad;
+using BOALogica;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,28 +12,31 @@ using System.Windows.Forms;
 
 namespace BaseDeDatosBOA
 {
-    public partial class Eliminar : Form
+    public partial class Consulta : Form
     {
-
         private CLogica logica;
         public string tablaDeDondeViene { get; set; }
 
-        public Eliminar()
+        public Consulta()
         {
             logica = new CLogica();
             InitializeComponent();
         }
 
-        private void Eliminar_Load(object sender, EventArgs e)
+        private void Consulta_Load(object sender, EventArgs e)
         {
 
         }
 
-        private void BtnEliminar_Click(object sender, EventArgs e)
+        private void btnBuscar_Click(object sender, EventArgs e)
         {
-            //Añadir logica para que no intente eliminar de otra tabla
-            logica.Eliminar(txtId.Text, tablaDeDondeViene);
-            MessageBox.Show("Eliminado");
+            switch(tablaDeDondeViene)
+            {
+                case "VENTA":
+                    var ventas = logica.ConsultarVenta(txtId.Text);
+                    dgvConsulta.DataSource = ventas;
+                    break;
+            }
         }
     }
 }

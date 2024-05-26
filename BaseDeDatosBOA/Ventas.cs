@@ -124,5 +124,17 @@ namespace BaseDeDatosBOA
         {
 
         }
+
+        private void btnActualizar_Click(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+
+        private void btnConsulta_Click(object sender, EventArgs e)
+        {
+            Consulta formConsulta = new Consulta();
+            formConsulta.tablaDeDondeViene = "VENTA";
+            formConsulta.ShowDialog();
+        }
     }
 }
