@@ -140,7 +140,7 @@ namespace BaseDeDatosBOA
 
         private void btnVerificar_Click(object sender, EventArgs e)
         {
-            bool checkId = logica.VerifyID(txtIdCliente.Text, clientes, item => item.ToString());
+            bool checkId = logica.VerifyID(txtIdCliente.Text, clientes, item => item.IdCliente.ToString());
             if (checkId == true)
             {
                 txtApellidoM.Visible = true;

@@ -16,14 +16,17 @@ namespace BaseDeDatosBOA
     public partial class Tarjetas_Madre : Form
     {
         private CLogica logica;
-        List<TarjetaMadre> tarjetamadre = null;
+        List<TarjetaMadre> tarjetasMadres = null;
 
         public Tarjetas_Madre()
         {
             logica = new CLogica();
             InitializeComponent();
+            logica.TurnOffLabels(label2, label3, label4, label5, label6);
+            logica.TurnOffTxtB(txtDimensiones, txtIdModelo, txtMarca, txtRanurasDIMM, txtSocket);
 
             ValidadorForm.AgregarValidacion(btnInsertar, txtIdTarjetaMadre, txtMarca, txtIdModelo, txtRanurasDIMM, txtSocket, txtDimensiones);
+            ValidadorForm.AgregarValidacion(btnModificar, txtIdTarjetaMadre, txtMarca, txtIdModelo, txtRanurasDIMM, txtSocket, txtDimensiones);
         }
 
         private void Tarjetas_Madre_Load(object sender, EventArgs e)
@@ -34,8 +37,8 @@ namespace BaseDeDatosBOA
         {
             try
             {
-                List<Venta> ventas = logica.ObtenerVentas();
-                dgvTarjetasMadre.DataSource = ventas;
+                tarjetasMadres = logica.ObtenerTarjetaMadres();
+                dgvTarjetasMadre.DataSource = tarjetasMadres;
             }
             catch (Exception ex)
             {
@@ -45,46 +48,78 @@ namespace BaseDeDatosBOA
 
         private void btnInsertar_Click(object sender, EventArgs e)
         {
-            bool checkFormat = logica.CheckAllFormats(txtIdTarjetaMadre.Text, @"^V\d+$");
-            TarjetaMadre tarjetaMadre = null;
-            try
+            bool checkFormat = logica.CheckAllFormats(txtIdTarjetaMadre.Text, @"^T\d+$");
+            if (checkFormat == false)
             {
-                tarjetaMadre = new TarjetaMadre
-                {
-                    IdTarjetaMadre = txtIdTarjetaMadre.Text,
-                    Marca = txtMarca.Text,
-                    Modelo = txtIdModelo.Text,
-                    RanurasDIMM = int.Parse(txtRanurasDIMM.Text),
-                    Socket = txtSocket.Text,
-                    Dimensiones = txtDimensiones.Text,
-                };
-                logica.RegistrarTarjetasMadre(tarjetaMadre);
+                MessageBox.Show("Error de formato en el ID");
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
+                bool checkId = logica.VerifyID(txtIdTarjetaMadre.Text, tarjetasMadres, item => item.IdTarjetaMadre.ToString());
+                if (checkId == true)
+                {
+                    TarjetaMadre tarjetaMadre = null;
+                    try
+                    {
+                        tarjetaMadre = new TarjetaMadre
+                        {
+                            IdTarjetaMadre = txtIdTarjetaMadre.Text,
+                            Marca = txtMarca.Text,
+                            Modelo = txtIdModelo.Text,
+                            RanurasDIMM = int.Parse(txtRanurasDIMM.Text),
+                            Socket = txtSocket.Text,
+                            Dimensiones = txtDimensiones.Text,
+                        };
+                        logica.RegistrarTarjetasMadre(tarjetaMadre);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+                logica.ClearTextBoxs(txtIdTarjetaMadre, txtMarca, txtSocket, txtDimensiones, txtIdModelo, txtRanurasDIMM);
+                txtIdTarjetaMadre.Enabled = true;
+                logica.TurnOffLabels(label2, label3, label4, label5, label6);
+                logica.TurnOffTxtB(txtDimensiones, txtIdModelo, txtMarca, txtRanurasDIMM, txtSocket);
             }
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            TarjetaMadre tarjetaMadre = null;
-            try
+            bool checkFormat = logica.CheckAllFormats(txtIdTarjetaMadre.Text, @"^T\d+$");
+            if (checkFormat == false)
             {
-                tarjetaMadre = new TarjetaMadre
-                {
-                    IdTarjetaMadre = txtIdTarjetaMadre.Text,
-                    Marca = txtMarca.Text,
-                    Modelo = txtIdModelo.Text,
-                    RanurasDIMM = int.Parse(txtRanurasDIMM.Text),
-                    Socket = txtSocket.Text,
-                    Dimensiones = txtDimensiones.Text,
-                };
-                logica.RegistrarTarjetasMadre(tarjetaMadre);
+                MessageBox.Show("Error de formato en el ID");
             }
-            catch (Exception exe)
+            else
             {
-                MessageBox.Show(exe.Message);
+                bool checkId = logica.VerifyID(txtIdTarjetaMadre.Text, tarjetasMadres, item => item.IdTarjetaMadre.ToString());
+                if (checkId == true)
+                {
+                    TarjetaMadre tarjetaMadre = null;
+                    try
+                    {
+                        tarjetaMadre = new TarjetaMadre
+                        {
+                            IdTarjetaMadre = txtIdTarjetaMadre.Text,
+                            Marca = txtMarca.Text,
+                            Modelo = txtIdModelo.Text,
+                            RanurasDIMM = int.Parse(txtRanurasDIMM.Text),
+                            Socket = txtSocket.Text,
+                            Dimensiones = txtDimensiones.Text,
+                        };
+                        logica.RegistrarTarjetasMadre(tarjetaMadre);
+                    }
+                    catch (Exception exe)
+                    {
+                        MessageBox.Show(exe.Message);
+                    }
+                    txtIdTarjetaMadre.Enabled = true;
+                    btnInsertar.Enabled = true;
+                    logica.TurnOffLabels(label2, label3, label4, label5, label6);
+                    logica.TurnOffTxtB(txtDimensiones, txtIdModelo, txtMarca, txtRanurasDIMM, txtSocket);
+                    logica.ClearTextBoxs(txtIdTarjetaMadre, txtMarca, txtSocket, txtDimensiones, txtIdModelo, txtRanurasDIMM);
+                }
             }
         }
         private void AbrirEliminar(string tablaDondeViene)
@@ -142,47 +177,27 @@ namespace BaseDeDatosBOA
 
         private void btnVerificar_Click(object sender, EventArgs e)
         {
-            bool checkId = logica.VerifyID(txtIdTarjetaMadre.Text, tarjetamadre, item => item.ToString());
+            bool checkId = logica.VerifyID(txtIdTarjetaMadre.Text, tarjetasMadres, item => item.ToString());
             if (checkId == true)
             {
-                txtIdTarjetaMadre.Visible = true;
-                txtDimensiones.Visible = true;
-                txtIdModelo.Visible = true;
-                txtMarca.Visible = true;
-                txtRanurasDIMM.Visible = true;
-                txtSocket.Visible = true;
-
-                label2.Visible = true;
-                label3.Visible = true;
-                label4.Visible = true;
-                label5.Visible = true;
-                label6.Visible = true;
+                logica.TurnOnLabels(label2, label3, label4, label5, label6);
+                logica.TurnOnTxtB(txtIdTarjetaMadre, txtDimensiones, txtIdModelo, txtMarca, txtRanurasDIMM, txtSocket);
             }
             else
             {
-                for (int i = 0; i < tarjetamadre.Count; i++)
+                for (int i = 0; i < tarjetasMadres.Count; i++)
                 {
-                    if (tarjetamadre[i].IdTarjetaMadre.ToString() == txtIdTarjetaMadre.Text)
+                    if (tarjetasMadres[i].IdTarjetaMadre.ToString() == txtIdTarjetaMadre.Text)
                     {
-                        txtIdTarjetaMadre.Visible = true;
-                        txtDimensiones.Visible = true;
-                        txtIdModelo.Visible = true;
-                        txtMarca.Visible = true;
-                        txtRanurasDIMM.Visible = true;
-                        txtSocket.Visible = true;
+                        logica.TurnOnLabels(label2, label3, label4, label5, label6);
+                        logica.TurnOnTxtB(txtIdTarjetaMadre, txtDimensiones, txtIdModelo, txtMarca, txtRanurasDIMM, txtSocket);
 
-                        label2.Visible = true;
-                        label3.Visible = true;
-                        label4.Visible = true;
-                        label5.Visible = true;
-                        label6.Visible = true;
-
-                        txtIdTarjetaMadre.Text = tarjetamadre[i].IdTarjetaMadre.ToString();
-                        txtDimensiones.Text = tarjetamadre[i].Dimensiones.ToString();
-                        txtIdModelo.Text = tarjetamadre[i].Modelo.ToString();
-                        txtMarca.Text = tarjetamadre[i].Marca.ToString();
-                        txtRanurasDIMM.Text = tarjetamadre[i].RanurasDIMM.ToString();
-                        txtSocket.Text = tarjetamadre[i].Socket.ToString();
+                        txtIdTarjetaMadre.Text = tarjetasMadres[i].IdTarjetaMadre.ToString();
+                        txtDimensiones.Text = tarjetasMadres[i].Dimensiones.ToString();
+                        txtIdModelo.Text = tarjetasMadres[i].Modelo.ToString();
+                        txtMarca.Text = tarjetasMadres[i].Marca.ToString();
+                        txtRanurasDIMM.Text = tarjetasMadres[i].RanurasDIMM.ToString();
+                        txtSocket.Text = tarjetasMadres[i].Socket.ToString();
 
                         txtIdTarjetaMadre.Enabled = false;
                         btnInsertar.Enabled = false;

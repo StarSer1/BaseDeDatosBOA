@@ -45,10 +45,10 @@
             this.txtIdInventario = new Guna.UI2.WinForms.Guna2TextBox();
             this.dgvVentas = new Guna.UI2.WinForms.Guna2DataGridView();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.btnVerificar = new Guna.UI2.WinForms.Guna2ImageButton();
             this.btnEliminar = new Guna.UI2.WinForms.Guna2ImageButton();
             this.btnConsulta = new Guna.UI2.WinForms.Guna2ImageButton();
             this.btnActualizar = new Guna.UI2.WinForms.Guna2ImageButton();
+            this.btnVerificar = new Guna.UI2.WinForms.Guna2ImageButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVentas)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -327,19 +327,6 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(1031, 35);
             this.flowLayoutPanel1.TabIndex = 37;
             // 
-            // btnVerificar
-            // 
-            this.btnVerificar.CheckedState.Parent = this.btnVerificar;
-            this.btnVerificar.HoverState.Parent = this.btnVerificar;
-            this.btnVerificar.Image = global::BaseDeDatosBOA.Properties.Resources.cheque;
-            this.btnVerificar.ImageSize = new System.Drawing.Size(25, 25);
-            this.btnVerificar.Location = new System.Drawing.Point(967, 62);
-            this.btnVerificar.Name = "btnVerificar";
-            this.btnVerificar.PressedState.Parent = this.btnVerificar;
-            this.btnVerificar.Size = new System.Drawing.Size(30, 29);
-            this.btnVerificar.TabIndex = 38;
-            this.btnVerificar.Click += new System.EventHandler(this.btnVerificar_Click);
-            // 
             // btnEliminar
             // 
             this.btnEliminar.CheckedState.Parent = this.btnEliminar;
@@ -375,6 +362,19 @@
             this.btnActualizar.Size = new System.Drawing.Size(41, 30);
             this.btnActualizar.TabIndex = 0;
             this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
+            // 
+            // btnVerificar
+            // 
+            this.btnVerificar.CheckedState.Parent = this.btnVerificar;
+            this.btnVerificar.HoverState.Parent = this.btnVerificar;
+            this.btnVerificar.Image = global::BaseDeDatosBOA.Properties.Resources.cheque;
+            this.btnVerificar.ImageSize = new System.Drawing.Size(25, 25);
+            this.btnVerificar.Location = new System.Drawing.Point(967, 62);
+            this.btnVerificar.Name = "btnVerificar";
+            this.btnVerificar.PressedState.Parent = this.btnVerificar;
+            this.btnVerificar.Size = new System.Drawing.Size(30, 29);
+            this.btnVerificar.TabIndex = 38;
+            this.btnVerificar.Click += new System.EventHandler(this.btnVerificar_Click);
             // 
             // Inventarios
             // 

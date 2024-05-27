@@ -1,5 +1,6 @@
 ﻿using BOAEntidad;
 using BOALogica;
+using Guna.UI2.WinForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,15 +23,18 @@ namespace BaseDeDatosBOA
         {
             logica = new CLogica();
             InitializeComponent();
+            logica.TurnOffLabels(label2, label3, label4, label5, label6);
+            logica.TurnOffTxtB(txtFrecuencia, txtMarca, txtTipoRam, txtVelocidadTrans, txtTamaño);
 
             ValidadorForm.AgregarValidacion(btnInsertar, txtIdRam, txtMarca, txtTipoRam, txtFrecuencia, txtTamaño, txtVelocidadTrans);
+            ValidadorForm.AgregarValidacion(btnModificar, txtIdRam, txtMarca, txtTipoRam, txtFrecuencia, txtTamaño, txtVelocidadTrans);
         }
         public void LoadData()
         {
             try
             {
-                List<Venta> ventas = logica.ObtenerVentas();
-                dgvRam.DataSource = ventas;
+                rams = logica.ObtenerRam();
+                dgvRam.DataSource = rams;
             }
             catch (Exception ex)
             {
@@ -52,46 +56,69 @@ namespace BaseDeDatosBOA
             }
             else
             {
-                Ram ram = null;
-                try
+                bool checkId = logica.VerifyID(txtIdRam.Text, rams, item => item.IdRam.ToString());
+                if (checkId == true)
                 {
-                    ram = new Ram
+                    Ram ram = null;
+                    try
                     {
-                        IdRam = txtIdRam.Text,
-                        Marca = txtMarca.Text,
-                        TipoRam = txtTipoRam.Text,
-                        Frecuencia = int.Parse(txtFrecuencia.Text),
-                        Tamaño = int.Parse(txtTamaño.Text),
-                        VelocidadTransferencia = int.Parse(txtVelocidadTrans.Text),
-                    };
-                    logica.RegistrarRam(ram);
+                        ram = new Ram
+                        {
+                            IdRam = txtIdRam.Text,
+                            Marca = txtMarca.Text,
+                            TipoRam = txtTipoRam.Text,
+                            Frecuencia = int.Parse(txtFrecuencia.Text),
+                            Tamaño = int.Parse(txtTamaño.Text),
+                            VelocidadTransferencia = int.Parse(txtVelocidadTrans.Text),
+                        };
+                        logica.RegistrarRam(ram);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
+                //logica.ClearTextBoxs(this.Controls.OfType<Guna2TextBox>().Where((button) => button.Name.ToString() != "txtIdRam").ToArray());
+                logica.ClearTextBoxs(this.Controls.OfType<Guna2TextBox>().ToArray());
+                txtIdRam.Enabled = true;
+                logica.TurnOffLabels(this.Controls.OfType<Label>().Where((label) => label.Name.ToString() != "label1").ToArray());
+                logica.TurnOffTxtB(this.Controls.OfType<Guna2TextBox>().Where((button) => button.Name.ToString() != "txtIdRam").ToArray());
             }
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            Ram ram = null;
-            try
+            bool checkFormat = logica.CheckAllFormats(txtIdRam.Text, @"^R\d+$");
+            if (checkFormat == false)
             {
-                ram = new Ram
-                {
-                    IdRam = txtIdRam.Text,
-                    Marca = txtMarca.Text,
-                    TipoRam = txtTipoRam.Text,
-                    Frecuencia = int.Parse(txtFrecuencia.Text),
-                    Tamaño = int.Parse(txtTamaño.Text),
-                    VelocidadTransferencia = int.Parse(txtVelocidadTrans.Text),
-                };
-                logica.RegistrarRam(ram);
+                MessageBox.Show("error de formato en ID");
             }
-            catch (Exception exe)
+            else
             {
-                MessageBox.Show(exe.Message);
+                    try
+                    {
+                        Ram ram = null;
+                        ram = new Ram
+                        {
+                            IdRam = txtIdRam.Text,
+                            Marca = txtMarca.Text,
+                            TipoRam = txtTipoRam.Text,
+                            Frecuencia = int.Parse(txtFrecuencia.Text),
+                            Tamaño = int.Parse(txtTamaño.Text),
+                            VelocidadTransferencia = int.Parse(txtVelocidadTrans.Text),
+                        };
+                        logica.ModificarRam(ram);
+                    }
+                    catch (Exception exe)
+                    {
+                        MessageBox.Show(exe.Message);
+                    }
+                    txtIdRam.Enabled = true;
+                    btnInsertar.Enabled = true;
+                    logica.TurnOffLabels(this.Controls.OfType<Label>().Where((label) => label.Name.ToString() != "label1").ToArray());
+                    logica.TurnOffTxtB(this.Controls.OfType<Guna2TextBox>().Where((button) => button.Name.ToString() != "txtIdRam").ToArray());
+                    logica.ClearTextBoxs(this.Controls.OfType<Guna2TextBox>().ToArray());
+                
             }
         }
 
@@ -153,16 +180,8 @@ namespace BaseDeDatosBOA
             bool checkId = logica.VerifyID(txtIdRam.Text, rams, item => item.IdRam.ToString());
             if (checkId == true)
             {
-                txtMarca.Visible = true;
-                txtTipoRam.Visible = true;
-                txtFrecuencia.Visible = true;
-                txtTamaño.Visible = true;
-                txtVelocidadTrans.Visible = true;
-                label2.Visible = true;
-                label3.Visible = true;
-                label4.Visible = true;
-                label5.Visible = true;
-                label6.Visible = true;
+                logica.TurnOnLabels(this.Controls.OfType<Label>().Where((label) => label.Name.ToString() != "label1").ToArray());
+                logica.TurnOnTxtB(this.Controls.OfType<Guna2TextBox>().ToArray());
             }
             else
             {
@@ -170,16 +189,8 @@ namespace BaseDeDatosBOA
                 {
                     if (rams[i].IdRam.ToString() == txtIdRam.Text)
                     {
-                        txtMarca.Visible = true;
-                        txtTipoRam.Visible = true;
-                        txtFrecuencia.Visible = true;
-                        txtTamaño.Visible = true;
-                        txtVelocidadTrans.Visible = true;
-                        label2.Visible = true;
-                        label3.Visible = true;
-                        label4.Visible = true;
-                        label5.Visible = true;
-                        label6.Visible = true;
+                        logica.TurnOnLabels(this.Controls.OfType<Label>().Where((label) => label.Name.ToString() != "label1").ToArray());
+                        logica.TurnOnTxtB(this.Controls.OfType<Guna2TextBox>().ToArray());
 
                         txtIdRam.Text = rams[i].IdRam.ToString();
                         txtMarca.Text = rams[i].Marca.ToString();

@@ -193,7 +193,7 @@ namespace BaseDeDatosBOA
 
         private void btnVerificar_Click(object sender, EventArgs e)
         {          
-            bool checkId = logica.VerifyID(txtIdVenta.Text, ventas, item => item.ToString());
+            bool checkId = logica.VerifyID(txtIdVenta.Text, ventas, item => item.IdVenta.ToString());
             if (checkId == true)
             {
                 txtIdComputadora.Visible = true;

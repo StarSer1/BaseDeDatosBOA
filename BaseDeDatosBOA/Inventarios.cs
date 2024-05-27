@@ -22,16 +22,11 @@ namespace BaseDeDatosBOA
         {
             logica = new CLogica();
             InitializeComponent();
-            txtIdComputadora.Visible = false;
-            txtFechaLlegada.Visible = false;
-            txtPrecioLLegada.Visible = false;
-            txtStock.Visible = false;
-            label2.Visible = false;
-            label3.Visible = false;
-            label4.Visible = false;
-            label5.Visible = false;
+            logica.TurnOffLabels(label2, label3, label4, label5);
+            logica.TurnOffTxtB(txtIdComputadora, txtFechaLlegada, txtPrecioLLegada, txtStock);
 
             ValidadorForm.AgregarValidacion(btnInsertar, txtFechaLlegada, txtIdComputadora, txtIdInventario, txtPrecioLLegada, txtStock);
+            ValidadorForm.AgregarValidacion(btnModificar, txtFechaLlegada, txtIdComputadora, txtIdInventario, txtPrecioLLegada, txtStock);
         }
         public void LoadData()
         {
@@ -65,23 +60,31 @@ namespace BaseDeDatosBOA
                 }
                 else
                 {
-                    Inventario inventario = null;
-                    try
+                    bool checkId = logica.VerifyID(txtIdInventario.Text, inventarios, item => item.IdInventario.ToString());
+                    if (checkId == true)
                     {
-                        inventario = new Inventario
+                        Inventario inventario = null;
+                        try
                         {
-                            IdInventario = txtIdInventario.Text,
-                            IdComputadora = txtIdComputadora.Text,
-                            FechaLlegada = txtFechaLlegada.Text,
-                            PrecioLlegada = int.Parse(txtPrecioLLegada.Text),
-                            Stock = int.Parse(txtStock.Text)
-                        };
-                        logica.RegistrarInventario(inventario);
+                            inventario = new Inventario
+                            {
+                                IdInventario = txtIdInventario.Text,
+                                IdComputadora = txtIdComputadora.Text,
+                                FechaLlegada = txtFechaLlegada.Text,
+                                PrecioLlegada = int.Parse(txtPrecioLLegada.Text),
+                                Stock = int.Parse(txtStock.Text)
+                            };
+                            logica.RegistrarInventario(inventario);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
                     }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
+                    logica.ClearTextBoxs(txtIdInventario, txtPrecioLLegada, txtStock, txtFechaLlegada, txtIdComputadora);
+                    txtIdInventario.Enabled = true;
+                    logica.TurnOffLabels(label2, label3, label4, label5);
+                    logica.TurnOffTxtB(txtIdComputadora, txtFechaLlegada, txtPrecioLLegada, txtStock);
                 }
             }
         }
@@ -93,22 +96,40 @@ namespace BaseDeDatosBOA
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            Inventario inventario = null;
-            try
+            List<Computadora> comp = logica.ObtenerComputadoras();
+            bool checkExistence = logica.CheckExistenciaInventario(txtIdComputadora.Text, comp);
+            if (checkExistence == true)
             {
-                inventario = new Inventario
+                bool checkFormat = logica.CheckAllFormats(txtIdInventario.Text, @"^I\d+$");
+                if (checkFormat == false)
                 {
-                    IdInventario = txtIdInventario.Text,
-                    IdComputadora = txtIdComputadora.Text,
-                    FechaLlegada = txtFechaLlegada.Text,
-                    PrecioLlegada = int.Parse(txtPrecioLLegada.Text),
-                    Stock = int.Parse(txtStock.Text)
-                };
-                logica.ModificarInventario(inventario);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
+                    MessageBox.Show("error de formato en ID");
+                }
+                else
+                {
+                    Inventario inventario = null;
+                    try
+                    {
+                        inventario = new Inventario
+                        {
+                            IdInventario = txtIdInventario.Text,
+                            IdComputadora = txtIdComputadora.Text,
+                            FechaLlegada = txtFechaLlegada.Text,
+                            PrecioLlegada = int.Parse(txtPrecioLLegada.Text),
+                            Stock = int.Parse(txtStock.Text)
+                        };
+                        logica.ModificarInventario(inventario);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    txtIdInventario.Enabled = true;
+                    btnInsertar.Enabled = true;
+                    logica.TurnOffLabels(label2, label3, label4, label5);
+                    logica.TurnOffTxtB(txtIdComputadora, txtFechaLlegada, txtPrecioLLegada, txtStock);
+                    logica.ClearTextBoxs(txtIdInventario, txtPrecioLLegada, txtStock, txtFechaLlegada, txtIdComputadora);
+                }
             }
         }
 
@@ -157,19 +178,11 @@ namespace BaseDeDatosBOA
 
         private void btnVerificar_Click(object sender, EventArgs e)
         {
-            bool checkId = logica.VerifyID(txtIdInventario.Text, inventarios, item => item.ToString());
+            bool checkId = logica.VerifyID(txtIdInventario.Text, inventarios, item => item.IdInventario.ToString());
             if (checkId == true)
             {
-                txtIdComputadora.Visible = true;
-                txtFechaLlegada.Visible = true;
-                txtIdInventario.Visible = true;
-                txtPrecioLLegada.Visible = true;
-                txtStock.Visible = true;
-
-                label2.Visible = true;
-                label3.Visible = true;
-                label4.Visible = true;
-                label5.Visible = true;
+                logica.TurnOnLabels(label2, label3, label4, label5);
+                logica.TurnOnTxtB(txtIdInventario, txtIdComputadora, txtFechaLlegada, txtPrecioLLegada, txtStock);
 
             }
             else
@@ -178,16 +191,8 @@ namespace BaseDeDatosBOA
                 {
                     if (inventarios[i].IdInventario.ToString() == txtIdInventario.Text)
                     {
-                        txtIdComputadora.Visible = true;
-                        txtFechaLlegada.Visible = true;
-                        txtIdInventario.Visible = true;
-                        txtPrecioLLegada.Visible = true;
-                        txtStock.Visible = true;
-
-                        label2.Visible = true;
-                        label3.Visible = true;
-                        label4.Visible = true;
-                        label5.Visible = true;
+                        logica.TurnOnLabels(label2, label3, label4, label5);
+                        logica.TurnOnTxtB(txtIdInventario, txtIdComputadora, txtFechaLlegada, txtPrecioLLegada, txtStock);
 
                         txtIdComputadora.Text = inventarios[i].IdComputadora.ToString();
                         txtFechaLlegada.Text = inventarios[i].FechaLlegada.ToString();

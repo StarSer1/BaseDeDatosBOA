@@ -325,10 +325,60 @@ namespace BOALogica
                 buttonInsertar.Enabled = TodosTextBoxLlenos(textBoxes);
             }
         }
+        public void ClearTextBoxs(params Guna2TextBox[] textBoxs)
+        {
+            foreach (Guna2TextBox textBox in textBoxs)
+            {
+                textBox.Clear();
+            }
+        }
+        public void TurnOffTxtB(params Guna2TextBox[] textBoxs)
+        {
+            foreach(Guna2TextBox textBox in textBoxs)
+            {
+                textBox.Visible = false;
+            }
 
+        }
+        public void TurnOffLabels(params Label[] labels)
+        {
+            foreach(Label label in labels)
+            {
+                label.Visible = false;
+            }
+        }
+        public void TurnOnTxtB(params Guna2TextBox[] textBoxs)
+        {
+            foreach (Guna2TextBox textBox in textBoxs)
+            {
+                textBox.Visible = true;
+            }
+
+        }
+        public void TurnOnLabels(params Label[] labels)
+        {
+            foreach (Label label in labels)
+            {
+                label.Visible = true;
+            }
+        }
 
 
         #endregion
+        public void CambioAMayusculas(object sender, EventArgs e)
+        {
+            Guna.UI2.WinForms.Guna2TextBox gunaTextBox = sender as Guna.UI2.WinForms.Guna2TextBox;
+            if (gunaTextBox != null)
+            {
+                int selectionStart = gunaTextBox.SelectionStart;
+                int selectionLength = gunaTextBox.SelectionLength;
+
+                gunaTextBox.Text = gunaTextBox.Text.ToUpper();
+
+                gunaTextBox.SelectionStart = selectionStart;
+                gunaTextBox.SelectionLength = selectionLength;
+            }
+        }
     }
 }
 
