@@ -56,44 +56,44 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(798, 258);
+            this.label5.Location = new System.Drawing.Point(776, 258);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(47, 18);
+            this.label5.Size = new System.Drawing.Size(54, 18);
             this.label5.TabIndex = 35;
             this.label5.Text = "Stock";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(743, 210);
+            this.label4.Location = new System.Drawing.Point(721, 210);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(102, 18);
+            this.label4.Size = new System.Drawing.Size(124, 18);
             this.label4.TabIndex = 34;
             this.label4.Text = "PrecioLlegada";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(745, 164);
+            this.label3.Location = new System.Drawing.Point(723, 164);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(100, 18);
+            this.label3.Size = new System.Drawing.Size(122, 18);
             this.label3.TabIndex = 33;
             this.label3.Text = "FechaLlegada";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(735, 115);
+            this.label2.Location = new System.Drawing.Point(713, 115);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(110, 18);
+            this.label2.Size = new System.Drawing.Size(132, 18);
             this.label2.TabIndex = 32;
             this.label2.Text = "IdComputadora";
             // 
@@ -101,21 +101,24 @@
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(763, 68);
+            this.label1.Location = new System.Drawing.Point(741, 68);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(82, 18);
+            this.label1.Size = new System.Drawing.Size(104, 18);
             this.label1.TabIndex = 31;
             this.label1.Text = "IdInventario";
             // 
             // btnInsertar
             // 
+            this.btnInsertar.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
+            this.btnInsertar.BorderRadius = 15;
+            this.btnInsertar.BorderThickness = 3;
             this.btnInsertar.CheckedState.Parent = this.btnInsertar;
             this.btnInsertar.CustomImages.Parent = this.btnInsertar;
             this.btnInsertar.Enabled = false;
             this.btnInsertar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(89)))), ((int)(((byte)(97)))));
-            this.btnInsertar.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnInsertar.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnInsertar.ForeColor = System.Drawing.Color.White;
             this.btnInsertar.HoverState.Parent = this.btnInsertar;
             this.btnInsertar.Location = new System.Drawing.Point(713, 475);
@@ -128,10 +131,13 @@
             // 
             // btnModificar
             // 
+            this.btnModificar.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
+            this.btnModificar.BorderRadius = 15;
+            this.btnModificar.BorderThickness = 3;
             this.btnModificar.CheckedState.Parent = this.btnModificar;
             this.btnModificar.CustomImages.Parent = this.btnModificar;
             this.btnModificar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(89)))), ((int)(((byte)(97)))));
-            this.btnModificar.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnModificar.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnModificar.ForeColor = System.Drawing.Color.White;
             this.btnModificar.HoverState.Parent = this.btnModificar;
             this.btnModificar.Location = new System.Drawing.Point(870, 475);
@@ -144,6 +150,8 @@
             // 
             // txtStock
             // 
+            this.txtStock.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
+            this.txtStock.BorderThickness = 3;
             this.txtStock.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtStock.DefaultText = "";
             this.txtStock.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -168,6 +176,8 @@
             // 
             // txtPrecioLLegada
             // 
+            this.txtPrecioLLegada.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
+            this.txtPrecioLLegada.BorderThickness = 3;
             this.txtPrecioLLegada.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtPrecioLLegada.DefaultText = "";
             this.txtPrecioLLegada.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -192,6 +202,8 @@
             // 
             // txtFechaLlegada
             // 
+            this.txtFechaLlegada.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
+            this.txtFechaLlegada.BorderThickness = 3;
             this.txtFechaLlegada.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtFechaLlegada.DefaultText = "";
             this.txtFechaLlegada.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -215,6 +227,8 @@
             // 
             // txtIdComputadora
             // 
+            this.txtIdComputadora.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
+            this.txtIdComputadora.BorderThickness = 3;
             this.txtIdComputadora.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtIdComputadora.DefaultText = "";
             this.txtIdComputadora.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -238,6 +252,8 @@
             // 
             // txtIdInventario
             // 
+            this.txtIdInventario.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
+            this.txtIdInventario.BorderThickness = 3;
             this.txtIdInventario.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtIdInventario.DefaultText = "";
             this.txtIdInventario.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
