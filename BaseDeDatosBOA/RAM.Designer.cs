@@ -395,6 +395,7 @@
             this.dgvRam.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvRam.Size = new System.Drawing.Size(680, 501);
             this.dgvRam.TabIndex = 30;
+            this.dgvRam.Tag = "ram";
             this.dgvRam.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Default;
             this.dgvRam.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.dgvRam.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -455,6 +456,7 @@
             this.Controls.Add(this.txtIdRam);
             this.Controls.Add(this.dgvRam);
             this.Name = "RAM";
+            this.Tag = "ram";
             this.Text = "RAM";
             this.Load += new System.EventHandler(this.RAM_Load);
             this.flowLayoutPanel1.ResumeLayout(false);

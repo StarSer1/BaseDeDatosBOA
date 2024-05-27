@@ -39,7 +39,8 @@ namespace BaseDeDatosBOA
                 ventas = logica.ObtenerVentas();
                 ventas = logica.ObtenerVentas();//agregado(creo)
                 dgvVentas.DataSource = ventas;
-                dgvVentas.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(dgvVentas_DataBindingComplete);
+                dgvVentas.Tag = "ventas";
+                dgvVentas.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(logica.dgvVentasChangeSize);
             }
             catch (Exception ex)
             {
@@ -48,22 +49,7 @@ namespace BaseDeDatosBOA
         }
 
 
-        private void dgvVentas_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {
-            DataGridView dgv = sender as DataGridView;
-
-            if (dgv != null)
-            {
-                dgv.Columns["idVenta"].Width = 55;
-                dgv.Columns["idEmpleado"].Width = 95;
-                dgv.Columns["idComputadora"].Width = 115;
-                dgv.Columns["idCliente"].Width = 65;
-                dgv.Columns["fechaVenta"].Width = 100;
-                dgv.Columns["precioFinal"].Width = 90;
-                dgv.Columns["precioBase"].Width = 90;
-                dgv.Columns["Descuento"].Width = 80;
-            }
-        }
+        
 
 
 

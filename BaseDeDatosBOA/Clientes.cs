@@ -35,6 +35,8 @@ namespace BaseDeDatosBOA
             {
                 clientes = logica.ObtenerClientes();
                 dgvClientes.DataSource = clientes;
+                dgvClientes.Tag = "cliente";
+                dgvClientes.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(logica.dgvVentasChangeSize);
                 //dgvClientes.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(dgvVentas_DataBindingComplete);
 
             }

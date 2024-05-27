@@ -35,6 +35,8 @@ namespace BaseDeDatosBOA
             {
                 almacenamiento = logica.ObtenerAlmacenamientos();
                 dgvAlmacenamiento.DataSource = almacenamiento;
+                dgvAlmacenamiento.Tag = "almacenamiento";
+                dgvAlmacenamiento.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(logica.dgvVentasChangeSize);
                 //dgvAlmacenamiento.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(dgvVentas_DataBindingComplete);
             }
             catch (Exception ex)

@@ -35,6 +35,8 @@ namespace BaseDeDatosBOA
             {
                 fuentesPoder = logica.ObtenerFuentesDePoder();
                 dgvFuentesDePoder.DataSource = fuentesPoder;
+                dgvFuentesDePoder.Tag = "fuentePoder";
+                dgvFuentesDePoder.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(logica.dgvVentasChangeSize);
                 //dgvFuentesDePoder.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(dgvVentas_DataBindingComplete);
             }
             catch (Exception ex)

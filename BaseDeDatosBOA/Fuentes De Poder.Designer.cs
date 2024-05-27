@@ -32,6 +32,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnEliminar = new Guna.UI2.WinForms.Guna2ImageButton();
+            this.btnConsulta = new Guna.UI2.WinForms.Guna2ImageButton();
+            this.btnActualizar = new Guna.UI2.WinForms.Guna2ImageButton();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -48,9 +51,6 @@
             this.txtModelo = new Guna.UI2.WinForms.Guna2TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.btnVerificar = new Guna.UI2.WinForms.Guna2ImageButton();
-            this.btnEliminar = new Guna.UI2.WinForms.Guna2ImageButton();
-            this.btnConsulta = new Guna.UI2.WinForms.Guna2ImageButton();
-            this.btnActualizar = new Guna.UI2.WinForms.Guna2ImageButton();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFuentesDePoder)).BeginInit();
             this.SuspendLayout();
@@ -65,6 +65,42 @@
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(1031, 35);
             this.flowLayoutPanel1.TabIndex = 49;
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.CheckedState.Parent = this.btnEliminar;
+            this.btnEliminar.HoverState.Parent = this.btnEliminar;
+            this.btnEliminar.Image = global::BaseDeDatosBOA.Properties.Resources.eliminar;
+            this.btnEliminar.Location = new System.Drawing.Point(3, 3);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.PressedState.Parent = this.btnEliminar;
+            this.btnEliminar.Size = new System.Drawing.Size(41, 30);
+            this.btnEliminar.TabIndex = 0;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            // 
+            // btnConsulta
+            // 
+            this.btnConsulta.CheckedState.Parent = this.btnConsulta;
+            this.btnConsulta.HoverState.Parent = this.btnConsulta;
+            this.btnConsulta.Image = global::BaseDeDatosBOA.Properties.Resources.lupa;
+            this.btnConsulta.Location = new System.Drawing.Point(50, 3);
+            this.btnConsulta.Name = "btnConsulta";
+            this.btnConsulta.PressedState.Parent = this.btnConsulta;
+            this.btnConsulta.Size = new System.Drawing.Size(41, 30);
+            this.btnConsulta.TabIndex = 0;
+            this.btnConsulta.Click += new System.EventHandler(this.btnConsulta_Click);
+            // 
+            // btnActualizar
+            // 
+            this.btnActualizar.CheckedState.Parent = this.btnActualizar;
+            this.btnActualizar.HoverState.Parent = this.btnActualizar;
+            this.btnActualizar.Image = global::BaseDeDatosBOA.Properties.Resources.recargar;
+            this.btnActualizar.Location = new System.Drawing.Point(97, 3);
+            this.btnActualizar.Name = "btnActualizar";
+            this.btnActualizar.PressedState.Parent = this.btnActualizar;
+            this.btnActualizar.Size = new System.Drawing.Size(41, 30);
+            this.btnActualizar.TabIndex = 0;
+            this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
             // 
             // label5
             // 
@@ -322,6 +358,7 @@
             this.dgvFuentesDePoder.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvFuentesDePoder.Size = new System.Drawing.Size(680, 501);
             this.dgvFuentesDePoder.TabIndex = 30;
+            this.dgvFuentesDePoder.Tag = "fuentePoder";
             this.dgvFuentesDePoder.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Default;
             this.dgvFuentesDePoder.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.dgvFuentesDePoder.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -393,42 +430,6 @@
             this.btnVerificar.Size = new System.Drawing.Size(30, 29);
             this.btnVerificar.TabIndex = 50;
             this.btnVerificar.Click += new System.EventHandler(this.btnVerificar_Click);
-            // 
-            // btnEliminar
-            // 
-            this.btnEliminar.CheckedState.Parent = this.btnEliminar;
-            this.btnEliminar.HoverState.Parent = this.btnEliminar;
-            this.btnEliminar.Image = global::BaseDeDatosBOA.Properties.Resources.eliminar;
-            this.btnEliminar.Location = new System.Drawing.Point(3, 3);
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.PressedState.Parent = this.btnEliminar;
-            this.btnEliminar.Size = new System.Drawing.Size(41, 30);
-            this.btnEliminar.TabIndex = 0;
-            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
-            // 
-            // btnConsulta
-            // 
-            this.btnConsulta.CheckedState.Parent = this.btnConsulta;
-            this.btnConsulta.HoverState.Parent = this.btnConsulta;
-            this.btnConsulta.Image = global::BaseDeDatosBOA.Properties.Resources.lupa;
-            this.btnConsulta.Location = new System.Drawing.Point(50, 3);
-            this.btnConsulta.Name = "btnConsulta";
-            this.btnConsulta.PressedState.Parent = this.btnConsulta;
-            this.btnConsulta.Size = new System.Drawing.Size(41, 30);
-            this.btnConsulta.TabIndex = 0;
-            this.btnConsulta.Click += new System.EventHandler(this.btnConsulta_Click);
-            // 
-            // btnActualizar
-            // 
-            this.btnActualizar.CheckedState.Parent = this.btnActualizar;
-            this.btnActualizar.HoverState.Parent = this.btnActualizar;
-            this.btnActualizar.Image = global::BaseDeDatosBOA.Properties.Resources.recargar;
-            this.btnActualizar.Location = new System.Drawing.Point(97, 3);
-            this.btnActualizar.Name = "btnActualizar";
-            this.btnActualizar.PressedState.Parent = this.btnActualizar;
-            this.btnActualizar.Size = new System.Drawing.Size(41, 30);
-            this.btnActualizar.TabIndex = 0;
-            this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
             // 
             // Fuentes_De_Poder
             // 

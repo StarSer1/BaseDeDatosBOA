@@ -34,6 +34,8 @@ namespace BaseDeDatosBOA
             {
                 inventarios = logica.ObtenerInventarios();//agregado(creo)
                 dgvVentas.DataSource = inventarios;
+                dgvVentas.Tag = "inventario";
+                dgvVentas.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(logica.dgvVentasChangeSize);
                 //dgvVentas.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(dgvVentas_DataBindingComplete);
             }
             catch (Exception ex)

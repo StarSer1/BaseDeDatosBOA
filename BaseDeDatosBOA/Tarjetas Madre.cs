@@ -40,6 +40,8 @@ namespace BaseDeDatosBOA
             {
                 tarjetasMadres = logica.ObtenerTarjetaMadres();
                 dgvTarjetasMadre.DataSource = tarjetasMadres;
+                dgvTarjetasMadre.Tag = "tarjetaMadre";
+                dgvTarjetasMadre.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(logica.dgvVentasChangeSize);
             }
             catch (Exception ex)
             {

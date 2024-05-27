@@ -353,6 +353,7 @@
             this.dgvEmpleado.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvEmpleado.Size = new System.Drawing.Size(680, 501);
             this.dgvEmpleado.TabIndex = 37;
+            this.dgvEmpleado.Tag = "empleado";
             this.dgvEmpleado.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Default;
             this.dgvEmpleado.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.dgvEmpleado.ThemeStyle.AlternatingRowsStyle.Font = null;

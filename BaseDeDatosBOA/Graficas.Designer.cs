@@ -356,6 +356,7 @@
             this.dgvGraficas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvGraficas.Size = new System.Drawing.Size(680, 501);
             this.dgvGraficas.TabIndex = 30;
+            this.dgvGraficas.Tag = "grafica";
             this.dgvGraficas.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Default;
             this.dgvGraficas.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.dgvGraficas.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -364,7 +365,7 @@
             this.dgvGraficas.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
             this.dgvGraficas.ThemeStyle.BackColor = System.Drawing.Color.White;
             this.dgvGraficas.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.dgvGraficas.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(89)))), ((int)(((byte)(97)))));
+            this.dgvGraficas.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
             this.dgvGraficas.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgvGraficas.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Segoe UI", 10.5F);
             this.dgvGraficas.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;

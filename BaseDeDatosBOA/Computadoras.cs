@@ -35,6 +35,8 @@ namespace BaseDeDatosBOA
             {
                 computadora = logica.ObtenerComputadoras();
                 dgvComputadora.DataSource = computadora;
+                dgvComputadora.Tag = "computadora";
+                dgvComputadora.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(logica.dgvVentasChangeSize);
                 //dgvComputadora.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(dgvVentas_DataBindingComplete);
             }
             catch (Exception ex)

@@ -35,6 +35,9 @@ namespace BaseDeDatosBOA
             {
                 rams = logica.ObtenerRam();//agregado
                 dgvRam.DataSource = rams;
+                dgvRam.Tag = "ram";
+                dgvRam.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(logica.dgvVentasChangeSize);
+
             }
             catch (Exception ex)
             {

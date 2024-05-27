@@ -386,7 +386,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::BaseDeDatosBOA.Properties.Resources.hola_2;
+            this.BackgroundImage = global::BaseDeDatosBOA.Properties.Resources.hola4;
             this.ClientSize = new System.Drawing.Size(1264, 681);
             this.Controls.Add(this.gunaPanelFondo);
             this.Controls.Add(this.guna2Panel1);

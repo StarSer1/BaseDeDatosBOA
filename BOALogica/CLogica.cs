@@ -20,47 +20,47 @@ namespace BOALogica
         #region Obtener Tablas
         public List<Computadora> ObtenerComputadoras()
         {
-            return datos.ObtenerTabla("COMPUTADORA", datos.MapComputadora);
+            return datos.ObtenerTabla("COMPUTADORA", datos.MapComputadora, "idComputadora");
         }
         public List<Venta> ObtenerVentas()
         {
-            return datos.ObtenerTabla("VENTAS", datos.MapVenta);
+            return datos.ObtenerTabla("VENTAS", datos.MapVenta, "idVenta");
         }
         public List<Inventario> ObtenerInventarios()
         {
-            return datos.ObtenerTabla("INVENTARIO", datos.MapInventario);
+            return datos.ObtenerTabla("INVENTARIO", datos.MapInventario, "idInventario");
         }
         public List<Cliente> ObtenerClientes()
         {
-            return datos.ObtenerTabla("CLIENTES", datos.MapCliente);
+            return datos.ObtenerTabla("CLIENTES", datos.MapCliente, "idCliente");
         }
         public List<Empleado> ObtenerEmpleado()
         {
-            return datos.ObtenerTabla("EMPLEADO", datos.MapEmpleado);
+            return datos.ObtenerTabla("EMPLEADO", datos.MapEmpleado, "idEmpleado");
         }
         public List<TarjetaMadre> ObtenerTarjetaMadres()
         {
-            return datos.ObtenerTabla("TARJETAMADRE", datos.MapTarjetaMadre);
+            return datos.ObtenerTabla("TARJETAMADRE", datos.MapTarjetaMadre, "idTarjetaMadre");
         }
         public List<Procesador> ObtenerProcesadores()
         {
-            return datos.ObtenerTabla("PROCESADOR", datos.MapProcesador);
+            return datos.ObtenerTabla("PROCESADOR", datos.MapProcesador,"idProcesador");
         }
         public List<Grafica> ObtenerGraficas()
         {
-            return datos.ObtenerTabla("GRAFICA", datos.MapGrafica);
+            return datos.ObtenerTabla("GRAFICA", datos.MapGrafica, "idGrafica");
         }
         public List<Ram> ObtenerRam()
         {
-            return datos.ObtenerTabla("RAM", datos.MapRam);
+            return datos.ObtenerTabla("RAM", datos.MapRam, "idRam");
         }
         public List<Almacenamiento> ObtenerAlmacenamientos()
         {
-            return datos.ObtenerTabla("ALMACENAMIENTO", datos.MapAlmacenamiento);
+            return datos.ObtenerTabla("ALMACENAMIENTO", datos.MapAlmacenamiento, "idAlmacenamiento");
         }
         public List<FuentePoder> ObtenerFuentesDePoder()
         {
-            return datos.ObtenerTabla("FUENTEPODER", datos.MapFuentePoder);
+            return datos.ObtenerTabla("FUENTEPODER", datos.MapFuentePoder, "idFuentePoder");
         }
         #endregion
         #region Registros
@@ -377,6 +377,112 @@ namespace BOALogica
 
                 gunaTextBox.SelectionStart = selectionStart;
                 gunaTextBox.SelectionLength = selectionLength;
+            }
+        }
+        public void dgvVentasChangeSize(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            DataGridView dgv = sender as DataGridView;
+
+            if (dgv != null)
+            {
+                if (dgv.Tag.ToString() == "venta")
+                {
+                    dgv.Columns["idVenta"].Width = 55;
+                    dgv.Columns["idEmpleado"].Width = 95;
+                    dgv.Columns["idComputadora"].Width = 115;
+                    dgv.Columns["idCliente"].Width = 65;
+                    dgv.Columns["fechaVenta"].Width = 100;
+                    dgv.Columns["precioFinal"].Width = 90;
+                    dgv.Columns["precioBase"].Width = 90;
+                    dgv.Columns["Descuento"].Width = 80;
+                }
+                if (dgv.Tag.ToString() == "tarjetaMadre")
+                {
+                    dgv.Columns["idTarjetaMadre"].Width = 100;
+                    dgv.Columns["marca"].Width = 100;
+                    dgv.Columns["modelo"].Width = 180;
+                    dgv.Columns["RanurasDIMM"].Width = 100;
+                    dgv.Columns["socket"].Width = 100;
+                    dgv.Columns["dimensiones"].Width = 100;
+                }
+                if (dgv.Tag.ToString() == "ram")
+                {
+                    dgv.Columns["idRam"].Width = 50;
+                    dgv.Columns["marca"].Width = 100;
+                    dgv.Columns["tipoRam"].Width = 150;
+                    dgv.Columns["frecuencia"].Width = 100;
+                    dgv.Columns["tamaño"].Width = 100;
+                    dgv.Columns["velocidadTransferencia"].Width = 180;
+                }
+                if (dgv.Tag.ToString() == "procesador")
+                {
+                    dgv.Columns["idProcesador"].Width = 200;
+                    dgv.Columns["marca"].Width = 200;
+                    dgv.Columns["modelo"].Width = 280;
+
+                }
+                if (dgv.Tag.ToString() == "inventario")
+                {
+                    dgv.Columns["idInventario"].Width = 100;
+                    dgv.Columns["idComputadora"].Width = 120;
+                    dgv.Columns["fechaLlegada"].Width = 180;
+                    dgv.Columns["precioLlegada"].Width = 180;
+                    dgv.Columns["stock"].Width = 100;
+                }
+                if (dgv.Tag.ToString() == "grafica")
+                {
+                    dgv.Columns["idGrafica"].Width = 110;
+                    dgv.Columns["marca"].Width = 110;
+                    dgv.Columns["modelo"].Width = 200;
+                    dgv.Columns["tipo"].Width = 150;
+                    dgv.Columns["vram"].Width = 110;
+                }
+                if (dgv.Tag.ToString() == "fuentePoder")
+                {
+                    dgv.Columns["idFuentePoder"].Width = 110;
+                    dgv.Columns["marca"].Width = 130;
+                    dgv.Columns["modelo"].Width = 170;
+                    dgv.Columns["potencia"].Width = 70;
+                    dgv.Columns["tipo"].Width = 70;
+                    dgv.Columns["certificacion"].Width = 130;
+                }
+                if (dgv.Tag.ToString() == "computadora")
+                {
+                    dgv.Columns["idComputadora"].Width = 105;
+                    dgv.Columns["modelo"].Width = 58;
+                    dgv.Columns["idRam"].Width = 50;
+                    dgv.Columns["idProcesador"].Width = 92;
+                    dgv.Columns["idGrafica"].Width = 65;
+                    dgv.Columns["idAlmacenamiento"].Width = 125;
+                    dgv.Columns["idTarjetaMadre"].Width = 105;
+                    dgv.Columns["idFuentePoder"].Width = 105;
+                }
+                if (dgv.Tag.ToString() == "cliente")
+                {
+                    dgv.Columns["idCliente"].Width = 60;
+                    dgv.Columns["nombre"].Width = 120;
+                    dgv.Columns["apellidoP"].Width = 170;
+                    dgv.Columns["apellidoM"].Width = 170;
+                    dgv.Columns["correo"].Width = 160;
+                }
+                if (dgv.Tag.ToString() == "almacenamiento")
+                {
+                    dgv.Columns["idAlmacenamiento"].Width = 125;
+                    dgv.Columns["marca"].Width = 125;
+                    dgv.Columns["tipo"].Width = 50;
+                    dgv.Columns["capacidad"].Width = 100;
+                    dgv.Columns["frecuencia"].Width = 100;
+                    dgv.Columns["velocidadTransferencia"].Width = 180;
+                }
+                if (dgv.Tag.ToString() == "empleado")
+                {
+                    dgv.Columns["idEmpleado"].Width = 85;
+                    dgv.Columns["nombre"].Width = 95;
+                    dgv.Columns["apellidoP"].Width = 150;
+                    dgv.Columns["apellidoM"].Width = 150;
+                    dgv.Columns["rfc"].Width = 150;
+                    dgv.Columns["sueldo"].Width = 50;
+                }
             }
         }
     }

@@ -36,6 +36,8 @@ namespace BaseDeDatosBOA
                 this.procesador = logica.ObtenerProcesadores();//agregado(creo)
                 List<Procesador> procesador = logica.ObtenerProcesadores();
                 dgvProcesadores.DataSource = procesador;
+                dgvProcesadores.Tag = "procesador";
+                dgvProcesadores.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(logica.dgvVentasChangeSize);
                 //dgvProcesadores.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(dgvVentas_DataBindingComplete);
             }
             catch (Exception ex)

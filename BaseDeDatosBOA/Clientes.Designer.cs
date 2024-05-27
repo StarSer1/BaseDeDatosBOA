@@ -308,6 +308,7 @@
             this.dgvClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvClientes.Size = new System.Drawing.Size(680, 501);
             this.dgvClientes.TabIndex = 36;
+            this.dgvClientes.Tag = "cliente";
             this.dgvClientes.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Default;
             this.dgvClientes.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.dgvClientes.ThemeStyle.AlternatingRowsStyle.Font = null;

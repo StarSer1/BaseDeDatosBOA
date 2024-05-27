@@ -36,6 +36,8 @@ namespace BaseDeDatosBOA
                 empleados = logica.ObtenerEmpleado();
                 empleados = logica.ObtenerEmpleado();//agregado
                 dgvEmpleado.DataSource = empleados;
+                dgvEmpleado.Tag = "empleado";
+                dgvEmpleado.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(logica.dgvVentasChangeSize);
                 //dgvEmpleado.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(dgvVentas_DataBindingComplete);
 
                 ValidadorForm.AgregarValidacion(btnInsertar, txtIdEmp, txtNombre, txtApellidoP, txtApellidoM, txtRFC, txtSueldo);

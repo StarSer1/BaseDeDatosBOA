@@ -243,6 +243,7 @@
             this.dgvProcesadores.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvProcesadores.Size = new System.Drawing.Size(680, 501);
             this.dgvProcesadores.TabIndex = 30;
+            this.dgvProcesadores.Tag = "procesador";
             this.dgvProcesadores.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Default;
             this.dgvProcesadores.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.dgvProcesadores.ThemeStyle.AlternatingRowsStyle.Font = null;

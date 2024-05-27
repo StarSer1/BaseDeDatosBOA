@@ -294,10 +294,14 @@ namespace BOADatos
 
         #region GetTables
 
-        public List<T> ObtenerTabla<T>(string tableName, MapFunction<T> mapFunction)
+        public List<T> ObtenerTabla<T>(string tableName, MapFunction<T> mapFunction, string orderByColumn = null)
         {
             List<T> items = new List<T>();
             string query = $"SELECT * FROM {tableName}";
+            if (!string.IsNullOrEmpty(orderByColumn))
+            {
+                query += $" ORDER BY {orderByColumn} ASC";
+            }
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 SqlCommand cmd = new SqlCommand(query, con);

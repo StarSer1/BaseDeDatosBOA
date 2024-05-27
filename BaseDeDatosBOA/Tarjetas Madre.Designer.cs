@@ -399,6 +399,7 @@
             this.dgvTarjetasMadre.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvTarjetasMadre.Size = new System.Drawing.Size(680, 501);
             this.dgvTarjetasMadre.TabIndex = 30;
+            this.dgvTarjetasMadre.Tag = "tarjetaMadre";
             this.dgvTarjetasMadre.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Default;
             this.dgvTarjetasMadre.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.dgvTarjetasMadre.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -459,6 +460,7 @@
             this.Controls.Add(this.txtIdTarjetaMadre);
             this.Controls.Add(this.dgvTarjetasMadre);
             this.Name = "Tarjetas_Madre";
+            this.Tag = "tarjetaMadre";
             this.Text = "Tarjetas_Madre";
             this.Load += new System.EventHandler(this.Tarjetas_Madre_Load);
             this.flowLayoutPanel1.ResumeLayout(false);

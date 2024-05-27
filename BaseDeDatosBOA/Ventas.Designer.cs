@@ -94,6 +94,7 @@
             this.dgvVentas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvVentas.Size = new System.Drawing.Size(680, 501);
             this.dgvVentas.TabIndex = 0;
+            this.dgvVentas.Tag = "ventas";
             this.dgvVentas.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Default;
             this.dgvVentas.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.dgvVentas.ThemeStyle.AlternatingRowsStyle.Font = null;

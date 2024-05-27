@@ -35,6 +35,8 @@ namespace BaseDeDatosBOA
             {
                 graficas = logica.ObtenerGraficas();
                 dgvGraficas.DataSource = graficas;
+                dgvGraficas.Tag = "grafica";
+                dgvGraficas.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(logica.dgvVentasChangeSize);
                 //dgvVentas.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(dgvVentas_DataBindingComplete);
             }
             catch (Exception ex)

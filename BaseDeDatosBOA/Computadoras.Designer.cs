@@ -408,7 +408,7 @@
             this.dgvComputadora.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgvComputadora.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10.5F);
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(89)))), ((int)(((byte)(97)))));
@@ -426,13 +426,14 @@
             this.dgvComputadora.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvComputadora.EnableHeadersVisualStyles = false;
             this.dgvComputadora.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.dgvComputadora.Location = new System.Drawing.Point(27, 68);
+            this.dgvComputadora.Location = new System.Drawing.Point(12, 68);
             this.dgvComputadora.Name = "dgvComputadora";
             this.dgvComputadora.ReadOnly = true;
             this.dgvComputadora.RowHeadersVisible = false;
             this.dgvComputadora.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvComputadora.Size = new System.Drawing.Size(680, 501);
+            this.dgvComputadora.Size = new System.Drawing.Size(700, 501);
             this.dgvComputadora.TabIndex = 30;
+            this.dgvComputadora.Tag = "computadora";
             this.dgvComputadora.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Default;
             this.dgvComputadora.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.dgvComputadora.ThemeStyle.AlternatingRowsStyle.Font = null;
