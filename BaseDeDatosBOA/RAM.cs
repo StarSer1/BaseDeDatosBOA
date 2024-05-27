@@ -41,23 +41,31 @@ namespace BaseDeDatosBOA
 
         private void btnInsertar_Click(object sender, EventArgs e)
         {
-            Ram ram = null;
-            try
+            bool checkFormat = logica.CheckAllFormats(txtIdRam.Text, @"^R\d+$");
+            if (checkFormat == false)
             {
-                ram = new Ram
-                {
-                    IdRam = txtIdRam.Text,
-                    Marca = txtMarca.Text,
-                    TipoRam = txtTipoRam.Text,
-                    Frecuencia = int.Parse(txtFrecuencia.Text),
-                    Tamaño = int.Parse(txtTamaño.Text),
-                    VelocidadTransferencia = int.Parse(txtVelocidadTrans.Text),
-                };
-                logica.RegistrarRam(ram);
+                MessageBox.Show("error de formato en ID");
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
+                Ram ram = null;
+                try
+                {
+                    ram = new Ram
+                    {
+                        IdRam = txtIdRam.Text,
+                        Marca = txtMarca.Text,
+                        TipoRam = txtTipoRam.Text,
+                        Frecuencia = int.Parse(txtFrecuencia.Text),
+                        Tamaño = int.Parse(txtTamaño.Text),
+                        VelocidadTransferencia = int.Parse(txtVelocidadTrans.Text),
+                    };
+                    logica.RegistrarRam(ram);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
 

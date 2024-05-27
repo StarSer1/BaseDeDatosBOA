@@ -4,6 +4,8 @@ using BOAEntidad;
 using BOADatos;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using System.Linq;
+using Guna.UI2.WinForms;
 
 namespace BOALogica
 {
@@ -273,10 +275,58 @@ namespace BOALogica
             return true;
         }
 
+        public bool CheckExistenciaVenta(string idE, string idC, string idClt, List<Empleado> empleado, List<Computadora> computadora, List<Cliente> cliente)
+        {
+            bool pass = CheckExistence(idE, empleado, empleados => empleados.IdEmpleado, "El empleado ingresado no se encuentra en la base de datos");
+            if (!pass) return false;
+
+            pass = CheckExistence(idC, computadora, computadoras => computadoras.IdComputadora, "La computadora ingresada no se encuentra en la base de datos");
+            if (!pass) return false;
+
+            pass = CheckExistence(idClt, cliente, Clientes => Clientes.IdCliente, "El cliente ingresado no se encuentra en la base de datos");
+            if (!pass) return false;
+
+            return true;
+        }
+        public bool CheckExistenciaInventario(string idC, List<Computadora> computadoras)
+        {
+            bool pass = CheckExistence(idC, computadoras, comp => comp.IdComputadora, "La computadora ingresada no se encuentra en la base de datos");
+            if (!pass) return false;
+
+
+            return true;
+        }
+
         public void RevisionDeDatos()
         {
 
         }
+
+        public static class ValidadorForm
+        {
+            // Método para validar si todos los Guna2TextBox en el formulario tienen datos
+            public static bool TodosTextBoxLlenos(params Guna2TextBox[] textBoxes)
+            {
+                return textBoxes.All(tb => !string.IsNullOrWhiteSpace(tb.Text));
+            }
+
+            // Método para suscribirse al evento TextChanged de múltiples Guna2TextBox y manejar la validación del botón
+            public static void AgregarValidacion(Guna2Button buttonInsertar, params Guna2TextBox[] textBoxes)
+            {
+                foreach (var textBox in textBoxes)
+                {
+                    textBox.TextChanged += (sender, e) =>
+                    {
+                        buttonInsertar.Enabled = TodosTextBoxLlenos(textBoxes);
+                    };
+                }
+
+                // Realizar una validación inicial al agregar los TextBox
+                buttonInsertar.Enabled = TodosTextBoxLlenos(textBoxes);
+            }
+        }
+
+
 
         #endregion
     }

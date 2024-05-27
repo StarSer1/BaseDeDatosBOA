@@ -36,23 +36,31 @@ namespace BaseDeDatosBOA
 
         private void btnInsertar_Click(object sender, EventArgs e)
         {
-            Empleado empleado = null;
-            try
+            bool checkFormat = logica.CheckAllFormats(txtIdEmp.Text, @"^E\d+$");
+            if (checkFormat == false)
             {
-                empleado = new Empleado
-                {
-                    IdEmpleado = txtIdEmp.Text,
-                    Nombre = txtNombre.Text,
-                    ApellidoP = txtApellidoP.Text,
-                    ApellidoM = txtApellidoM.Text,
-                    RFC = txtRFC.Text,
-                    Sueldo = int.Parse(txtSueldo.Text),
-                };
-                logica.RegistrarEmpleado(empleado);
+                MessageBox.Show("error de formato en ID");
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
+                Empleado empleado = null;
+                try
+                {
+                    empleado = new Empleado
+                    {
+                        IdEmpleado = txtIdEmp.Text,
+                        Nombre = txtNombre.Text,
+                        ApellidoP = txtApellidoP.Text,
+                        ApellidoM = txtApellidoM.Text,
+                        RFC = txtRFC.Text,
+                        Sueldo = int.Parse(txtSueldo.Text),
+                    };
+                    logica.RegistrarEmpleado(empleado);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
 

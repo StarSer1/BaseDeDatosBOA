@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static BOALogica.CLogica;
 
 namespace BaseDeDatosBOA
 {
@@ -29,6 +30,8 @@ namespace BaseDeDatosBOA
             label3.Visible = false;
             label4.Visible = false;
             label5.Visible = false;
+
+            ValidadorForm.AgregarValidacion(btnInsertar, txtFechaLlegada, txtIdComputadora, txtIdInventario, txtPrecioLLegada, txtStock);
         }
         public void LoadData()
         {
@@ -51,29 +54,34 @@ namespace BaseDeDatosBOA
         }
         private void btnInsertar_Click(object sender, EventArgs e)
         {
-            bool checkFormat = logica.CheckAllFormats(txtIdInventario.Text, @"^V\d+$");
-            if (checkFormat == false)
+            List<Computadora> comp = logica.ObtenerComputadoras();
+            bool checkExistence = logica.CheckExistenciaInventario(txtIdComputadora.Text, comp);
+            if (checkExistence == true)
             {
-                MessageBox.Show("error de formato en ID");
-            }
-            else
-            {
-                Inventario inventario = null;
-                try
+                bool checkFormat = logica.CheckAllFormats(txtIdInventario.Text, @"^I\d+$");
+                if (checkFormat == false)
                 {
-                    inventario = new Inventario
-                    {
-                        IdInventario = txtIdInventario.Text,
-                        IdComputadora = txtIdComputadora.Text,
-                        FechaLlegada = txtFechaLlegada.Text,
-                        PrecioLlegada = int.Parse(txtPrecioLLegada.Text),
-                        Stock = int.Parse(txtStock.Text)
-                    };
-                    logica.RegistrarInventario(inventario);
+                    MessageBox.Show("error de formato en ID");
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show(ex.Message);
+                    Inventario inventario = null;
+                    try
+                    {
+                        inventario = new Inventario
+                        {
+                            IdInventario = txtIdInventario.Text,
+                            IdComputadora = txtIdComputadora.Text,
+                            FechaLlegada = txtFechaLlegada.Text,
+                            PrecioLlegada = int.Parse(txtPrecioLLegada.Text),
+                            Stock = int.Parse(txtStock.Text)
+                        };
+                        logica.RegistrarInventario(inventario);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
                 }
             }
         }

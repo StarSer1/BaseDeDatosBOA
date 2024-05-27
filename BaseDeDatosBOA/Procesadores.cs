@@ -52,20 +52,28 @@ namespace BaseDeDatosBOA
         //}
         private void btnInsertar_Click(object sender, EventArgs e)
         {
-            Procesador procesador = null;
-            try
+            bool checkFormat = logica.CheckAllFormats(txtIdProcesador.Text, @"^P\d+$");
+            if (checkFormat == false)
             {
-                procesador = new Procesador
-                {
-                    IdProcesador = txtIdProcesador.Text,
-                    Marca = txtMarca.Text,
-                    Modelo = txtModelo.Text,
-                };
-                logica.RegistrarProcesador(procesador);
+                MessageBox.Show("error de formato en ID");
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
+                Procesador procesador = null;
+                try
+                {
+                    procesador = new Procesador
+                    {
+                        IdProcesador = txtIdProcesador.Text,
+                        Marca = txtMarca.Text,
+                        Modelo = txtModelo.Text,
+                    };
+                    logica.RegistrarProcesador(procesador);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
 

@@ -52,23 +52,31 @@ namespace BaseDeDatosBOA
         //}
         private void btnInsertar_Click(object sender, EventArgs e)
         {
-            FuentePoder fuentePoder = null;
-            try
+            bool checkFormat = logica.CheckAllFormats(txtIdFuentePoder.Text, @"^F\d+$");
+            if (checkFormat == false)
             {
-                fuentePoder = new FuentePoder
-                {
-                    IdFuentePoder = txtIdFuentePoder.Text,
-                    Marca = txtMarca.Text,
-                    Modelo = txtModelo.Text,
-                    Potencia = int.Parse(txtPotencia.Text),
-                    Tipo = txtTipo.Text,
-                    Certificacion = txtCertificacion.Text,
-                };
-                logica.RegistrarFuentesPoder(fuentePoder);
+                MessageBox.Show("error de formato en ID");
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
+                FuentePoder fuentePoder = null;
+                try
+                {
+                    fuentePoder = new FuentePoder
+                    {
+                        IdFuentePoder = txtIdFuentePoder.Text,
+                        Marca = txtMarca.Text,
+                        Modelo = txtModelo.Text,
+                        Potencia = int.Parse(txtPotencia.Text),
+                        Tipo = txtTipo.Text,
+                        Certificacion = txtCertificacion.Text,
+                    };
+                    logica.RegistrarFuentesPoder(fuentePoder);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
 

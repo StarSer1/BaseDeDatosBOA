@@ -9,16 +9,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static BOALogica.CLogica;
 
 namespace BaseDeDatosBOA
 {
     public partial class Almacenamientos : Form
     {
         private CLogica logica;
+
         public Almacenamientos()
         {
             logica = new CLogica();
             InitializeComponent();
+            ValidadorForm.AgregarValidacion(btnInsertar, txtCapacidad, txtFrecuencia, txtIdAlmacenamiento, txtMarca, txtTipo, txtVelocidadTrans);
         }
         public void LoadData()
         {
@@ -52,6 +55,7 @@ namespace BaseDeDatosBOA
         //}
         private void btnInsertar_Click(object sender, EventArgs e)
         {
+            bool checkFormat = logica.CheckAllFormats(txtIdAlmacenamiento.Text, @"^A\d+$");
             Almacenamiento almacenamiento = null;
             try
             {
@@ -150,32 +154,26 @@ namespace BaseDeDatosBOA
 
         private void txtIdAlmacenamiento_TextChanged(object sender, EventArgs e)
         {
-            ValidateTextBoxes();
         }
 
         private void txtMarca_TextChanged(object sender, EventArgs e)
         {
-            ValidateTextBoxes();
         }
 
         private void txtTipo_TextChanged(object sender, EventArgs e)
         {
-            ValidateTextBoxes();
         }
 
         private void txtCapacidad_TextChanged(object sender, EventArgs e)
         {
-            ValidateTextBoxes();
         }
 
         private void txtFrecuencia_TextChanged(object sender, EventArgs e)
         {
-            ValidateTextBoxes();
         }
 
         private void txtVelocidadTrans_TextChanged(object sender, EventArgs e)
         {
-            ValidateTextBoxes();
         }
 
         private void btnVerificar_Click(object sender, EventArgs e)

@@ -40,6 +40,7 @@ namespace BaseDeDatosBOA
 
         private void btnInsertar_Click(object sender, EventArgs e)
         {
+            bool checkFormat = logica.CheckAllFormats(txtIdTarjetaMadre.Text, @"^V\d+$");
             TarjetaMadre tarjetaMadre = null;
             try
             {

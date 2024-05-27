@@ -70,25 +70,33 @@ namespace BaseDeDatosBOA
             bool checkExistence = logica.CheckExistenciaComputadora(txtIdRam.Text, txtIdProcesador.Text, txtIdGrafica.Text, txtIdAlmacenamiento.Text, txtIdTarjetaMadre.Text, txtIdFuentePoder.Text, ram, proce, graf, alma, tarjMadre, fuentePod);
             if (checkExistence == true)
             {
-                Computadora computadora = null;
-                try
+                bool checkFormat = logica.CheckAllFormats(txtIdComputadora.Text, @"^COM\d+$");
+                if (checkFormat == false)
                 {
-                    computadora = new Computadora
-                    {
-                        IdComputadora = txtIdComputadora.Text,
-                        Modelo = txtModelo.Text,
-                        IdRam = txtIdRam.Text,
-                        IdProcesador = txtIdProcesador.Text,
-                        IdGrafica = txtIdGrafica.Text,
-                        IdAlmacenamiento = txtIdAlmacenamiento.Text,
-                        IdTarjetaMadre = txtIdTarjetaMadre.Text,
-                        IdFuentePoder = txtIdFuentePoder.Text
-                    };
-                    logica.RegistrarComputadora(computadora);
+                    MessageBox.Show("error de formato en ID");
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show(ex.Message);
+                    Computadora computadora = null;
+                    try
+                    {
+                        computadora = new Computadora
+                        {
+                            IdComputadora = txtIdComputadora.Text,
+                            Modelo = txtModelo.Text,
+                            IdRam = txtIdRam.Text,
+                            IdProcesador = txtIdProcesador.Text,
+                            IdGrafica = txtIdGrafica.Text,
+                            IdAlmacenamiento = txtIdAlmacenamiento.Text,
+                            IdTarjetaMadre = txtIdTarjetaMadre.Text,
+                            IdFuentePoder = txtIdFuentePoder.Text
+                        };
+                        logica.RegistrarComputadora(computadora);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
                 }
             }
         }

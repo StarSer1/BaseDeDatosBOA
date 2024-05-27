@@ -20,6 +20,8 @@ namespace BaseDeDatosBOA
         {
             logica = new CLogica();
             InitializeComponent();
+
+
         }
         public void LoadData()
         {
@@ -37,22 +39,30 @@ namespace BaseDeDatosBOA
 
         private void btnInsertar_Click(object sender, EventArgs e)
         {
-            Cliente cliente = null;
-            try
+            bool checkFormat = logica.CheckAllFormats(txtIdCliente.Text, @"^C\d+$");
+            if (checkFormat == false)
             {
-                cliente = new Cliente
-                {
-                    IdCliente = txtIdCliente.Text,
-                    Nombre = txtNombre.Text,
-                    ApellidoP = txtApellidoP.Text,
-                    ApellidoM = txtApellidoM.Text,
-                    Correo = txtCorreo.Text,
-                };
-                logica.RegistrarCliente(cliente);
+                MessageBox.Show("error de formato en ID");
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
+                Cliente cliente = null;
+                try
+                {
+                    cliente = new Cliente
+                    {
+                        IdCliente = txtIdCliente.Text,
+                        Nombre = txtNombre.Text,
+                        ApellidoP = txtApellidoP.Text,
+                        ApellidoM = txtApellidoM.Text,
+                        Correo = txtCorreo.Text,
+                    };
+                    logica.RegistrarCliente(cliente);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
 

@@ -68,6 +68,7 @@ namespace BaseDeDatosBOA
 
         private void btnInsertar_Click(object sender, EventArgs e)
         {
+            bool checkFormat = logica.CheckAllFormats(txtIdGrafica.Text, @"^G\d+$");
             Grafica grafica = null;
             try
             {
