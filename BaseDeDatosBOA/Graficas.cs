@@ -9,16 +9,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static BOALogica.CLogica;
 
 namespace BaseDeDatosBOA
 {
     public partial class Graficas : Form
     {
         private CLogica logica;
+        List<Grafica> graficas = null;
+
         public Graficas()
         {
             logica = new CLogica();
             InitializeComponent();
+
+            ValidadorForm.AgregarValidacion(btnInsertar, txtIdGrafica, txtMarca, txtModelo, txtTipo, txtVram);
         }
         public void LoadData()
         {
@@ -130,22 +135,6 @@ namespace BaseDeDatosBOA
             formConsulta.tablaDeDondeViene = "GRAFICA";
             formConsulta.ShowDialog();
         }
-        //Validaciones para rellenar txtbox
-        private void ValidateTextBoxes()
-        {
-            if (!string.IsNullOrWhiteSpace(txtIdGrafica.Text) &&
-                !string.IsNullOrWhiteSpace(txtMarca.Text) &&
-                !string.IsNullOrWhiteSpace(txtModelo.Text) &&
-                !string.IsNullOrWhiteSpace(txtTipo.Text) &&
-                !string.IsNullOrWhiteSpace(txtVram.Text))
-            {
-                btnInsertar.Enabled = true;
-            }
-            else
-            {
-                btnInsertar.Enabled = false;
-            }
-        }
 
         private void txtVram_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -154,27 +143,65 @@ namespace BaseDeDatosBOA
 
         private void txtIdGrafica_TextChanged(object sender, EventArgs e)
         {
-            ValidateTextBoxes();
         }
 
         private void txtMarca_TextChanged(object sender, EventArgs e)
         {
-            ValidateTextBoxes();
         }
 
         private void txtModelo_TextChanged(object sender, EventArgs e)
         {
-            ValidateTextBoxes();
         }
 
         private void txtTipo_TextChanged(object sender, EventArgs e)
         {
-            ValidateTextBoxes();
         }
 
         private void txtVram_TextChanged(object sender, EventArgs e)
         {
-            ValidateTextBoxes();
+        }
+
+        private void btnVerificar_Click(object sender, EventArgs e)
+        {
+            bool checkId = logica.VerifyID(txtIdGrafica.Text, graficas, item => item.IdGrafica.ToString());
+            if (checkId == true)
+            {
+                txtMarca.Visible = true;
+                txtModelo.Visible = true;
+                txtTipo.Visible = true;
+                txtVram.Visible = true;
+                label2.Visible = true;
+                label3.Visible = true;
+                label4.Visible = true;
+                label5.Visible = true;
+            }
+            else
+            {
+                for (int i = 0; i < graficas.Count; i++)
+                {
+                    if (graficas[i].IdGrafica.ToString() == txtIdGrafica.Text)
+                    {
+                        txtMarca.Visible = true;
+                        txtModelo.Visible = true;
+                        txtTipo.Visible = true;
+                        txtVram.Visible = true;
+                        label2.Visible = true;
+                        label3.Visible = true;
+                        label4.Visible = true;
+                        label5.Visible = true;
+
+                        txtIdGrafica.Text = graficas[i].IdGrafica.ToString();
+                        txtMarca.Text = graficas[i].Marca.ToString();
+                        txtModelo.Text = graficas[i].Modelo.ToString();
+                        txtTipo.Text = graficas[i].Tipo.ToString();
+                        txtVram.Text = graficas[i].Vram.ToString();
+
+                        txtIdGrafica.Enabled = false;
+                        btnInsertar.Enabled = false;
+
+                    }
+                }
+            }
         }
     }
 }

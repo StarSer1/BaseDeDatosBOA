@@ -9,16 +9,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static BOALogica.CLogica;
 
 namespace BaseDeDatosBOA
 {
     public partial class Fuentes_De_Poder : Form
     {
         private CLogica logica;
+        List<FuentePoder> fuentesPoder = null;
+
         public Fuentes_De_Poder()
         {
             logica = new CLogica();
             InitializeComponent();
+
+            ValidadorForm.AgregarValidacion(btnInsertar, txtIdFuentePoder, txtMarca, txtModelo, txtPotencia, txtTipo, txtCertificacion);
         }
         public void LoadData()
         {
@@ -135,52 +140,77 @@ namespace BaseDeDatosBOA
             logica.SoloNumeros(sender, e);
         }
 
-        //Validaciones para rellenar txtbox
-        private void ValidateTextBoxes()
-        {
-            if (!string.IsNullOrWhiteSpace(txtIdFuentePoder.Text) &&
-                !string.IsNullOrWhiteSpace(txtCertificacion.Text) &&
-                !string.IsNullOrWhiteSpace(txtMarca.Text) &&
-                !string.IsNullOrWhiteSpace(txtModelo.Text) &&
-                !string.IsNullOrWhiteSpace(txtPotencia.Text) &&
-                !string.IsNullOrWhiteSpace(txtTipo.Text))
-            {
-                btnInsertar.Enabled = true;
-            }
-            else
-            {
-                btnInsertar.Enabled = false;
-            }
-        }
-
+        
         private void txtIdFuentePoder_TextChanged(object sender, EventArgs e)
         {
-            ValidateTextBoxes();
         }
 
         private void txtMarca_TextChanged(object sender, EventArgs e)
         {
-            ValidateTextBoxes();
         }
 
         private void txtModelo_TextChanged(object sender, EventArgs e)
         {
-            ValidateTextBoxes();
         }
 
         private void txtPotencia_TextChanged(object sender, EventArgs e)
         {
-            ValidateTextBoxes();
         }
 
         private void txtTipo_TextChanged(object sender, EventArgs e)
         {
-            ValidateTextBoxes();
         }
 
         private void txtCertificacion_TextChanged(object sender, EventArgs e)
         {
-            ValidateTextBoxes();
+        }
+
+        private void btnVerificar_Click(object sender, EventArgs e)
+        {
+            bool checkId = logica.VerifyID(txtIdFuentePoder.Text, fuentesPoder, item => item.IdFuentePoder.ToString());
+            if (checkId == true)
+            {
+                txtMarca.Visible = true;
+                txtModelo.Visible = true;
+                txtPotencia.Visible = true;
+                txtTipo.Visible = true;
+                txtCertificacion.Visible = true;
+                label2.Visible = true;
+                label3.Visible = true;
+                label4.Visible = true;
+                label5.Visible = true;
+                label6.Visible = true;
+            }
+            else
+            {
+                for (int i = 0; i < fuentesPoder.Count; i++)
+                {
+                    if (fuentesPoder[i].IdFuentePoder.ToString() == txtIdFuentePoder.Text)
+                    {
+                        txtMarca.Visible = true;
+                        txtModelo.Visible = true;
+                        txtPotencia.Visible = true;
+                        txtTipo.Visible = true;
+                        txtCertificacion.Visible = true;
+                        label2.Visible = true;
+                        label3.Visible = true;
+                        label4.Visible = true;
+                        label5.Visible = true;
+                        label6.Visible = true;
+
+                        txtIdFuentePoder.Text = fuentesPoder[i].IdFuentePoder.ToString();
+                        txtMarca.Text = fuentesPoder[i].Marca.ToString();
+                        txtModelo.Text = fuentesPoder[i].Modelo.ToString();
+                        txtPotencia.Text = fuentesPoder[i].Potencia.ToString();
+                        txtTipo.Text = fuentesPoder[i].Tipo.ToString();
+                        txtCertificacion.Text = fuentesPoder[i].Certificacion.ToString();
+
+                        txtIdFuentePoder.Enabled = false;
+                        btnInsertar.Enabled = false;
+
+                    }
+                }
+            }
         }
     }
 }

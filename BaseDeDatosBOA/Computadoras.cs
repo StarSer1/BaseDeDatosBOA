@@ -9,16 +9,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static BOALogica.CLogica;
 
 namespace BaseDeDatosBOA
 {
     public partial class Computadoras : Form
     {
         private CLogica logica;
+        List<Computadora> computadoras = null;
+
         public Computadoras()
         {
             logica = new CLogica();
             InitializeComponent();
+
+            ValidadorForm.AgregarValidacion(btnInsertar, txtIdComputadora, txtModelo, txtIdRam, txtIdProcesador, txtIdGrafica, txtIdAlmacenamiento, txtIdTarjetaMadre, txtIdFuentePoder);
         }
         public void LoadData()
         {
@@ -147,68 +152,102 @@ namespace BaseDeDatosBOA
             formConsulta.ShowDialog();
         }
 
-        //Validaciones para rellenar txtbox
-        private void ValidateTextBoxes()
-        {
-            if (!string.IsNullOrWhiteSpace(txtIdAlmacenamiento.Text) &&
-                !string.IsNullOrWhiteSpace(txtIdComputadora.Text) &&
-                !string.IsNullOrWhiteSpace(txtIdFuentePoder.Text) &&
-                !string.IsNullOrWhiteSpace(txtIdGrafica.Text) &&
-                !string.IsNullOrWhiteSpace(txtIdProcesador.Text) &&
-                !string.IsNullOrWhiteSpace(txtIdRam.Text) &&
-                !string.IsNullOrWhiteSpace(txtIdTarjetaMadre.Text) &&
-                !string.IsNullOrWhiteSpace(txtModelo.Text))
-            {
-                btnInsertar.Enabled = true;
-            }
-            else
-            {
-                btnInsertar.Enabled = false;
-            }
-        }
+        
         private void textBox_TextChanged(object sender, EventArgs e)
         {
-            ValidateTextBoxes();
         }
 
         private void txtIdComputadora_TextChanged(object sender, EventArgs e)
         {
-            ValidateTextBoxes();
         }
 
         private void txtModelo_TextChanged(object sender, EventArgs e)
         {
-            ValidateTextBoxes();
         }
 
         private void txtIdRam_TextChanged(object sender, EventArgs e)
         {
-            ValidateTextBoxes();
         }
 
         private void txtIdProcesador_TextChanged(object sender, EventArgs e)
         {
-            ValidateTextBoxes();
         }
 
         private void txtIdGrafica_TextChanged(object sender, EventArgs e)
         {
-            ValidateTextBoxes();
         }
 
         private void txtIdAlmacenamiento_TextChanged(object sender, EventArgs e)
         {
-            ValidateTextBoxes();
         }
 
         private void txtIdTarjetaMadre_TextChanged(object sender, EventArgs e)
         {
-            ValidateTextBoxes();
         }
 
         private void txtIdFuentePoder_TextChanged(object sender, EventArgs e)
         {
-            ValidateTextBoxes();
+        }
+
+        private void btnVerificar_Click(object sender, EventArgs e)
+        {
+            bool checkId = logica.VerifyID(txtIdComputadora.Text, computadoras, item => item.ToString());
+            if (checkId == true)
+            {
+                txtIdComputadora.Visible = true;
+                txtIdAlmacenamiento.Visible = true;
+                txtIdFuentePoder.Visible = true;
+                txtIdGrafica.Visible = true;
+                txtIdProcesador.Visible = true;
+                txtIdRam.Visible = true;
+                txtIdTarjetaMadre.Visible = true;
+                txtModelo.Visible = true;
+
+                label2.Visible = true;
+                label3.Visible = true;
+                label4.Visible = true;
+                label5.Visible = true;
+                label6.Visible = true;
+                label7.Visible = true;
+                label8.Visible = true;
+            }
+            else
+            {
+                for (int i = 0; i < computadoras.Count; i++)
+                {
+                    if (computadoras[i].IdComputadora.ToString() == txtIdComputadora.Text)
+                    {
+                        txtIdComputadora.Visible = true;
+                        txtIdAlmacenamiento.Visible = true;
+                        txtIdFuentePoder.Visible = true;
+                        txtIdGrafica.Visible = true;
+                        txtIdProcesador.Visible = true;
+                        txtIdRam.Visible = true;
+                        txtIdTarjetaMadre.Visible = true;
+                        txtModelo.Visible = true;
+
+                        label2.Visible = true;
+                        label3.Visible = true;
+                        label4.Visible = true;
+                        label5.Visible = true;
+                        label6.Visible = true;
+                        label7.Visible = true;
+                        label8.Visible = true;
+
+                        txtIdComputadora.Text = computadoras[i].IdComputadora.ToString();
+                        txtIdAlmacenamiento.Text = computadoras[i].IdAlmacenamiento.ToString();
+                        txtIdFuentePoder.Text = computadoras[i].IdFuentePoder.ToString();
+                        txtIdGrafica.Text = computadoras[i].IdGrafica.ToString();
+                        txtIdProcesador.Text = computadoras[i].IdProcesador.ToString();
+                        txtIdRam.Text = computadoras[i].IdRam.ToString();
+                        txtIdTarjetaMadre.Text = computadoras[i].IdTarjetaMadre.ToString();
+                        txtModelo.Text = computadoras[i].Modelo.ToString();
+
+                        txtIdComputadora.Enabled = false;
+                        btnInsertar.Enabled = false;
+                    }
+                }
+            }
         }
     }
 }

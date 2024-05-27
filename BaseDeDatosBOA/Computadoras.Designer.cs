@@ -197,7 +197,7 @@
             this.txtIdFuentePoder.FocusedState.Parent = this.txtIdFuentePoder;
             this.txtIdFuentePoder.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtIdFuentePoder.HoverState.Parent = this.txtIdFuentePoder;
-            this.txtIdFuentePoder.Location = new System.Drawing.Point(847, 398);
+            this.txtIdFuentePoder.Location = new System.Drawing.Point(847, 404);
             this.txtIdFuentePoder.Name = "txtIdFuentePoder";
             this.txtIdFuentePoder.PasswordChar = '\0';
             this.txtIdFuentePoder.PlaceholderText = "";
@@ -480,6 +480,7 @@
             this.btnVerificar.PressedState.Parent = this.btnVerificar;
             this.btnVerificar.Size = new System.Drawing.Size(30, 29);
             this.btnVerificar.TabIndex = 50;
+            this.btnVerificar.Click += new System.EventHandler(this.btnVerificar_Click);
             // 
             // Computadoras
             // 

@@ -9,12 +9,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static BOALogica.CLogica;
 
 namespace BaseDeDatosBOA
 {
     public partial class Empleados : Form
     {
         private CLogica logica;
+        List<Empleado> empleados = null;
+
         public Empleados()
         {
             logica = new CLogica();
@@ -27,6 +30,8 @@ namespace BaseDeDatosBOA
                 List<Empleado> empleados = logica.ObtenerEmpleado();
                 dgvEmpleado.DataSource = empleados;
                 //dgvEmpleado.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(dgvVentas_DataBindingComplete);
+
+                ValidadorForm.AgregarValidacion(btnInsertar, txtIdEmp, txtNombre, txtApellidoP, txtApellidoM, txtRFC, txtSueldo);
             }
             catch (Exception ex)
             {
@@ -118,52 +123,80 @@ namespace BaseDeDatosBOA
         {
             logica.SoloNumeros(sender, e);
         }
-        //Validaciones para rellenar txtbox
-        private void ValidateTextBoxes()
-        {
-            if (!string.IsNullOrWhiteSpace(txtApellidoM.Text) &&
-                !string.IsNullOrWhiteSpace(txtApellidoP.Text) &&
-                !string.IsNullOrWhiteSpace(txtIdEmp.Text) &&
-                !string.IsNullOrWhiteSpace(txtNombre.Text) &&
-                !string.IsNullOrWhiteSpace(txtRFC.Text) &&
-                !string.IsNullOrWhiteSpace(txtSueldo.Text))
-            
-            {
-                btnInsertar.Enabled = true;
-            }
-            else
-            {
-                btnInsertar.Enabled = false;
-            }
-        }
+       
         private void txtIdEmp_TextChanged(object sender, EventArgs e)
         {
-            ValidateTextBoxes();
         }
 
         private void txtNombre_TextChanged(object sender, EventArgs e)
         {
-            ValidateTextBoxes();
         }
 
         private void txtApellidoP_TextChanged(object sender, EventArgs e)
         {
-            ValidateTextBoxes();
         }
 
         private void txtApellidoM_TextChanged(object sender, EventArgs e)
         {
-            ValidateTextBoxes();
         }
 
         private void txtRFC_TextChanged(object sender, EventArgs e)
         {
-            ValidateTextBoxes();
         }
 
         private void txtSueldo_TextChanged(object sender, EventArgs e)
         {
-            ValidateTextBoxes();
+        }
+
+        private void btnVerificar_Click(object sender, EventArgs e)
+        {
+            bool checkId = logica.VerifyID(txtIdEmp.Text, empleados, item => item.ToString());
+            if (checkId == true)
+            {
+                txtApellidoM.Visible = true;
+                txtApellidoP.Visible = true;
+                txtIdEmp.Visible = true;
+                txtNombre.Visible = true;
+                txtRFC.Visible = true;
+                txtSueldo.Visible = true;
+
+                label2.Visible = true;
+                label3.Visible = true;
+                label4.Visible = true;
+                label5.Visible = true;
+                label6.Visible = true;
+            }
+            else
+            {
+                for (int i = 0; i < empleados.Count; i++)
+                {
+                    if (empleados[i].IdEmpleado.ToString() == txtIdEmp.Text)
+                    {
+                        txtApellidoM.Visible = true;
+                        txtApellidoP.Visible = true;
+                        txtIdEmp.Visible = true;
+                        txtNombre.Visible = true;
+                        txtRFC.Visible = true;
+                        txtSueldo.Visible = true;
+
+                        label2.Visible = true;
+                        label3.Visible = true;
+                        label4.Visible = true;
+                        label5.Visible = true;
+                        label6.Visible = true;
+
+                        txtApellidoM.Text = empleados[i].ApellidoM.ToString();
+                        txtApellidoP.Text = empleados[i].ApellidoP.ToString();
+                        txtIdEmp.Text = empleados[i].IdEmpleado.ToString();
+                        txtNombre.Text = empleados[i].Nombre.ToString();
+                        txtRFC.Text = empleados[i].RFC.ToString();
+                        txtSueldo.Text = empleados[i].Sueldo.ToString();
+
+                        txtIdEmp.Enabled = false;
+                        btnInsertar.Enabled = false;
+                    }
+                }
+            }
         }
     }
 }

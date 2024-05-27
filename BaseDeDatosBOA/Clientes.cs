@@ -9,12 +9,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static BOALogica.CLogica;
 
 namespace BaseDeDatosBOA
 {
     public partial class Clientes : Form
     {
         private CLogica logica;
+        List<Cliente> clientes = null;
 
         public Clientes()
         {
@@ -30,6 +32,8 @@ namespace BaseDeDatosBOA
                 List<Cliente> clientes = logica.ObtenerClientes();
                 dgvClientes.DataSource = clientes;
                 //dgvClientes.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(dgvVentas_DataBindingComplete);
+
+                ValidadorForm.AgregarValidacion(btnInsertar, txtIdCliente, txtNombre, txtApellidoP, txtApellidoM, txtCorreo);
             }
             catch (Exception ex)
             {
@@ -113,50 +117,72 @@ namespace BaseDeDatosBOA
             formConsulta.tablaDeDondeViene = "CLIENTES";
             formConsulta.ShowDialog();
         }
-        private void ValidateTextBoxes()
-        {
-            if (!string.IsNullOrWhiteSpace(txtApellidoM.Text) &&
-                !string.IsNullOrWhiteSpace(txtApellidoP.Text) &&
-                !string.IsNullOrWhiteSpace(txtCorreo.Text) &&
-                !string.IsNullOrWhiteSpace(txtIdCliente.Text) &&
-                !string.IsNullOrWhiteSpace(txtNombre.Text))
-            {
-                btnInsertar.Enabled = true;
-            }
-            else
-            {
-                btnInsertar.Enabled = false;
-            }
-        }
-
+       
         private void txtIdCliente_TextChanged(object sender, EventArgs e)
         {
-            ValidateTextBoxes();
         }
 
         private void txtNombre_TextChanged(object sender, EventArgs e)
         {
-            ValidateTextBoxes();
         }
 
         private void txtApellidoP_TextChanged(object sender, EventArgs e)
         {
-            ValidateTextBoxes();
         }
 
         private void txtApellidoM_TextChanged(object sender, EventArgs e)
         {
-            ValidateTextBoxes();
         }
 
         private void txtCorreo_TextChanged(object sender, EventArgs e)
         {
-            ValidateTextBoxes();
         }
 
         private void btnVerificar_Click(object sender, EventArgs e)
         {
+            bool checkId = logica.VerifyID(txtIdCliente.Text, clientes, item => item.ToString());
+            if (checkId == true)
+            {
+                txtApellidoM.Visible = true;
+                txtApellidoP.Visible = true;
+                txtCorreo.Visible = true;
+                txtIdCliente.Visible = true;
+                txtNombre.Visible = true;
 
+                label2.Visible = true;
+                label3.Visible = true;
+                label4.Visible = true;
+                label5.Visible = true;
+            }
+            else
+            {
+                for (int i = 0; i < clientes.Count; i++)
+                {
+                    if (clientes[i].IdCliente.ToString() == txtIdCliente.Text)
+                    {
+                        txtApellidoM.Visible = true;
+                        txtApellidoP.Visible = true;
+                        txtCorreo.Visible = true;
+                        txtIdCliente.Visible = true;
+                        txtNombre.Visible = true;
+
+                        label2.Visible = true;
+                        label3.Visible = true;
+                        label4.Visible = true;
+                        label5.Visible = true;
+
+                        txtApellidoM.Text = clientes[i].ApellidoM.ToString();
+                        txtApellidoP.Text = clientes[i].ApellidoP.ToString();
+                        txtCorreo.Text = clientes[i].Correo.ToString();
+                        txtIdCliente.Text = clientes[i].IdCliente.ToString();
+                        txtNombre.Text = clientes[i].Nombre.ToString();
+
+
+                        txtIdCliente.Enabled = false;
+                        btnInsertar.Enabled = false;
+                    }
+                }
+            }
         }
     }
 }

@@ -18,6 +18,7 @@ namespace BaseDeDatosBOA
     public partial class Ventas : Form
     {
         private CLogica logica;
+        List<Venta> ventas = null;
         public Ventas()
         {
             logica = new CLogica();
@@ -188,6 +189,65 @@ namespace BaseDeDatosBOA
 
         private void txtDescuento_TextChanged(object sender, EventArgs e)
         {
+        }
+
+        private void btnVerificar_Click(object sender, EventArgs e)
+        {          
+            bool checkId = logica.VerifyID(txtIdVenta.Text, ventas, item => item.ToString());
+            if (checkId == true)
+            {
+                txtIdComputadora.Visible = true;
+                txtDescuento.Visible = true;
+                txtFechaCliente.Visible = true;
+                txtIdCliente.Visible = true;
+                txtIdEmpleado.Visible = true;
+                txtIdVenta.Visible = true;
+                txtPrecioBase.Visible = true;
+                txtPrecioFinal.Visible = true;
+                label2.Visible = true;
+                label3.Visible = true;
+                label4.Visible = true;
+                label5.Visible = true;
+                label6.Visible = true;
+                label7.Visible = true;
+                label8.Visible = true;
+            }
+            else
+            {
+                for (int i = 0; i < ventas.Count; i++)
+                {
+                    if (ventas[i].IdVenta.ToString() == txtIdVenta.Text)
+                    {
+                        txtIdComputadora.Visible = true;
+                        txtDescuento.Visible = true;
+                        txtFechaCliente.Visible = true;
+                        txtIdCliente.Visible = true;
+                        txtIdEmpleado.Visible = true;
+                        txtIdVenta.Visible = true;
+                        txtPrecioBase.Visible = true;
+                        txtPrecioFinal.Visible = true;
+                        label2.Visible = true;
+                        label3.Visible = true;
+                        label4.Visible = true;
+                        label5.Visible = true;
+                        label6.Visible = true;
+                        label7.Visible = true;
+                        label8.Visible = true;
+
+                        txtIdComputadora.Text = ventas[i].IdComputadora.ToString();
+                        txtDescuento.Text = ventas[i].Descuento.ToString();
+                        txtFechaCliente.Text = ventas[i].FechaVenta.ToString();
+                        txtIdCliente.Text = ventas[i].IdCliente.ToString();
+                        txtIdEmpleado.Text = ventas[i].IdEmpleado.ToString();
+                        txtIdVenta.Text = ventas[i].IdVenta.ToString();
+                        txtPrecioBase.Text = ventas[i].PrecioBase.ToString();
+                        txtPrecioFinal.Text = ventas[i].PrecioFinal.ToString();
+
+                        txtIdVenta.Enabled = false;
+                        btnInsertar.Enabled = false;
+                    }
+                }
+            }
         }
     }
 }

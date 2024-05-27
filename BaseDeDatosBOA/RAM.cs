@@ -9,17 +9,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static BOALogica.CLogica;
 
 namespace BaseDeDatosBOA
 {
     public partial class RAM : Form
     {
         private CLogica logica;
+        List<Ram> rams = null;
 
         public RAM()
         {
             logica = new CLogica();
             InitializeComponent();
+
+            ValidadorForm.AgregarValidacion(btnInsertar, txtIdRam, txtMarca, txtTipoRam, txtFrecuencia, txtTamaño, txtVelocidadTrans);
         }
         public void LoadData()
         {
@@ -120,52 +124,76 @@ namespace BaseDeDatosBOA
             logica.SoloNumeros(sender, e);
         }
 
-        //Validaciones para rellenar txtbox
-        private void ValidateTextBoxes()
-        {
-            if (!string.IsNullOrWhiteSpace(txtFrecuencia.Text) &&
-                !string.IsNullOrWhiteSpace(txtIdRam.Text) &&
-                !string.IsNullOrWhiteSpace(txtMarca.Text) &&
-                !string.IsNullOrWhiteSpace(txtTamaño.Text) &&
-                !string.IsNullOrWhiteSpace(txtTipoRam.Text) &&
-                !string.IsNullOrWhiteSpace(txtVelocidadTrans.Text))
-            {
-                btnInsertar.Enabled = true;
-            }
-            else
-            {
-                btnInsertar.Enabled = false;
-            }
-        }
-
         private void txtIdRam_TextChanged(object sender, EventArgs e)
         {
-            ValidateTextBoxes();
         }
 
         private void txtMarca_TextChanged(object sender, EventArgs e)
         {
-            ValidateTextBoxes();
         }
 
         private void txtTipoRam_TextChanged(object sender, EventArgs e)
         {
-            ValidateTextBoxes();
         }
 
         private void txtFrecuencia_TextChanged(object sender, EventArgs e)
         {
-            ValidateTextBoxes();
         }
 
         private void txtTamaño_TextChanged(object sender, EventArgs e)
         {
-            ValidateTextBoxes();
         }
 
         private void txtVelocidadTrans_TextChanged(object sender, EventArgs e)
         {
-            ValidateTextBoxes();
+        }
+
+        private void btnVerificar_Click(object sender, EventArgs e)
+        {
+            bool checkId = logica.VerifyID(txtIdRam.Text, rams, item => item.IdRam.ToString());
+            if (checkId == true)
+            {
+                txtMarca.Visible = true;
+                txtTipoRam.Visible = true;
+                txtFrecuencia.Visible = true;
+                txtTamaño.Visible = true;
+                txtVelocidadTrans.Visible = true;
+                label2.Visible = true;
+                label3.Visible = true;
+                label4.Visible = true;
+                label5.Visible = true;
+                label6.Visible = true;
+            }
+            else
+            {
+                for (int i = 0; i < rams.Count; i++)
+                {
+                    if (rams[i].IdRam.ToString() == txtIdRam.Text)
+                    {
+                        txtMarca.Visible = true;
+                        txtTipoRam.Visible = true;
+                        txtFrecuencia.Visible = true;
+                        txtTamaño.Visible = true;
+                        txtVelocidadTrans.Visible = true;
+                        label2.Visible = true;
+                        label3.Visible = true;
+                        label4.Visible = true;
+                        label5.Visible = true;
+                        label6.Visible = true;
+
+                        txtIdRam.Text = rams[i].IdRam.ToString();
+                        txtMarca.Text = rams[i].Marca.ToString();
+                        txtTipoRam.Text = rams[i].TipoRam.ToString();
+                        txtFrecuencia.Text = rams[i].Frecuencia.ToString();
+                        txtTamaño.Text = rams[i].Tamaño.ToString();
+                        txtVelocidadTrans.Text = rams[i].VelocidadTransferencia.ToString();
+
+                        txtIdRam.Enabled = false;
+                        btnInsertar.Enabled = false;
+
+                    }
+                }
+            }
         }
     }
 }

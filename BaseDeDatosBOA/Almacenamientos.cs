@@ -16,6 +16,7 @@ namespace BaseDeDatosBOA
     public partial class Almacenamientos : Form
     {
         private CLogica logica;
+        List<Almacenamiento> almacenamientos = null;
 
         public Almacenamientos()
         {
@@ -76,25 +77,9 @@ namespace BaseDeDatosBOA
             }
         }
 
-        private void ValidateTextBoxes()
-        {
-            if (!string.IsNullOrWhiteSpace(txtCapacidad.Text) &&
-                !string.IsNullOrWhiteSpace(txtFrecuencia.Text) &&
-                !string.IsNullOrWhiteSpace(txtIdAlmacenamiento.Text) &&
-                !string.IsNullOrWhiteSpace(txtMarca.Text) &&
-                !string.IsNullOrWhiteSpace(txtTipo.Text) &&
-                !string.IsNullOrWhiteSpace(txtVelocidadTrans.Text))
-            {
-                btnInsertar.Enabled = true;
-            }
-            else
-            {
-                btnInsertar.Enabled = false;
-            }
-        }
+       
         private void textBox_TextChanged(object sender, EventArgs e)
         {
-            ValidateTextBoxes();
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -178,7 +163,50 @@ namespace BaseDeDatosBOA
 
         private void btnVerificar_Click(object sender, EventArgs e)
         {
+            bool checkId = logica.VerifyID(txtIdAlmacenamiento.Text, almacenamientos, item => item.IdAlmacenamiento.ToString());
+            if (checkId == true)
+            {
+                txtMarca.Visible = true;
+                txtTipo.Visible = true;
+                txtCapacidad.Visible = true;
+                txtFrecuencia.Visible = true;
+                txtVelocidadTrans.Visible = true;
+                label2.Visible = true;
+                label3.Visible = true;
+                label4.Visible = true;
+                label5.Visible = true;
+                label6.Visible = true;
+            }
+            else
+            {
+                for (int i = 0; i < almacenamientos.Count; i++)
+                {
+                    if (almacenamientos[i].IdAlmacenamiento.ToString() == txtIdAlmacenamiento.Text)
+                    {
+                        txtMarca.Visible = true;
+                        txtTipo.Visible = true;
+                        txtCapacidad.Visible = true;
+                        txtFrecuencia.Visible = true;
+                        txtVelocidadTrans.Visible = true;
+                        label2.Visible = true;
+                        label3.Visible = true;
+                        label4.Visible = true;
+                        label5.Visible = true;
+                        label6.Visible = true;
 
+                        txtIdAlmacenamiento.Text = almacenamientos[i].IdAlmacenamiento.ToString();
+                        txtMarca.Text = almacenamientos[i].Marca.ToString();
+                        txtTipo.Text = almacenamientos[i].Tipo.ToString();
+                        txtCapacidad.Text = almacenamientos[i].Capacidad.ToString();
+                        txtFrecuencia.Text = almacenamientos[i].Frecuencia.ToString();
+                        txtVelocidadTrans.Text = almacenamientos[i].VelocidadTransferencia.ToString();
+
+                        txtIdAlmacenamiento.Enabled = false;
+                        btnInsertar.Enabled = false;
+
+                    }
+                }
+            }
         }
     }
 }

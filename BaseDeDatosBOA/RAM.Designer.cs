@@ -411,6 +411,7 @@
             this.btnVerificar.PressedState.Parent = this.btnVerificar;
             this.btnVerificar.Size = new System.Drawing.Size(30, 29);
             this.btnVerificar.TabIndex = 50;
+            this.btnVerificar.Click += new System.EventHandler(this.btnVerificar_Click);
             // 
             // RAM
             // 

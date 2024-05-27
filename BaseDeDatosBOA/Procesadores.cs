@@ -9,17 +9,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static BOALogica.CLogica;
 
 namespace BaseDeDatosBOA
 {
     public partial class Procesadores : Form
     {
         private CLogica logica;
+        List<Procesador> procesadores = null;
 
         public Procesadores()
         {
             logica = new CLogica();
             InitializeComponent();
+
+            ValidadorForm.AgregarValidacion(btnInsertar, txtIdProcesador, txtMarca, txtModelo);
         }
         public void LoadData()
         {
@@ -124,34 +128,51 @@ namespace BaseDeDatosBOA
             formConsulta.ShowDialog();
         }
 
-        //Validaciones para rellenar txtbox
-        private void ValidateTextBoxes()
-        {
-            if (!string.IsNullOrWhiteSpace(txtIdProcesador.Text) &&
-                !string.IsNullOrWhiteSpace(txtMarca.Text) &&
-                !string.IsNullOrWhiteSpace(txtModelo.Text))
-            {
-                btnInsertar.Enabled = true;
-            }
-            else
-            {
-                btnInsertar.Enabled = false;
-            }
-        }
-
         private void txtIdProcesador_TextChanged(object sender, EventArgs e)
         {
-            ValidateTextBoxes();
         }
 
         private void txtMarca_TextChanged(object sender, EventArgs e)
         {
-            ValidateTextBoxes();
         }
 
         private void txtModelo_TextChanged(object sender, EventArgs e)
         {
-            ValidateTextBoxes();
+        }
+
+        private void btnVerificar_Click(object sender, EventArgs e)
+        {
+            bool checkId = logica.VerifyID(txtIdProcesador.Text, procesadores, item => item.IdProcesador.ToString());
+            if (checkId == true)
+            {
+                txtMarca.Visible = true;
+                txtModelo.Visible = true;
+                label2.Visible = true;
+                label3.Visible = true;
+
+            }
+            else
+            {
+                for (int i = 0; i < procesadores.Count; i++)
+                {
+                    if (procesadores[i].IdProcesador.ToString() == txtIdProcesador.Text)
+                    {
+                        txtMarca.Visible = true;
+                        txtModelo.Visible = true;
+                        label2.Visible = true;
+                        label3.Visible = true;
+
+                        txtIdProcesador.Text = procesadores[i].IdProcesador.ToString();
+                        txtMarca.Text = procesadores[i].Marca.ToString();
+                        txtModelo.Text = procesadores[i].Modelo.ToString();
+
+
+                        txtIdProcesador.Enabled = false;
+                        btnInsertar.Enabled = false;
+
+                    }
+                }
+            }
         }
     }
 }

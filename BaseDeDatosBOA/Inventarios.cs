@@ -134,65 +134,71 @@ namespace BaseDeDatosBOA
             logica.SoloNumeros(sender, e);
         }
 
-        //Validaciones para rellenar txtbox
-        private void ValidateTextBoxes()
-        {
-            if (!string.IsNullOrWhiteSpace(txtFechaLlegada.Text) &&
-                !string.IsNullOrWhiteSpace(txtIdComputadora.Text) &&
-                !string.IsNullOrWhiteSpace(txtIdInventario.Text) &&
-                !string.IsNullOrWhiteSpace(txtPrecioLLegada.Text) &&
-                !string.IsNullOrWhiteSpace(txtStock.Text))
-            {
-                btnInsertar.Enabled = true;
-            }
-            else
-            {
-                btnInsertar.Enabled = false;
-            }
-        }
-
+       
         private void txtIdInventario_TextChanged(object sender, EventArgs e)
         {
-            ValidateTextBoxes();
         }
 
         private void txtIdComputadora_TextChanged(object sender, EventArgs e)
         {
-            ValidateTextBoxes();
         }
 
         private void txtFechaLlegada_TextChanged(object sender, EventArgs e)
         {
-            ValidateTextBoxes();
         }
 
         private void txtPrecioLLegada_TextChanged(object sender, EventArgs e)
         {
-            ValidateTextBoxes();
         }
 
         private void txtStock_TextChanged(object sender, EventArgs e)
         {
-            ValidateTextBoxes();
         }
 
         private void btnVerificar_Click(object sender, EventArgs e)
         {
-            bool checkId = logica.VerifyID(txtIdInventario.Text, inventarios, item => item.IdInventario.ToString());
+            bool checkId = logica.VerifyID(txtIdInventario.Text, inventarios, item => item.ToString());
             if (checkId == true)
             {
                 txtIdComputadora.Visible = true;
                 txtFechaLlegada.Visible = true;
+                txtIdInventario.Visible = true;
                 txtPrecioLLegada.Visible = true;
                 txtStock.Visible = true;
+
                 label2.Visible = true;
                 label3.Visible = true;
                 label4.Visible = true;
                 label5.Visible = true;
+
             }
             else
             {
-                txtIdInventario.Clear();
+                for (int i = 0; i < inventarios.Count; i++)
+                {
+                    if (inventarios[i].IdInventario.ToString() == txtIdInventario.Text)
+                    {
+                        txtIdComputadora.Visible = true;
+                        txtFechaLlegada.Visible = true;
+                        txtIdInventario.Visible = true;
+                        txtPrecioLLegada.Visible = true;
+                        txtStock.Visible = true;
+
+                        label2.Visible = true;
+                        label3.Visible = true;
+                        label4.Visible = true;
+                        label5.Visible = true;
+
+                        txtIdComputadora.Text = inventarios[i].IdComputadora.ToString();
+                        txtFechaLlegada.Text = inventarios[i].FechaLlegada.ToString();
+                        txtIdInventario.Text = inventarios[i].IdInventario.ToString();
+                        txtPrecioLLegada.Text = inventarios[i].PrecioLlegada.ToString();
+                        txtStock.Text = inventarios[i].Stock.ToString();
+
+                        txtIdInventario.Enabled = false;
+                        btnInsertar.Enabled = false;
+                    }
+                }
             }
         }
     }
