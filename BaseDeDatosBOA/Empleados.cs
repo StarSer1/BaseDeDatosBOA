@@ -25,7 +25,7 @@ namespace BaseDeDatosBOA
             InitializeComponent();
 
             logica.TurnOffLabels(label2, label3, label4, label5, label6);//agregado
-            logica.TurnOffTxtB(txtIdEmp, txtNombre, txtApellidoP, txtApellidoM, txtRFC, txtSueldo);//agregado
+            logica.TurnOffTxtB(txtNombre, txtApellidoP, txtApellidoM, txtRFC, txtSueldo);//agregado
 
             ValidadorForm.AgregarValidacion(btnModificar, txtIdEmp, txtNombre, txtApellidoP, txtApellidoM, txtRFC, txtSueldo);//agregado
         }

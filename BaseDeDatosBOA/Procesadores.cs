@@ -24,7 +24,7 @@ namespace BaseDeDatosBOA
             logica = new CLogica();
             InitializeComponent();
             logica.TurnOffLabels(label2, label3);//agregado
-            logica.TurnOffTxtB(txtIdProcesador, txtMarca, txtModelo);//agregado
+            logica.TurnOffTxtB(txtMarca, txtModelo);//agregado
 
             ValidadorForm.AgregarValidacion(btnInsertar, txtIdProcesador, txtMarca, txtModelo);
             ValidadorForm.AgregarValidacion(btnModificar, txtIdProcesador, txtMarca, txtModelo);//agregado

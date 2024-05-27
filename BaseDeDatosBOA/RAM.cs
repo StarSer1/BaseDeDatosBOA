@@ -17,11 +17,11 @@ namespace BaseDeDatosBOA
     public partial class RAM : Form
     {
         private CLogica logica;
-        List<Ram> rams = null;//agregado(creo)
+        List<Ram> rams = null;
 
         public RAM()
         {
-            logica = new CLogica();//agregado(creo)
+            logica = new CLogica();
             InitializeComponent();
             logica.TurnOffLabels(label2, label3, label4, label5, label6);//agregado
             logica.TurnOffTxtB(txtFrecuencia, txtMarca, txtTipoRam, txtVelocidadTrans, txtTamaño);//agregado
@@ -33,7 +33,7 @@ namespace BaseDeDatosBOA
         {
             try
             {
-                rams = logica.ObtenerRam();//agregado(creo)
+                rams = logica.ObtenerRam();//agregado
                 dgvRam.DataSource = rams;
             }
             catch (Exception ex)
