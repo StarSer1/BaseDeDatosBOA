@@ -16,23 +16,23 @@ namespace BaseDeDatosBOA
     public partial class Inventarios : Form
     {
         private CLogica logica;
-        List<Inventario> inventarios = null;
+        List<Inventario> inventarios = null; //agregado(creo)
 
         public Inventarios()
         {
             logica = new CLogica();
             InitializeComponent();
-            logica.TurnOffLabels(label2, label3, label4, label5);
-            logica.TurnOffTxtB(txtIdComputadora, txtFechaLlegada, txtPrecioLLegada, txtStock);
+            logica.TurnOffLabels(label2, label3, label4, label5);//agregado
+            logica.TurnOffTxtB(txtIdComputadora, txtFechaLlegada, txtPrecioLLegada, txtStock);//agregado
 
             ValidadorForm.AgregarValidacion(btnInsertar, txtFechaLlegada, txtIdComputadora, txtIdInventario, txtPrecioLLegada, txtStock);
-            ValidadorForm.AgregarValidacion(btnModificar, txtFechaLlegada, txtIdComputadora, txtIdInventario, txtPrecioLLegada, txtStock);
+            ValidadorForm.AgregarValidacion(btnModificar, txtFechaLlegada, txtIdComputadora, txtIdInventario, txtPrecioLLegada, txtStock);//agregado
         }
         public void LoadData()
         {
             try
             {
-                inventarios = logica.ObtenerInventarios();
+                inventarios = logica.ObtenerInventarios();//agregado(creo)
                 dgvVentas.DataSource = inventarios;
                 //dgvVentas.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(dgvVentas_DataBindingComplete);
             }
