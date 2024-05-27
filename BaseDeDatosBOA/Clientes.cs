@@ -22,11 +22,11 @@ namespace BaseDeDatosBOA
         {
             logica = new CLogica();
             InitializeComponent();
-            logica.TurnOffLabels(label2, label3, label4, label5);//agregado
-            logica.TurnOffTxtB(txtNombre, txtApellidoP, txtApellidoM, txtCorreo);//agregado
+            logica.TurnOffLabels(label2, label3, label4, label5);
+            logica.TurnOffTxtB(txtNombre, txtApellidoP, txtApellidoM, txtCorreo);
 
             ValidadorForm.AgregarValidacion(btnInsertar, txtIdCliente, txtNombre, txtApellidoP, txtApellidoM, txtCorreo);
-            ValidadorForm.AgregarValidacion(btnModificar, txtIdCliente, txtNombre, txtApellidoP, txtApellidoM, txtCorreo);//agregado
+            ValidadorForm.AgregarValidacion(btnModificar, txtIdCliente, txtNombre, txtApellidoP, txtApellidoM, txtCorreo);
 
         }
         public void LoadData()
@@ -37,7 +37,6 @@ namespace BaseDeDatosBOA
                 dgvClientes.DataSource = clientes;
                 dgvClientes.Tag = "cliente";
                 dgvClientes.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(logica.dgvVentasChangeSize);
-                //dgvClientes.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(dgvVentas_DataBindingComplete);
 
             }
             catch (Exception ex)

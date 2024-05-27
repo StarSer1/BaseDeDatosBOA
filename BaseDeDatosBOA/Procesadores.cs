@@ -23,44 +23,28 @@ namespace BaseDeDatosBOA
         {
             logica = new CLogica();
             InitializeComponent();
-            logica.TurnOffLabels(label2, label3);//agregado
-            logica.TurnOffTxtB(txtMarca, txtModelo);//agregado
+            logica.TurnOffLabels(label2, label3);
+            logica.TurnOffTxtB(txtMarca, txtModelo);
 
             ValidadorForm.AgregarValidacion(btnInsertar, txtIdProcesador, txtMarca, txtModelo);
-            ValidadorForm.AgregarValidacion(btnModificar, txtIdProcesador, txtMarca, txtModelo);//agregado
+            ValidadorForm.AgregarValidacion(btnModificar, txtIdProcesador, txtMarca, txtModelo);
         }
         public void LoadData()
         {
             try
             {
-                this.procesador = logica.ObtenerProcesadores();//agregado(creo)
+                this.procesador = logica.ObtenerProcesadores();
                 List<Procesador> procesador = logica.ObtenerProcesadores();
                 dgvProcesadores.DataSource = procesador;
                 dgvProcesadores.Tag = "procesador";
                 dgvProcesadores.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(logica.dgvVentasChangeSize);
-                //dgvProcesadores.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(dgvVentas_DataBindingComplete);
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
-        //private void dgvVentas_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        //{
-        //    DataGridView dgv = sender as DataGridView;
-
-        //    if (dgv != null)
-        //    {
-        //        dgv.Columns["idVenta"].Width = 55;
-        //        dgv.Columns["idEmpleado"].Width = 95;
-        //        dgv.Columns["idComputadora"].Width = 115;
-        //        dgv.Columns["idCliente"].Width = 65;
-        //        dgv.Columns["fechaVenta"].Width = 100;
-        //        dgv.Columns["precioFinal"].Width = 90;
-        //        dgv.Columns["precioBase"].Width = 90;
-        //        dgv.Columns["Descuento"].Width = 80;
-        //    }
-        //}
+       
         private void btnInsertar_Click(object sender, EventArgs e)
         {
             bool checkFormat = logica.CheckAllFormats(txtIdProcesador.Text, @"^P\d+$");
@@ -89,8 +73,7 @@ namespace BaseDeDatosBOA
                         MessageBox.Show(ex.Message);
                     }
                 }
-                //agregado
-                //logica.ClearTextBoxs(this.Controls.OfType<Guna2TextBox>().Where((button) => button.Name.ToString() != "txtIdRam").ToArray());
+                
                 logica.ClearTextBoxs(this.Controls.OfType<Guna2TextBox>().ToArray());
                 txtIdProcesador.Enabled = true;
                 logica.TurnOffLabels(this.Controls.OfType<Label>().Where((label) => label.Name.ToString() != "label1").ToArray());
@@ -122,7 +105,7 @@ namespace BaseDeDatosBOA
                 {
                     MessageBox.Show(ex.Message);
                 }
-                //agregado
+                
                 txtIdProcesador.Enabled = true;
                 btnInsertar.Enabled = true;
                 logica.TurnOffLabels(this.Controls.OfType<Label>().Where((label) => label.Name.ToString() != "label1").ToArray());

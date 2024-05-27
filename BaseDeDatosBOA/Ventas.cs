@@ -24,11 +24,11 @@ namespace BaseDeDatosBOA
             logica = new CLogica();
             InitializeComponent();
 
-            logica.TurnOffLabels(label2, label3, label4, label5, label6, label7, label8);//agregado
-            logica.TurnOffTxtB(txtIdEmpleado, txtIdComputadora, txtIdCliente, txtFechaCliente, txtPrecioFinal, txtPrecioBase, txtDescuento);//agregado
+            logica.TurnOffLabels(label2, label3, label4, label5, label6, label7, label8);
+            logica.TurnOffTxtB(txtIdEmpleado, txtIdComputadora, txtIdCliente, txtFechaCliente, txtPrecioFinal, txtPrecioBase, txtDescuento);
 
             ValidadorForm.AgregarValidacion(btnInsertar, txtIdVenta, txtIdEmpleado, txtIdComputadora, txtIdCliente, txtFechaCliente, txtPrecioFinal, txtPrecioBase, txtDescuento);
-            ValidadorForm.AgregarValidacion(btnModificar, txtIdVenta, txtIdEmpleado, txtIdComputadora, txtIdCliente, txtFechaCliente, txtPrecioFinal, txtPrecioBase, txtDescuento);//agregado
+            ValidadorForm.AgregarValidacion(btnModificar, txtIdVenta, txtIdEmpleado, txtIdComputadora, txtIdCliente, txtFechaCliente, txtPrecioFinal, txtPrecioBase, txtDescuento);
 
         }
 
@@ -37,7 +37,7 @@ namespace BaseDeDatosBOA
             try
             {
                 ventas = logica.ObtenerVentas();
-                ventas = logica.ObtenerVentas();//agregado(creo)
+                ventas = logica.ObtenerVentas();
                 dgvVentas.DataSource = ventas;
                 dgvVentas.Tag = "ventas";
                 dgvVentas.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(logica.dgvVentasChangeSize);
@@ -47,11 +47,6 @@ namespace BaseDeDatosBOA
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
-
-
-        
-
-
 
         private void btnInsertar_Click_1(object sender, EventArgs e)
         {

@@ -24,21 +24,20 @@ namespace BaseDeDatosBOA
             logica = new CLogica();
             InitializeComponent();
 
-            logica.TurnOffLabels(label2, label3, label4, label5, label6);//agregado
-            logica.TurnOffTxtB(txtNombre, txtApellidoP, txtApellidoM, txtRFC, txtSueldo);//agregado
+            logica.TurnOffLabels(label2, label3, label4, label5, label6);
+            logica.TurnOffTxtB(txtNombre, txtApellidoP, txtApellidoM, txtRFC, txtSueldo);
 
-            ValidadorForm.AgregarValidacion(btnModificar, txtIdEmp, txtNombre, txtApellidoP, txtApellidoM, txtRFC, txtSueldo);//agregado
+            ValidadorForm.AgregarValidacion(btnModificar, txtIdEmp, txtNombre, txtApellidoP, txtApellidoM, txtRFC, txtSueldo);
         }
         public void LoadData()
         {
             try
             {
                 empleados = logica.ObtenerEmpleado();
-                empleados = logica.ObtenerEmpleado();//agregado
+                empleados = logica.ObtenerEmpleado();
                 dgvEmpleado.DataSource = empleados;
                 dgvEmpleado.Tag = "empleado";
                 dgvEmpleado.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(logica.dgvVentasChangeSize);
-                //dgvEmpleado.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(dgvVentas_DataBindingComplete);
 
                 ValidadorForm.AgregarValidacion(btnInsertar, txtIdEmp, txtNombre, txtApellidoP, txtApellidoM, txtRFC, txtSueldo);
             }
@@ -79,8 +78,7 @@ namespace BaseDeDatosBOA
                         MessageBox.Show(ex.Message);
                     }
                 }
-                //agregado
-                //logica.ClearTextBoxs(this.Controls.OfType<Guna2TextBox>().Where((button) => button.Name.ToString() != "txtIdRam").ToArray());
+                
                 logica.ClearTextBoxs(this.Controls.OfType<Guna2TextBox>().ToArray());
                 txtIdEmp.Enabled = true;
                 logica.TurnOffLabels(this.Controls.OfType<Label>().Where((label) => label.Name.ToString() != "label1").ToArray());
@@ -115,7 +113,6 @@ namespace BaseDeDatosBOA
                 {
                     MessageBox.Show(ex.Message);
                 }
-                //agregado
                 txtIdEmp.Enabled = true;
                 btnInsertar.Enabled = true;
                 logica.TurnOffLabels(this.Controls.OfType<Label>().Where((label) => label.Name.ToString() != "label1").ToArray());

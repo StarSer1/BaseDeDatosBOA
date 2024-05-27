@@ -23,8 +23,8 @@ namespace BaseDeDatosBOA
         {
             logica = new CLogica();
             InitializeComponent();
-            logica.TurnOffLabels(label2, label3, label4, label5, label6);//agregado
-            logica.TurnOffTxtB(txtFrecuencia, txtMarca, txtTipoRam, txtVelocidadTrans, txtTamaño);//agregado
+            logica.TurnOffLabels(label2, label3, label4, label5, label6);
+            logica.TurnOffTxtB(txtFrecuencia, txtMarca, txtTipoRam, txtVelocidadTrans, txtTamaño);
 
             ValidadorForm.AgregarValidacion(btnInsertar, txtIdRam, txtMarca, txtTipoRam, txtFrecuencia, txtTamaño, txtVelocidadTrans);
             ValidadorForm.AgregarValidacion(btnModificar, txtIdRam, txtMarca, txtTipoRam, txtFrecuencia, txtTamaño, txtVelocidadTrans);//agregado
@@ -33,7 +33,7 @@ namespace BaseDeDatosBOA
         {
             try
             {
-                rams = logica.ObtenerRam();//agregado
+                rams = logica.ObtenerRam();
                 dgvRam.DataSource = rams;
                 dgvRam.Tag = "ram";
                 dgvRam.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(logica.dgvVentasChangeSize);
@@ -50,7 +50,7 @@ namespace BaseDeDatosBOA
             LoadData();
         }
 
-        private void btnInsertar_Click(object sender, EventArgs e)//agregado
+        private void btnInsertar_Click(object sender, EventArgs e)
         {
             bool checkFormat = logica.CheckAllFormats(txtIdRam.Text, @"^R\d+$");
             if (checkFormat == false)
@@ -81,8 +81,7 @@ namespace BaseDeDatosBOA
                         MessageBox.Show(ex.Message);
                     }
                 }
-                //agregado
-                //logica.ClearTextBoxs(this.Controls.OfType<Guna2TextBox>().Where((button) => button.Name.ToString() != "txtIdRam").ToArray());
+                
                 logica.ClearTextBoxs(this.Controls.OfType<Guna2TextBox>().ToArray());
                 txtIdRam.Enabled = true;
                 logica.TurnOffLabels(this.Controls.OfType<Label>().Where((label) => label.Name.ToString() != "label1").ToArray());
@@ -90,7 +89,7 @@ namespace BaseDeDatosBOA
             }
         }
 
-        private void btnModificar_Click(object sender, EventArgs e)//agregado
+        private void btnModificar_Click(object sender, EventArgs e)
         {
             bool checkFormat = logica.CheckAllFormats(txtIdRam.Text, @"^R\d+$");
             if (checkFormat == false)
@@ -117,7 +116,7 @@ namespace BaseDeDatosBOA
                     {
                         MessageBox.Show(exe.Message);
                     }
-                    //agregado
+                    
                     txtIdRam.Enabled = true;
                     btnInsertar.Enabled = true;
                     logica.TurnOffLabels(this.Controls.OfType<Label>().Where((label) => label.Name.ToString() != "label1").ToArray());
@@ -186,7 +185,7 @@ namespace BaseDeDatosBOA
             logica.CambioAMayusculas(sender, e);
         }
 
-        private void btnVerificar_Click(object sender, EventArgs e)//agregado
+        private void btnVerificar_Click(object sender, EventArgs e)
         {
             bool checkId = logica.VerifyID(txtIdRam.Text, rams, item => item.IdRam.ToString());
             if (checkId == true)

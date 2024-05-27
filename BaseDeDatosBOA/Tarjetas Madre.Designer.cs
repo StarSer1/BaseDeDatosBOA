@@ -112,7 +112,7 @@
             this.label6.Size = new System.Drawing.Size(110, 18);
             this.label6.TabIndex = 46;
             this.label6.Text = "Dimensiones";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
+            //this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // label5
             // 
@@ -124,7 +124,7 @@
             this.label5.Size = new System.Drawing.Size(64, 18);
             this.label5.TabIndex = 45;
             this.label5.Text = "Socket";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
+            //this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // label4
             // 
@@ -136,7 +136,7 @@
             this.label4.Size = new System.Drawing.Size(119, 18);
             this.label4.TabIndex = 44;
             this.label4.Text = "RanurasDIMM";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
+            //this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // label3
             // 
@@ -148,7 +148,7 @@
             this.label3.Size = new System.Drawing.Size(65, 18);
             this.label3.TabIndex = 43;
             this.label3.Text = "Modelo";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
+            //this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label2
             // 
@@ -160,7 +160,7 @@
             this.label2.Size = new System.Drawing.Size(58, 18);
             this.label2.TabIndex = 42;
             this.label2.Text = "Marca";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
+            //this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label1
             // 

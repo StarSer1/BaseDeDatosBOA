@@ -66,7 +66,6 @@ namespace BOALogica
         #region Registros
         public void RegistrarVenta(Venta venta)
         {
-            //Falta validacion
             datos.Insertar("VENTAS", venta, datos.ConfigureVentaParameters);
         }
         public void RegistrarInventario(Inventario inventario)
@@ -304,13 +303,11 @@ namespace BOALogica
 
         public static class ValidadorForm
         {
-            // Método para validar si todos los Guna2TextBox en el formulario tienen datos
             public static bool TodosTextBoxLlenos(params Guna2TextBox[] textBoxes)
             {
                 return textBoxes.All(tb => !string.IsNullOrWhiteSpace(tb.Text));
             }
 
-            // Método para suscribirse al evento TextChanged de múltiples Guna2TextBox y manejar la validación del botón
             public static void AgregarValidacion(Guna2Button buttonInsertar, params Guna2TextBox[] textBoxes)
             {
                 foreach (var textBox in textBoxes)
@@ -321,7 +318,6 @@ namespace BOALogica
                     };
                 }
 
-                // Realizar una validación inicial al agregar los TextBox
                 buttonInsertar.Enabled = TodosTextBoxLlenos(textBoxes);
             }
         }
