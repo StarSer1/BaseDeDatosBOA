@@ -32,9 +32,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.btnEliminar = new Guna.UI2.WinForms.Guna2ImageButton();
-            this.btnConsulta = new Guna.UI2.WinForms.Guna2ImageButton();
-            this.btnActualizar = new Guna.UI2.WinForms.Guna2ImageButton();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -45,6 +42,9 @@
             this.txtIdProcesador = new Guna.UI2.WinForms.Guna2TextBox();
             this.dgvProcesadores = new Guna.UI2.WinForms.Guna2DataGridView();
             this.btnVerificar = new Guna.UI2.WinForms.Guna2ImageButton();
+            this.btnEliminar = new Guna.UI2.WinForms.Guna2ImageButton();
+            this.btnConsulta = new Guna.UI2.WinForms.Guna2ImageButton();
+            this.btnActualizar = new Guna.UI2.WinForms.Guna2ImageButton();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProcesadores)).BeginInit();
             this.SuspendLayout();
@@ -59,42 +59,6 @@
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(1031, 35);
             this.flowLayoutPanel1.TabIndex = 49;
-            // 
-            // btnEliminar
-            // 
-            this.btnEliminar.CheckedState.Parent = this.btnEliminar;
-            this.btnEliminar.HoverState.Parent = this.btnEliminar;
-            this.btnEliminar.Image = global::BaseDeDatosBOA.Properties.Resources.eliminar;
-            this.btnEliminar.Location = new System.Drawing.Point(3, 3);
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.PressedState.Parent = this.btnEliminar;
-            this.btnEliminar.Size = new System.Drawing.Size(41, 30);
-            this.btnEliminar.TabIndex = 0;
-            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
-            // 
-            // btnConsulta
-            // 
-            this.btnConsulta.CheckedState.Parent = this.btnConsulta;
-            this.btnConsulta.HoverState.Parent = this.btnConsulta;
-            this.btnConsulta.Image = global::BaseDeDatosBOA.Properties.Resources.lupa;
-            this.btnConsulta.Location = new System.Drawing.Point(50, 3);
-            this.btnConsulta.Name = "btnConsulta";
-            this.btnConsulta.PressedState.Parent = this.btnConsulta;
-            this.btnConsulta.Size = new System.Drawing.Size(41, 30);
-            this.btnConsulta.TabIndex = 0;
-            this.btnConsulta.Click += new System.EventHandler(this.btnConsulta_Click);
-            // 
-            // btnActualizar
-            // 
-            this.btnActualizar.CheckedState.Parent = this.btnActualizar;
-            this.btnActualizar.HoverState.Parent = this.btnActualizar;
-            this.btnActualizar.Image = global::BaseDeDatosBOA.Properties.Resources.recargar;
-            this.btnActualizar.Location = new System.Drawing.Point(97, 3);
-            this.btnActualizar.Name = "btnActualizar";
-            this.btnActualizar.PressedState.Parent = this.btnActualizar;
-            this.btnActualizar.Size = new System.Drawing.Size(41, 30);
-            this.btnActualizar.TabIndex = 0;
-            this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
             // 
             // label3
             // 
@@ -254,10 +218,10 @@
             this.dgvProcesadores.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgvProcesadores.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10.5F);
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(89)))), ((int)(((byte)(97)))));
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvProcesadores.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
@@ -274,6 +238,7 @@
             this.dgvProcesadores.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvProcesadores.Location = new System.Drawing.Point(27, 68);
             this.dgvProcesadores.Name = "dgvProcesadores";
+            this.dgvProcesadores.ReadOnly = true;
             this.dgvProcesadores.RowHeadersVisible = false;
             this.dgvProcesadores.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvProcesadores.Size = new System.Drawing.Size(680, 501);
@@ -286,13 +251,13 @@
             this.dgvProcesadores.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
             this.dgvProcesadores.ThemeStyle.BackColor = System.Drawing.Color.White;
             this.dgvProcesadores.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.dgvProcesadores.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.dgvProcesadores.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
             this.dgvProcesadores.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgvProcesadores.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Segoe UI", 10.5F);
             this.dgvProcesadores.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
             this.dgvProcesadores.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.dgvProcesadores.ThemeStyle.HeaderStyle.Height = 20;
-            this.dgvProcesadores.ThemeStyle.ReadOnly = false;
+            this.dgvProcesadores.ThemeStyle.ReadOnly = true;
             this.dgvProcesadores.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
             this.dgvProcesadores.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgvProcesadores.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 10.5F);
@@ -313,6 +278,42 @@
             this.btnVerificar.Size = new System.Drawing.Size(30, 29);
             this.btnVerificar.TabIndex = 50;
             this.btnVerificar.Click += new System.EventHandler(this.btnVerificar_Click);
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.CheckedState.Parent = this.btnEliminar;
+            this.btnEliminar.HoverState.Parent = this.btnEliminar;
+            this.btnEliminar.Image = global::BaseDeDatosBOA.Properties.Resources.eliminar;
+            this.btnEliminar.Location = new System.Drawing.Point(3, 3);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.PressedState.Parent = this.btnEliminar;
+            this.btnEliminar.Size = new System.Drawing.Size(41, 30);
+            this.btnEliminar.TabIndex = 0;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            // 
+            // btnConsulta
+            // 
+            this.btnConsulta.CheckedState.Parent = this.btnConsulta;
+            this.btnConsulta.HoverState.Parent = this.btnConsulta;
+            this.btnConsulta.Image = global::BaseDeDatosBOA.Properties.Resources.lupa;
+            this.btnConsulta.Location = new System.Drawing.Point(50, 3);
+            this.btnConsulta.Name = "btnConsulta";
+            this.btnConsulta.PressedState.Parent = this.btnConsulta;
+            this.btnConsulta.Size = new System.Drawing.Size(41, 30);
+            this.btnConsulta.TabIndex = 0;
+            this.btnConsulta.Click += new System.EventHandler(this.btnConsulta_Click);
+            // 
+            // btnActualizar
+            // 
+            this.btnActualizar.CheckedState.Parent = this.btnActualizar;
+            this.btnActualizar.HoverState.Parent = this.btnActualizar;
+            this.btnActualizar.Image = global::BaseDeDatosBOA.Properties.Resources.recargar;
+            this.btnActualizar.Location = new System.Drawing.Point(97, 3);
+            this.btnActualizar.Name = "btnActualizar";
+            this.btnActualizar.PressedState.Parent = this.btnActualizar;
+            this.btnActualizar.Size = new System.Drawing.Size(41, 30);
+            this.btnActualizar.TabIndex = 0;
+            this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
             // 
             // Procesadores
             // 

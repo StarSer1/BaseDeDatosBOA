@@ -83,34 +83,42 @@ namespace BaseDeDatosBOA
                 }
                 else
                 {
-                    bool checkId = logica.VerifyID(txtIdVenta.Text, ventas, item => item.IdVenta.ToString());
-                    if (checkId == true)
+                    bool checkDateFormat = logica.CheckAllFormats(txtFechaCliente.Text, @"^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/([0-9]{4})$");
+                    if (checkDateFormat == false)
                     {
-                        Venta venta = null;
-                        try
+                        MessageBox.Show("error de formato en la FECHA");
+                    }
+                    else
+                    {
+                        bool checkId = logica.VerifyID(txtIdVenta.Text, ventas, item => item.IdVenta.ToString());
+                        if (checkId == true)
                         {
-                            venta = new Venta
+                            Venta venta = null;
+                            try
                             {
-                                IdVenta = txtIdVenta.Text,
-                                IdEmpleado = txtIdEmpleado.Text,
-                                IdComputadora = txtIdComputadora.Text,
-                                IdCliente = txtIdCliente.Text,
-                                FechaVenta = txtFechaCliente.Text,
-                                PrecioFinal = int.Parse(txtPrecioFinal.Text),
-                                PrecioBase = int.Parse(txtPrecioBase.Text),
-                                Descuento = int.Parse(txtDescuento.Text)
-                            };
-                            logica.RegistrarVenta(venta);
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message);
+                                venta = new Venta
+                                {
+                                    IdVenta = txtIdVenta.Text,
+                                    IdEmpleado = txtIdEmpleado.Text,
+                                    IdComputadora = txtIdComputadora.Text,
+                                    IdCliente = txtIdCliente.Text,
+                                    FechaVenta = txtFechaCliente.Text,
+                                    PrecioFinal = int.Parse(txtPrecioFinal.Text),
+                                    PrecioBase = int.Parse(txtPrecioBase.Text),
+                                    Descuento = int.Parse(txtDescuento.Text)
+                                };
+                                logica.RegistrarVenta(venta);
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message);
+                            }
                         }
                     }
                     logica.ClearTextBoxs(txtIdVenta, txtIdEmpleado, txtIdComputadora, txtIdCliente, txtFechaCliente, txtPrecioFinal, txtPrecioBase, txtDescuento);
                     txtIdVenta.Enabled = true;
                     logica.TurnOffLabels(label2, label3, label4, label5, label6, label7, label8);
-                    logica.TurnOffTxtB(txtIdVenta, txtIdEmpleado, txtIdComputadora, txtIdCliente, txtFechaCliente, txtPrecioFinal, txtPrecioBase, txtDescuento);
+                    logica.TurnOffTxtB(txtIdEmpleado, txtIdComputadora, txtIdCliente, txtFechaCliente, txtPrecioFinal, txtPrecioBase, txtDescuento);
                 }
             }
         }
