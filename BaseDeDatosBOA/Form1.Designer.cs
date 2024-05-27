@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.Gunapanelizquierdo = new Guna.UI2.WinForms.Guna2Panel();
             this.BtnInventario = new FontAwesome.Sharp.IconButton();
             this.BtnTarjetaMadre = new FontAwesome.Sharp.IconButton();
@@ -42,15 +43,15 @@
             this.BtnVenta = new FontAwesome.Sharp.IconButton();
             this.BtnInicio = new Guna.UI2.WinForms.Guna2PictureBox();
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
-            this.gunaPanelFondo = new Guna.UI2.WinForms.Guna2Panel();
-            this.iconTitulo = new FontAwesome.Sharp.IconPictureBox();
-            this.lblTitulo = new System.Windows.Forms.Label();
             this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
+            this.lblTitulo = new System.Windows.Forms.Label();
+            this.iconTitulo = new FontAwesome.Sharp.IconPictureBox();
+            this.gunaPanelFondo = new Guna.UI2.WinForms.Guna2Panel();
             this.Gunapanelizquierdo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BtnInicio)).BeginInit();
             this.guna2Panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iconTitulo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconTitulo)).BeginInit();
             this.SuspendLayout();
             // 
             // Gunapanelizquierdo
@@ -332,40 +333,6 @@
             this.guna2Panel1.TabIndex = 2;
             this.guna2Panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.guna2Panel1_MouseDown);
             // 
-            // gunaPanelFondo
-            // 
-            this.gunaPanelFondo.BackColor = System.Drawing.Color.Transparent;
-            this.gunaPanelFondo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gunaPanelFondo.Location = new System.Drawing.Point(217, 67);
-            this.gunaPanelFondo.Name = "gunaPanelFondo";
-            this.gunaPanelFondo.ShadowDecoration.Parent = this.gunaPanelFondo;
-            this.gunaPanelFondo.Size = new System.Drawing.Size(1047, 614);
-            this.gunaPanelFondo.TabIndex = 3;
-            // 
-            // iconTitulo
-            // 
-            this.iconTitulo.BackColor = System.Drawing.Color.Transparent;
-            this.iconTitulo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
-            this.iconTitulo.IconChar = FontAwesome.Sharp.IconChar.House;
-            this.iconTitulo.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
-            this.iconTitulo.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconTitulo.IconSize = 34;
-            this.iconTitulo.Location = new System.Drawing.Point(15, 18);
-            this.iconTitulo.Name = "iconTitulo";
-            this.iconTitulo.Size = new System.Drawing.Size(41, 34);
-            this.iconTitulo.TabIndex = 0;
-            this.iconTitulo.TabStop = false;
-            // 
-            // lblTitulo
-            // 
-            this.lblTitulo.AutoSize = true;
-            this.lblTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitulo.Location = new System.Drawing.Point(62, 25);
-            this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(46, 20);
-            this.lblTitulo.TabIndex = 1;
-            this.lblTitulo.Text = "Inicio";
-            // 
             // iconPictureBox1
             // 
             this.iconPictureBox1.BackColor = System.Drawing.Color.Transparent;
@@ -381,11 +348,45 @@
             this.iconPictureBox1.TabStop = false;
             this.iconPictureBox1.Click += new System.EventHandler(this.iconPictureBox1_Click);
             // 
+            // lblTitulo
+            // 
+            this.lblTitulo.AutoSize = true;
+            this.lblTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitulo.Location = new System.Drawing.Point(62, 25);
+            this.lblTitulo.Name = "lblTitulo";
+            this.lblTitulo.Size = new System.Drawing.Size(46, 20);
+            this.lblTitulo.TabIndex = 1;
+            this.lblTitulo.Text = "Inicio";
+            // 
+            // iconTitulo
+            // 
+            this.iconTitulo.BackColor = System.Drawing.Color.Transparent;
+            this.iconTitulo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
+            this.iconTitulo.IconChar = FontAwesome.Sharp.IconChar.House;
+            this.iconTitulo.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
+            this.iconTitulo.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconTitulo.IconSize = 34;
+            this.iconTitulo.Location = new System.Drawing.Point(15, 18);
+            this.iconTitulo.Name = "iconTitulo";
+            this.iconTitulo.Size = new System.Drawing.Size(41, 34);
+            this.iconTitulo.TabIndex = 0;
+            this.iconTitulo.TabStop = false;
+            // 
+            // gunaPanelFondo
+            // 
+            this.gunaPanelFondo.BackColor = System.Drawing.Color.Transparent;
+            this.gunaPanelFondo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gunaPanelFondo.Location = new System.Drawing.Point(217, 67);
+            this.gunaPanelFondo.Name = "gunaPanelFondo";
+            this.gunaPanelFondo.ShadowDecoration.Parent = this.gunaPanelFondo;
+            this.gunaPanelFondo.Size = new System.Drawing.Size(1047, 614);
+            this.gunaPanelFondo.TabIndex = 3;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::BaseDeDatosBOA.Properties.Resources.hola__1_;
+            this.BackgroundImage = global::BaseDeDatosBOA.Properties.Resources.hola_2;
             this.ClientSize = new System.Drawing.Size(1264, 681);
             this.Controls.Add(this.gunaPanelFondo);
             this.Controls.Add(this.guna2Panel1);
@@ -393,6 +394,7 @@
             this.Controls.Add(this.Gunapanelizquierdo);
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
@@ -401,8 +403,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.BtnInicio)).EndInit();
             this.guna2Panel1.ResumeLayout(false);
             this.guna2Panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iconTitulo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconTitulo)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -105,55 +105,55 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(717, 313);
+            this.label6.Location = new System.Drawing.Point(714, 313);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(162, 18);
+            this.label6.Size = new System.Drawing.Size(183, 17);
             this.label6.TabIndex = 46;
             this.label6.Text = "VelocidadTransferencia";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(798, 266);
+            this.label5.Location = new System.Drawing.Point(789, 266);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(81, 18);
+            this.label5.Size = new System.Drawing.Size(91, 17);
             this.label5.TabIndex = 45;
             this.label5.Text = "Frecuencia";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(801, 218);
+            this.label4.Location = new System.Drawing.Point(794, 218);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(78, 18);
+            this.label4.Size = new System.Drawing.Size(86, 17);
             this.label4.TabIndex = 44;
             this.label4.Text = "Capacidad";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(842, 172);
+            this.label3.Location = new System.Drawing.Point(841, 172);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(37, 18);
+            this.label3.Size = new System.Drawing.Size(39, 17);
             this.label3.TabIndex = 43;
             this.label3.Text = "Tipo";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(829, 123);
+            this.label2.Location = new System.Drawing.Point(826, 123);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(50, 18);
+            this.label2.Size = new System.Drawing.Size(54, 17);
             this.label2.TabIndex = 42;
             this.label2.Text = "Marca";
             // 
@@ -161,16 +161,18 @@
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(750, 76);
+            this.label1.Location = new System.Drawing.Point(736, 76);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(129, 18);
+            this.label1.Size = new System.Drawing.Size(144, 17);
             this.label1.TabIndex = 41;
             this.label1.Text = "IdAlmacenamiento";
             // 
             // txtVelocidadTrans
             // 
+            this.txtVelocidadTrans.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
+            this.txtVelocidadTrans.BorderThickness = 3;
             this.txtVelocidadTrans.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtVelocidadTrans.DefaultText = "";
             this.txtVelocidadTrans.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -182,19 +184,22 @@
             this.txtVelocidadTrans.FocusedState.Parent = this.txtVelocidadTrans;
             this.txtVelocidadTrans.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtVelocidadTrans.HoverState.Parent = this.txtVelocidadTrans;
-            this.txtVelocidadTrans.Location = new System.Drawing.Point(885, 306);
+            this.txtVelocidadTrans.Location = new System.Drawing.Point(901, 306);
             this.txtVelocidadTrans.Name = "txtVelocidadTrans";
             this.txtVelocidadTrans.PasswordChar = '\0';
             this.txtVelocidadTrans.PlaceholderText = "";
             this.txtVelocidadTrans.SelectedText = "";
             this.txtVelocidadTrans.ShadowDecoration.Parent = this.txtVelocidadTrans;
-            this.txtVelocidadTrans.Size = new System.Drawing.Size(113, 31);
+            this.txtVelocidadTrans.Size = new System.Drawing.Size(97, 31);
             this.txtVelocidadTrans.TabIndex = 38;
             this.txtVelocidadTrans.TextChanged += new System.EventHandler(this.txtVelocidadTrans_TextChanged);
             this.txtVelocidadTrans.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCapacidad_KeyPress);
             // 
             // btnInsertar
             // 
+            this.btnInsertar.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
+            this.btnInsertar.BorderRadius = 15;
+            this.btnInsertar.BorderThickness = 3;
             this.btnInsertar.CheckedState.Parent = this.btnInsertar;
             this.btnInsertar.CustomImages.Parent = this.btnInsertar;
             this.btnInsertar.Enabled = false;
@@ -212,6 +217,9 @@
             // 
             // btnModificar
             // 
+            this.btnModificar.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
+            this.btnModificar.BorderRadius = 15;
+            this.btnModificar.BorderThickness = 3;
             this.btnModificar.CheckedState.Parent = this.btnModificar;
             this.btnModificar.CustomImages.Parent = this.btnModificar;
             this.btnModificar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(89)))), ((int)(((byte)(97)))));
@@ -228,6 +236,8 @@
             // 
             // txtFrecuencia
             // 
+            this.txtFrecuencia.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
+            this.txtFrecuencia.BorderThickness = 3;
             this.txtFrecuencia.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtFrecuencia.DefaultText = "";
             this.txtFrecuencia.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -252,6 +262,8 @@
             // 
             // txtCapacidad
             // 
+            this.txtCapacidad.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
+            this.txtCapacidad.BorderThickness = 3;
             this.txtCapacidad.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtCapacidad.DefaultText = "";
             this.txtCapacidad.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -276,6 +288,8 @@
             // 
             // txtTipo
             // 
+            this.txtTipo.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
+            this.txtTipo.BorderThickness = 3;
             this.txtTipo.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtTipo.DefaultText = "";
             this.txtTipo.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -299,6 +313,8 @@
             // 
             // txtMarca
             // 
+            this.txtMarca.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
+            this.txtMarca.BorderThickness = 3;
             this.txtMarca.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtMarca.DefaultText = "";
             this.txtMarca.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -322,6 +338,8 @@
             // 
             // txtIdAlmacenamiento
             // 
+            this.txtIdAlmacenamiento.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
+            this.txtIdAlmacenamiento.BorderThickness = 3;
             this.txtIdAlmacenamiento.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtIdAlmacenamiento.DefaultText = "";
             this.txtIdAlmacenamiento.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
