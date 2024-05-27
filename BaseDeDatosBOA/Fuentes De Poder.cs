@@ -1,5 +1,6 @@
 ﻿using BOAEntidad;
 using BOALogica;
+using Guna.UI2.WinForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,15 +23,18 @@ namespace BaseDeDatosBOA
         {
             logica = new CLogica();
             InitializeComponent();
+            logica.TurnOffLabels(this.Controls.OfType<Label>().Where((label) => label.Name.ToString() != "label1").ToArray());
+            logica.TurnOffTxtB(this.Controls.OfType<Guna2TextBox>().Where((button) => button.Name.ToString() != "txtIdFuentePoder").ToArray());
 
             ValidadorForm.AgregarValidacion(btnInsertar, txtIdFuentePoder, txtMarca, txtModelo, txtPotencia, txtTipo, txtCertificacion);
+            ValidadorForm.AgregarValidacion(btnModificar, txtIdFuentePoder, txtMarca, txtModelo, txtPotencia, txtTipo, txtCertificacion);
         }
         public void LoadData()
         {
             try
             {
-                List<FuentePoder> fuentePoder = logica.ObtenerFuentesDePoder();
-                dgvFuentesDePoder.DataSource = fuentePoder;
+                fuentesPoder = logica.ObtenerFuentesDePoder();
+                dgvFuentesDePoder.DataSource = fuentesPoder;
                 //dgvFuentesDePoder.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(dgvVentas_DataBindingComplete);
             }
             catch (Exception ex)
@@ -64,6 +68,44 @@ namespace BaseDeDatosBOA
             }
             else
             {
+                bool checkId = logica.VerifyID(txtIdFuentePoder.Text, fuentesPoder, item => item.IdFuentePoder.ToString());
+                if (checkId == true)
+                {
+                    try
+                    {
+                        FuentePoder fuentePoder = null;
+                        fuentePoder = new FuentePoder
+                        {
+                            IdFuentePoder = txtIdFuentePoder.Text,
+                            Marca = txtMarca.Text,
+                            Modelo = txtModelo.Text,
+                            Potencia = int.Parse(txtPotencia.Text),
+                            Tipo = txtTipo.Text,
+                            Certificacion = txtCertificacion.Text,
+                        };
+                        logica.RegistrarFuentesPoder(fuentePoder);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    logica.ClearTextBoxs(this.Controls.OfType<Guna2TextBox>().ToArray());
+                    txtIdFuentePoder.Enabled = true;
+                    logica.TurnOffLabels(this.Controls.OfType<Label>().Where((label) => label.Name.ToString() != "label1").ToArray());
+                    logica.TurnOffTxtB(this.Controls.OfType<Guna2TextBox>().Where((button) => button.Name.ToString() != "txtIdFuentePoder").ToArray());
+                }
+            }
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            bool checkFormat = logica.CheckAllFormats(txtIdFuentePoder.Text, @"^F\d+$");
+            if (checkFormat == false)
+            {
+                MessageBox.Show("error de formato en ID");
+            }
+            else
+            {
                 FuentePoder fuentePoder = null;
                 try
                 {
@@ -76,34 +118,17 @@ namespace BaseDeDatosBOA
                         Tipo = txtTipo.Text,
                         Certificacion = txtCertificacion.Text,
                     };
-                    logica.RegistrarFuentesPoder(fuentePoder);
+                    logica.ModificarFuentesPoder(fuentePoder);
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
-            }
-        }
-
-        private void btnModificar_Click(object sender, EventArgs e)
-        {
-            FuentePoder fuentePoder = null;
-            try
-            {
-                fuentePoder = new FuentePoder
-                {
-                    IdFuentePoder = txtIdFuentePoder.Text,
-                    Marca = txtMarca.Text,
-                    Modelo = txtModelo.Text,
-                    Potencia = int.Parse(txtPotencia.Text),
-                    Tipo = txtTipo.Text,
-                    Certificacion = txtCertificacion.Text,
-                };
-                logica.ModificarFuentesPoder(fuentePoder);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
+                txtIdFuentePoder.Enabled = true;
+                btnInsertar.Enabled = true;
+                logica.TurnOffLabels(this.Controls.OfType<Label>().Where((label) => label.Name.ToString() != "label1").ToArray());
+                logica.TurnOffTxtB(this.Controls.OfType<Guna2TextBox>().Where((button) => button.Name.ToString() != "txtIdFuentePoder").ToArray());
+                logica.ClearTextBoxs(this.Controls.OfType<Guna2TextBox>().ToArray());
             }
         }
 
@@ -143,26 +168,32 @@ namespace BaseDeDatosBOA
         
         private void txtIdFuentePoder_TextChanged(object sender, EventArgs e)
         {
+            logica.CambioAMayusculas(sender, e);
         }
 
         private void txtMarca_TextChanged(object sender, EventArgs e)
         {
+            logica.CambioAMayusculas(sender, e);
         }
 
         private void txtModelo_TextChanged(object sender, EventArgs e)
         {
+            logica.CambioAMayusculas(sender, e);
         }
 
         private void txtPotencia_TextChanged(object sender, EventArgs e)
         {
+            logica.CambioAMayusculas(sender, e);
         }
 
         private void txtTipo_TextChanged(object sender, EventArgs e)
         {
+            logica.CambioAMayusculas(sender, e);
         }
 
         private void txtCertificacion_TextChanged(object sender, EventArgs e)
         {
+            logica.CambioAMayusculas(sender, e);
         }
 
         private void btnVerificar_Click(object sender, EventArgs e)
@@ -170,16 +201,8 @@ namespace BaseDeDatosBOA
             bool checkId = logica.VerifyID(txtIdFuentePoder.Text, fuentesPoder, item => item.IdFuentePoder.ToString());
             if (checkId == true)
             {
-                txtMarca.Visible = true;
-                txtModelo.Visible = true;
-                txtPotencia.Visible = true;
-                txtTipo.Visible = true;
-                txtCertificacion.Visible = true;
-                label2.Visible = true;
-                label3.Visible = true;
-                label4.Visible = true;
-                label5.Visible = true;
-                label6.Visible = true;
+                logica.TurnOnLabels(this.Controls.OfType<Label>().Where((label) => label.Name.ToString() != "label1").ToArray());
+                logica.TurnOnTxtB(this.Controls.OfType<Guna2TextBox>().ToArray());
             }
             else
             {
@@ -187,16 +210,8 @@ namespace BaseDeDatosBOA
                 {
                     if (fuentesPoder[i].IdFuentePoder.ToString() == txtIdFuentePoder.Text)
                     {
-                        txtMarca.Visible = true;
-                        txtModelo.Visible = true;
-                        txtPotencia.Visible = true;
-                        txtTipo.Visible = true;
-                        txtCertificacion.Visible = true;
-                        label2.Visible = true;
-                        label3.Visible = true;
-                        label4.Visible = true;
-                        label5.Visible = true;
-                        label6.Visible = true;
+                        logica.TurnOnLabels(this.Controls.OfType<Label>().Where((label) => label.Name.ToString() != "label1").ToArray());
+                        logica.TurnOnTxtB(this.Controls.OfType<Guna2TextBox>().ToArray());
 
                         txtIdFuentePoder.Text = fuentesPoder[i].IdFuentePoder.ToString();
                         txtMarca.Text = fuentesPoder[i].Marca.ToString();

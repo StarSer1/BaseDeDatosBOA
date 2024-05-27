@@ -1,5 +1,6 @@
 ﻿using BOAEntidad;
 using BOALogica;
+using Guna.UI2.WinForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,19 +17,23 @@ namespace BaseDeDatosBOA
     public partial class Almacenamientos : Form
     {
         private CLogica logica;
-        List<Almacenamiento> almacenamientos = null;
+        List<Almacenamiento> almacenamiento = null;
 
         public Almacenamientos()
         {
             logica = new CLogica();
             InitializeComponent();
+            logica.TurnOffLabels(this.Controls.OfType<Label>().Where((label) => label.Name.ToString() != "label1").ToArray());
+            logica.TurnOffTxtB(this.Controls.OfType<Guna2TextBox>().Where((button) => button.Name.ToString() != "txtIdAlmacenamiento").ToArray());
+
             ValidadorForm.AgregarValidacion(btnInsertar, txtCapacidad, txtFrecuencia, txtIdAlmacenamiento, txtMarca, txtTipo, txtVelocidadTrans);
+            ValidadorForm.AgregarValidacion(btnModificar, txtCapacidad, txtFrecuencia, txtIdAlmacenamiento, txtMarca, txtTipo, txtVelocidadTrans);
         }
         public void LoadData()
         {
             try
             {
-                List<Almacenamiento> almacenamiento = logica.ObtenerAlmacenamientos();
+                almacenamiento = logica.ObtenerAlmacenamientos();
                 dgvAlmacenamiento.DataSource = almacenamiento;
                 //dgvAlmacenamiento.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(dgvVentas_DataBindingComplete);
             }
@@ -57,23 +62,38 @@ namespace BaseDeDatosBOA
         private void btnInsertar_Click(object sender, EventArgs e)
         {
             bool checkFormat = logica.CheckAllFormats(txtIdAlmacenamiento.Text, @"^A\d+$");
-            Almacenamiento almacenamiento = null;
-            try
+            if (checkFormat == false)
             {
-                almacenamiento = new Almacenamiento
-                {
-                    IdAlmacenamiento = txtIdAlmacenamiento.Text,
-                    Marca = txtMarca.Text,
-                    Tipo = txtTipo.Text,
-                    Capacidad = int.Parse(txtCapacidad.Text),
-                    Frecuencia = int.Parse(txtFrecuencia.Text),
-                    VelocidadTransferencia = int.Parse(txtVelocidadTrans.Text)
-                };
-                logica.RegistrarAlmacenamiento(almacenamiento);
+                MessageBox.Show("error de formato en ID");
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
+                bool checkId = logica.VerifyID(txtIdAlmacenamiento.Text, almacenamiento, item => item.IdAlmacenamiento.ToString());
+                if (checkId == true)
+                {
+                    try
+                    {
+                        Almacenamiento almacenamiento = null;
+                        almacenamiento = new Almacenamiento
+                        {
+                            IdAlmacenamiento = txtIdAlmacenamiento.Text,
+                            Marca = txtMarca.Text,
+                            Tipo = txtTipo.Text,
+                            Capacidad = int.Parse(txtCapacidad.Text),
+                            Frecuencia = int.Parse(txtFrecuencia.Text),
+                            VelocidadTransferencia = int.Parse(txtVelocidadTrans.Text)
+                        };
+                        logica.RegistrarAlmacenamiento(almacenamiento);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    txtIdAlmacenamiento.Enabled = true;
+                    logica.ClearTextBoxs(this.Controls.OfType<Guna2TextBox>().ToArray());
+                    logica.TurnOffLabels(this.Controls.OfType<Label>().Where((label) => label.Name.ToString() != "label1").ToArray());
+                    logica.TurnOffTxtB(this.Controls.OfType<Guna2TextBox>().Where((button) => button.Name.ToString() != "txtIdAlmacenamiento").ToArray());
+                }
             }
         }
 
@@ -84,23 +104,36 @@ namespace BaseDeDatosBOA
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            Almacenamiento almacenamiento = null;
-            try
+            bool checkFormat = logica.CheckAllFormats(txtIdAlmacenamiento.Text, @"^A\d+$");
+            if (checkFormat == false)
             {
-                almacenamiento = new Almacenamiento
-                {
-                    IdAlmacenamiento = txtIdAlmacenamiento.Text,
-                    Marca = txtMarca.Text,
-                    Tipo = txtTipo.Text,
-                    Capacidad = int.Parse(txtCapacidad.Text),
-                    Frecuencia = int.Parse(txtFrecuencia.Text),
-                    VelocidadTransferencia = int.Parse(txtVelocidadTrans.Text)
-                };
-                logica.ModificarAlmacenamientos(almacenamiento);
+                MessageBox.Show("error de formato en ID");
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
+                try
+                {
+                    Almacenamiento almacenamiento = null;
+                    almacenamiento = new Almacenamiento
+                    {
+                        IdAlmacenamiento = txtIdAlmacenamiento.Text,
+                        Marca = txtMarca.Text,
+                        Tipo = txtTipo.Text,
+                        Capacidad = int.Parse(txtCapacidad.Text),
+                        Frecuencia = int.Parse(txtFrecuencia.Text),
+                        VelocidadTransferencia = int.Parse(txtVelocidadTrans.Text)
+                    };
+                    logica.ModificarAlmacenamientos(almacenamiento);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                txtIdAlmacenamiento.Enabled = true;
+                btnInsertar.Enabled = true;
+                logica.TurnOffLabels(this.Controls.OfType<Label>().Where((label) => label.Name.ToString() != "label1").ToArray());
+                logica.TurnOffTxtB(this.Controls.OfType<Guna2TextBox>().Where((button) => button.Name.ToString() != "txtIdAlmacenamiento").ToArray());
+                logica.ClearTextBoxs(this.Controls.OfType<Guna2TextBox>().ToArray());
             }
         }
 
@@ -139,67 +172,57 @@ namespace BaseDeDatosBOA
 
         private void txtIdAlmacenamiento_TextChanged(object sender, EventArgs e)
         {
+            logica.CambioAMayusculas(sender, e);
         }
 
         private void txtMarca_TextChanged(object sender, EventArgs e)
         {
+            logica.CambioAMayusculas(sender, e);
         }
 
         private void txtTipo_TextChanged(object sender, EventArgs e)
         {
+            logica.CambioAMayusculas(sender, e);
         }
 
         private void txtCapacidad_TextChanged(object sender, EventArgs e)
         {
+            logica.CambioAMayusculas(sender, e);
         }
 
         private void txtFrecuencia_TextChanged(object sender, EventArgs e)
         {
+            logica.CambioAMayusculas(sender, e);
         }
 
         private void txtVelocidadTrans_TextChanged(object sender, EventArgs e)
         {
+            logica.CambioAMayusculas(sender, e);
         }
 
         private void btnVerificar_Click(object sender, EventArgs e)
         {
-            bool checkId = logica.VerifyID(txtIdAlmacenamiento.Text, almacenamientos, item => item.IdAlmacenamiento.ToString());
+            bool checkId = logica.VerifyID(txtIdAlmacenamiento.Text, almacenamiento, item => item.IdAlmacenamiento.ToString());
             if (checkId == true)
             {
-                txtMarca.Visible = true;
-                txtTipo.Visible = true;
-                txtCapacidad.Visible = true;
-                txtFrecuencia.Visible = true;
-                txtVelocidadTrans.Visible = true;
-                label2.Visible = true;
-                label3.Visible = true;
-                label4.Visible = true;
-                label5.Visible = true;
-                label6.Visible = true;
+                logica.TurnOnLabels(this.Controls.OfType<Label>().Where((label) => label.Name.ToString() != "label1").ToArray());
+                logica.TurnOnTxtB(this.Controls.OfType<Guna2TextBox>().ToArray());
             }
             else
             {
-                for (int i = 0; i < almacenamientos.Count; i++)
+                for (int i = 0; i < almacenamiento.Count; i++)
                 {
-                    if (almacenamientos[i].IdAlmacenamiento.ToString() == txtIdAlmacenamiento.Text)
+                    if (almacenamiento[i].IdAlmacenamiento.ToString() == txtIdAlmacenamiento.Text)
                     {
-                        txtMarca.Visible = true;
-                        txtTipo.Visible = true;
-                        txtCapacidad.Visible = true;
-                        txtFrecuencia.Visible = true;
-                        txtVelocidadTrans.Visible = true;
-                        label2.Visible = true;
-                        label3.Visible = true;
-                        label4.Visible = true;
-                        label5.Visible = true;
-                        label6.Visible = true;
+                        logica.TurnOnLabels(this.Controls.OfType<Label>().Where((label) => label.Name.ToString() != "label1").ToArray());
+                        logica.TurnOnTxtB(this.Controls.OfType<Guna2TextBox>().ToArray());
 
-                        txtIdAlmacenamiento.Text = almacenamientos[i].IdAlmacenamiento.ToString();
-                        txtMarca.Text = almacenamientos[i].Marca.ToString();
-                        txtTipo.Text = almacenamientos[i].Tipo.ToString();
-                        txtCapacidad.Text = almacenamientos[i].Capacidad.ToString();
-                        txtFrecuencia.Text = almacenamientos[i].Frecuencia.ToString();
-                        txtVelocidadTrans.Text = almacenamientos[i].VelocidadTransferencia.ToString();
+                        txtIdAlmacenamiento.Text = almacenamiento[i].IdAlmacenamiento.ToString();
+                        txtMarca.Text = almacenamiento[i].Marca.ToString();
+                        txtTipo.Text = almacenamiento[i].Tipo.ToString();
+                        txtCapacidad.Text = almacenamiento[i].Capacidad.ToString();
+                        txtFrecuencia.Text = almacenamiento[i].Frecuencia.ToString();
+                        txtVelocidadTrans.Text = almacenamiento[i].VelocidadTransferencia.ToString();
 
                         txtIdAlmacenamiento.Enabled = false;
                         btnInsertar.Enabled = false;

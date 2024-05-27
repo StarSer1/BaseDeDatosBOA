@@ -1,5 +1,6 @@
 ﻿using BOAEntidad;
 using BOALogica;
+using Guna.UI2.WinForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -77,10 +78,10 @@ namespace BaseDeDatosBOA
                         MessageBox.Show(ex.Message);
                     }
                 }
-                logica.ClearTextBoxs(txtIdTarjetaMadre, txtMarca, txtSocket, txtDimensiones, txtIdModelo, txtRanurasDIMM);
+                logica.ClearTextBoxs(this.Controls.OfType<Guna2TextBox>().ToArray());
                 txtIdTarjetaMadre.Enabled = true;
-                logica.TurnOffLabels(label2, label3, label4, label5, label6);
-                logica.TurnOffTxtB(txtDimensiones, txtIdModelo, txtMarca, txtRanurasDIMM, txtSocket);
+                logica.TurnOffLabels(this.Controls.OfType<Label>().Where((label) => label.Name.ToString() != "label1").ToArray());
+                logica.TurnOffTxtB(this.Controls.OfType<Guna2TextBox>().Where((button) => button.Name.ToString() != "txtIdTarjetaMadre").ToArray());
             }
         }
 
@@ -93,33 +94,29 @@ namespace BaseDeDatosBOA
             }
             else
             {
-                bool checkId = logica.VerifyID(txtIdTarjetaMadre.Text, tarjetasMadres, item => item.IdTarjetaMadre.ToString());
-                if (checkId == true)
+                try
                 {
                     TarjetaMadre tarjetaMadre = null;
-                    try
+                    tarjetaMadre = new TarjetaMadre
                     {
-                        tarjetaMadre = new TarjetaMadre
-                        {
-                            IdTarjetaMadre = txtIdTarjetaMadre.Text,
-                            Marca = txtMarca.Text,
-                            Modelo = txtIdModelo.Text,
-                            RanurasDIMM = int.Parse(txtRanurasDIMM.Text),
-                            Socket = txtSocket.Text,
-                            Dimensiones = txtDimensiones.Text,
-                        };
-                        logica.RegistrarTarjetasMadre(tarjetaMadre);
-                    }
-                    catch (Exception exe)
-                    {
-                        MessageBox.Show(exe.Message);
-                    }
-                    txtIdTarjetaMadre.Enabled = true;
-                    btnInsertar.Enabled = true;
-                    logica.TurnOffLabels(label2, label3, label4, label5, label6);
-                    logica.TurnOffTxtB(txtDimensiones, txtIdModelo, txtMarca, txtRanurasDIMM, txtSocket);
-                    logica.ClearTextBoxs(txtIdTarjetaMadre, txtMarca, txtSocket, txtDimensiones, txtIdModelo, txtRanurasDIMM);
+                        IdTarjetaMadre = txtIdTarjetaMadre.Text,
+                        Marca = txtMarca.Text,
+                        Modelo = txtIdModelo.Text,
+                        RanurasDIMM = int.Parse(txtRanurasDIMM.Text),
+                        Socket = txtSocket.Text,
+                        Dimensiones = txtDimensiones.Text,
+                    };
+                    logica.ModificarTarjetasMadre(tarjetaMadre);
                 }
+                catch (Exception exe)
+                {
+                    MessageBox.Show(exe.Message);
+                }
+                txtIdTarjetaMadre.Enabled = true;
+                btnInsertar.Enabled = true;
+                logica.TurnOffLabels(this.Controls.OfType<Label>().Where((label) => label.Name.ToString() != "label1").ToArray());
+                logica.TurnOffTxtB(this.Controls.OfType<Guna2TextBox>().Where((button) => button.Name.ToString() != "txtTarjetaMadre").ToArray());
+                logica.ClearTextBoxs(this.Controls.OfType<Guna2TextBox>().ToArray());
             }
         }
         private void AbrirEliminar(string tablaDondeViene)
@@ -153,26 +150,32 @@ namespace BaseDeDatosBOA
 
         private void txtIdTarjetaMadre_TextChanged(object sender, EventArgs e)
         {
+            logica.CambioAMayusculas(sender, e);
         }
 
         private void txtMarca_TextChanged(object sender, EventArgs e)
         {
+            logica.CambioAMayusculas(sender, e);
         }
 
         private void txtIdModelo_TextChanged(object sender, EventArgs e)
         {
+            logica.CambioAMayusculas(sender, e);
         }
 
         private void txtRanurasDIMM_TextChanged(object sender, EventArgs e)
         {
+            logica.CambioAMayusculas(sender, e);
         }
 
         private void txtSocket_TextChanged(object sender, EventArgs e)
         {
+            logica.CambioAMayusculas(sender, e);
         }
 
         private void txtDimensiones_TextChanged(object sender, EventArgs e)
         {
+            logica.CambioAMayusculas(sender, e);
         }
 
         private void btnVerificar_Click(object sender, EventArgs e)
@@ -180,8 +183,8 @@ namespace BaseDeDatosBOA
             bool checkId = logica.VerifyID(txtIdTarjetaMadre.Text, tarjetasMadres, item => item.ToString());
             if (checkId == true)
             {
-                logica.TurnOnLabels(label2, label3, label4, label5, label6);
-                logica.TurnOnTxtB(txtIdTarjetaMadre, txtDimensiones, txtIdModelo, txtMarca, txtRanurasDIMM, txtSocket);
+                logica.TurnOnLabels(this.Controls.OfType<Label>().Where((label) => label.Name.ToString() != "label1").ToArray());
+                logica.TurnOnTxtB(this.Controls.OfType<Guna2TextBox>().ToArray());
             }
             else
             {
@@ -189,8 +192,8 @@ namespace BaseDeDatosBOA
                 {
                     if (tarjetasMadres[i].IdTarjetaMadre.ToString() == txtIdTarjetaMadre.Text)
                     {
-                        logica.TurnOnLabels(label2, label3, label4, label5, label6);
-                        logica.TurnOnTxtB(txtIdTarjetaMadre, txtDimensiones, txtIdModelo, txtMarca, txtRanurasDIMM, txtSocket);
+                        logica.TurnOnLabels(this.Controls.OfType<Label>().Where((label) => label.Name.ToString() != "label1").ToArray());
+                        logica.TurnOnTxtB(this.Controls.OfType<Guna2TextBox>().ToArray());
 
                         txtIdTarjetaMadre.Text = tarjetasMadres[i].IdTarjetaMadre.ToString();
                         txtDimensiones.Text = tarjetasMadres[i].Dimensiones.ToString();

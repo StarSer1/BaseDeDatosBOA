@@ -22,18 +22,21 @@ namespace BaseDeDatosBOA
         {
             logica = new CLogica();
             InitializeComponent();
+            logica.TurnOffLabels(label2, label3, label4, label5);//agregado
+            logica.TurnOffTxtB(txtIdCliente, txtNombre, txtApellidoP, txtApellidoM, txtCorreo);//agregado
 
+            ValidadorForm.AgregarValidacion(btnInsertar, txtIdCliente, txtNombre, txtApellidoP, txtApellidoM, txtCorreo);
+            ValidadorForm.AgregarValidacion(btnModificar, txtIdCliente, txtNombre, txtApellidoP, txtApellidoM, txtCorreo);//agregado
 
         }
         public void LoadData()
         {
             try
             {
-                List<Cliente> clientes = logica.ObtenerClientes();
+                clientes = logica.ObtenerClientes();
                 dgvClientes.DataSource = clientes;
                 //dgvClientes.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(dgvVentas_DataBindingComplete);
 
-                ValidadorForm.AgregarValidacion(btnInsertar, txtIdCliente, txtNombre, txtApellidoP, txtApellidoM, txtCorreo);
             }
             catch (Exception ex)
             {
@@ -42,6 +45,44 @@ namespace BaseDeDatosBOA
         }
 
         private void btnInsertar_Click(object sender, EventArgs e)
+        {
+
+            bool checkFormat = logica.CheckAllFormats(txtIdCliente.Text, @"^C\d+$");
+            if (checkFormat == false)
+            {
+                MessageBox.Show("error de formato en ID");
+            }
+            else
+            {
+                bool checkId = logica.VerifyID(txtIdCliente.Text, clientes, item => item.IdCliente.ToString());
+                if (checkId == true)
+                {
+                    Cliente cliente = null;
+                    try
+                    {
+                        cliente = new Cliente
+                        {
+                            IdCliente = txtIdCliente.Text,
+                            Nombre = txtNombre.Text,
+                            ApellidoP = txtApellidoP.Text,
+                            ApellidoM = txtApellidoM.Text,
+                            Correo = txtCorreo.Text,
+                        };
+                        logica.RegistrarCliente(cliente);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+                logica.ClearTextBoxs(txtIdCliente, txtNombre, txtApellidoP, txtApellidoM, txtCorreo);
+                txtIdCliente.Enabled = true;
+                logica.TurnOffLabels(label2, label3, label4, label5);
+                logica.TurnOffTxtB(txtNombre, txtApellidoP, txtApellidoM, txtCorreo);
+            }
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
         {
             bool checkFormat = logica.CheckAllFormats(txtIdCliente.Text, @"^C\d+$");
             if (checkFormat == false)
@@ -61,33 +102,17 @@ namespace BaseDeDatosBOA
                         ApellidoM = txtApellidoM.Text,
                         Correo = txtCorreo.Text,
                     };
-                    logica.RegistrarCliente(cliente);
+                    logica.ModificarCliente(cliente);
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
-            }
-        }
-
-        private void btnModificar_Click(object sender, EventArgs e)
-        {
-            Cliente cliente = null;
-            try
-            {
-                cliente = new Cliente
-                {
-                    IdCliente = txtIdCliente.Text,
-                    Nombre = txtNombre.Text,
-                    ApellidoP = txtApellidoP.Text,
-                    ApellidoM = txtApellidoM.Text,
-                    Correo = txtCorreo.Text,
-                };
-                logica.ModificarCliente(cliente);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
+                txtIdCliente.Enabled = true;
+                btnInsertar.Enabled = true;
+                logica.TurnOffLabels(label2, label3, label4, label5);
+                logica.TurnOffTxtB(txtNombre, txtApellidoP, txtApellidoM, txtCorreo);
+                logica.ClearTextBoxs(txtIdCliente, txtNombre, txtApellidoP, txtApellidoM, txtCorreo);
             }
         }
 
@@ -117,25 +142,30 @@ namespace BaseDeDatosBOA
             formConsulta.tablaDeDondeViene = "CLIENTES";
             formConsulta.ShowDialog();
         }
-       
+
         private void txtIdCliente_TextChanged(object sender, EventArgs e)
         {
+            logica.CambioAMayusculas(sender, e);
         }
 
         private void txtNombre_TextChanged(object sender, EventArgs e)
         {
+            logica.CambioAMayusculas(sender, e);
         }
 
         private void txtApellidoP_TextChanged(object sender, EventArgs e)
         {
+            logica.CambioAMayusculas(sender, e);
         }
 
         private void txtApellidoM_TextChanged(object sender, EventArgs e)
         {
+            logica.CambioAMayusculas(sender, e);
         }
 
         private void txtCorreo_TextChanged(object sender, EventArgs e)
         {
+
         }
 
         private void btnVerificar_Click(object sender, EventArgs e)
@@ -143,16 +173,8 @@ namespace BaseDeDatosBOA
             bool checkId = logica.VerifyID(txtIdCliente.Text, clientes, item => item.IdCliente.ToString());
             if (checkId == true)
             {
-                txtApellidoM.Visible = true;
-                txtApellidoP.Visible = true;
-                txtCorreo.Visible = true;
-                txtIdCliente.Visible = true;
-                txtNombre.Visible = true;
-
-                label2.Visible = true;
-                label3.Visible = true;
-                label4.Visible = true;
-                label5.Visible = true;
+                logica.TurnOnLabels(label2, label3, label4, label5);
+                logica.TurnOnTxtB(txtIdCliente, txtNombre, txtApellidoP, txtApellidoM, txtCorreo);
             }
             else
             {
@@ -160,16 +182,8 @@ namespace BaseDeDatosBOA
                 {
                     if (clientes[i].IdCliente.ToString() == txtIdCliente.Text)
                     {
-                        txtApellidoM.Visible = true;
-                        txtApellidoP.Visible = true;
-                        txtCorreo.Visible = true;
-                        txtIdCliente.Visible = true;
-                        txtNombre.Visible = true;
-
-                        label2.Visible = true;
-                        label3.Visible = true;
-                        label4.Visible = true;
-                        label5.Visible = true;
+                        logica.TurnOnLabels(label2, label3, label4, label5);
+                        logica.TurnOnTxtB(txtIdCliente, txtNombre, txtApellidoP, txtApellidoM, txtCorreo);
 
                         txtApellidoM.Text = clientes[i].ApellidoM.ToString();
                         txtApellidoP.Text = clientes[i].ApellidoP.ToString();

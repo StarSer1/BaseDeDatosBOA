@@ -23,14 +23,21 @@ namespace BaseDeDatosBOA
         {
             logica = new CLogica();
             InitializeComponent();
+
+            logica.TurnOffLabels(label2, label3, label4, label5, label6, label7, label8);//agregado
+            logica.TurnOffTxtB(txtIdVenta, txtIdEmpleado, txtIdComputadora, txtIdCliente, txtFechaCliente, txtPrecioFinal, txtPrecioBase, txtDescuento);//agregado
+
             ValidadorForm.AgregarValidacion(btnInsertar, txtIdVenta, txtIdEmpleado, txtIdComputadora, txtIdCliente, txtFechaCliente, txtPrecioFinal, txtPrecioBase, txtDescuento);
+            ValidadorForm.AgregarValidacion(btnModificar, txtIdVenta, txtIdEmpleado, txtIdComputadora, txtIdCliente, txtFechaCliente, txtPrecioFinal, txtPrecioBase, txtDescuento);//agregado
+
         }
 
         public void LoadData()
         {
             try
             {
-                List<Venta> ventas = logica.ObtenerVentas();
+                ventas = logica.ObtenerVentas();
+                ventas = logica.ObtenerVentas();//agregado(creo)
                 dgvVentas.DataSource = ventas;
                 //dgvVentas.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(dgvVentas_DataBindingComplete);
             }
@@ -40,7 +47,7 @@ namespace BaseDeDatosBOA
             }
         }
 
-  
+
         //private void dgvVentas_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         //{
         //    DataGridView dgv = sender as DataGridView;
@@ -76,6 +83,51 @@ namespace BaseDeDatosBOA
                 }
                 else
                 {
+                    bool checkId = logica.VerifyID(txtIdVenta.Text, ventas, item => item.IdVenta.ToString());
+                    if (checkId == true)
+                    {
+                        Venta venta = null;
+                        try
+                        {
+                            venta = new Venta
+                            {
+                                IdVenta = txtIdVenta.Text,
+                                IdEmpleado = txtIdEmpleado.Text,
+                                IdComputadora = txtIdComputadora.Text,
+                                IdCliente = txtIdCliente.Text,
+                                FechaVenta = txtFechaCliente.Text,
+                                PrecioFinal = int.Parse(txtPrecioFinal.Text),
+                                PrecioBase = int.Parse(txtPrecioBase.Text),
+                                Descuento = int.Parse(txtDescuento.Text)
+                            };
+                            logica.RegistrarVenta(venta);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+                    }
+                    logica.ClearTextBoxs(txtIdVenta, txtIdEmpleado, txtIdComputadora, txtIdCliente, txtFechaCliente, txtPrecioFinal, txtPrecioBase, txtDescuento);
+                    txtIdVenta.Enabled = true;
+                    logica.TurnOffLabels(label2, label3, label4, label5, label6, label7, label8);
+                    logica.TurnOffTxtB(txtIdVenta, txtIdEmpleado, txtIdComputadora, txtIdCliente, txtFechaCliente, txtPrecioFinal, txtPrecioBase, txtDescuento);
+                }
+            }
+        }
+
+        private void btnModificar_Click_1(object sender, EventArgs e)
+        {
+            List<Computadora> comp = logica.ObtenerComputadoras();
+            bool checkExistence = logica.CheckExistenciaInventario(txtIdComputadora.Text, comp);
+            if (checkExistence == true)
+            {
+                bool checkFormat = logica.CheckAllFormats(txtIdVenta.Text, @"^V\d+$");
+                if (checkFormat == false)
+                {
+                    MessageBox.Show("error de formato en ID");
+                }
+                else
+                {
                     Venta venta = null;
                     try
                     {
@@ -90,37 +142,18 @@ namespace BaseDeDatosBOA
                             PrecioBase = int.Parse(txtPrecioBase.Text),
                             Descuento = int.Parse(txtDescuento.Text)
                         };
-                        logica.RegistrarVenta(venta);
+                        logica.ModificarVenta(venta);
                     }
-                    catch (Exception ex)
+                    catch (Exception exe)
                     {
-                        MessageBox.Show(ex.Message);
+                        MessageBox.Show(exe.Message);
                     }
+                    txtIdVenta.Enabled = true;
+                    btnInsertar.Enabled = true;
+                    logica.TurnOffLabels(label2, label3, label4, label5, label6, label7, label8);
+                    logica.TurnOffTxtB(txtIdVenta, txtIdEmpleado, txtIdComputadora, txtIdCliente, txtFechaCliente, txtPrecioFinal, txtPrecioBase, txtDescuento);
+                    logica.ClearTextBoxs(txtIdVenta, txtIdEmpleado, txtIdComputadora, txtIdCliente, txtFechaCliente, txtPrecioFinal, txtPrecioBase, txtDescuento);
                 }
-            }
-        }
-
-        private void btnModificar_Click_1(object sender, EventArgs e)
-        {
-            Venta venta = null;
-            try
-            {
-                venta = new Venta
-                {
-                    IdVenta = txtIdVenta.Text,
-                    IdEmpleado = txtIdEmpleado.Text,
-                    IdComputadora = txtIdComputadora.Text,
-                    IdCliente = txtIdCliente.Text,
-                    FechaVenta = txtFechaCliente.Text,
-                    PrecioFinal = int.Parse(txtPrecioFinal.Text),
-                    PrecioBase = int.Parse(txtPrecioBase.Text),
-                    Descuento = int.Parse(txtDescuento.Text)
-                };
-                logica.ModificarVenta(venta);
-            }
-            catch (Exception exe)
-            {
-                MessageBox.Show(exe.Message);
             }
         }
 
@@ -128,7 +161,7 @@ namespace BaseDeDatosBOA
         {
             LoadData();
         }
-    
+
         private void AbrirEliminar(string tablaDondeViene)
         {
             Eliminar formEliminar = new Eliminar();
@@ -161,56 +194,53 @@ namespace BaseDeDatosBOA
 
         private void txtIdVenta_TextChanged(object sender, EventArgs e)
         {
+            logica.CambioAMayusculas(sender, e);
         }
 
         private void txtIdEmpleado_TextChanged(object sender, EventArgs e)
         {
+            logica.CambioAMayusculas(sender, e);
         }
 
         private void txtIdComputadora_TextChanged(object sender, EventArgs e)
         {
+            logica.CambioAMayusculas(sender, e);
         }
 
         private void txtIdCliente_TextChanged(object sender, EventArgs e)
         {
+            logica.CambioAMayusculas(sender, e);
         }
 
         private void txtFechaCliente_TextChanged(object sender, EventArgs e)
         {
+            logica.CambioAMayusculas(sender, e);
         }
 
         private void txtPrecioFinal_TextChanged(object sender, EventArgs e)
         {
+            logica.CambioAMayusculas(sender, e);
         }
 
         private void txtPrecioBase_TextChanged(object sender, EventArgs e)
         {
+            logica.CambioAMayusculas(sender, e);
         }
 
         private void txtDescuento_TextChanged(object sender, EventArgs e)
         {
+            logica.CambioAMayusculas(sender, e);
         }
 
         private void btnVerificar_Click(object sender, EventArgs e)
-        {          
+        {
             bool checkId = logica.VerifyID(txtIdVenta.Text, ventas, item => item.IdVenta.ToString());
             if (checkId == true)
             {
-                txtIdComputadora.Visible = true;
-                txtDescuento.Visible = true;
-                txtFechaCliente.Visible = true;
-                txtIdCliente.Visible = true;
-                txtIdEmpleado.Visible = true;
-                txtIdVenta.Visible = true;
-                txtPrecioBase.Visible = true;
-                txtPrecioFinal.Visible = true;
-                label2.Visible = true;
-                label3.Visible = true;
-                label4.Visible = true;
-                label5.Visible = true;
-                label6.Visible = true;
-                label7.Visible = true;
-                label8.Visible = true;
+                logica.TurnOnLabels(label2, label3, label4, label5, label6, label7, label8);
+                logica.TurnOnTxtB(txtIdVenta, txtIdEmpleado, txtIdComputadora, txtIdCliente, txtFechaCliente, txtPrecioFinal, txtPrecioBase, txtDescuento);
+
+
             }
             else
             {
@@ -218,21 +248,9 @@ namespace BaseDeDatosBOA
                 {
                     if (ventas[i].IdVenta.ToString() == txtIdVenta.Text)
                     {
-                        txtIdComputadora.Visible = true;
-                        txtDescuento.Visible = true;
-                        txtFechaCliente.Visible = true;
-                        txtIdCliente.Visible = true;
-                        txtIdEmpleado.Visible = true;
-                        txtIdVenta.Visible = true;
-                        txtPrecioBase.Visible = true;
-                        txtPrecioFinal.Visible = true;
-                        label2.Visible = true;
-                        label3.Visible = true;
-                        label4.Visible = true;
-                        label5.Visible = true;
-                        label6.Visible = true;
-                        label7.Visible = true;
-                        label8.Visible = true;
+                        logica.TurnOnLabels(label2, label3, label4, label5, label6, label7, label8);
+                        logica.TurnOnTxtB(txtIdVenta, txtIdEmpleado, txtIdComputadora, txtIdCliente, txtFechaCliente, txtPrecioFinal, txtPrecioBase, txtDescuento);
+
 
                         txtIdComputadora.Text = ventas[i].IdComputadora.ToString();
                         txtDescuento.Text = ventas[i].Descuento.ToString();

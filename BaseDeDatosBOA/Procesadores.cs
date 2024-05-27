@@ -1,5 +1,6 @@
 ﻿using BOAEntidad;
 using BOALogica;
+using Guna.UI2.WinForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,19 +17,23 @@ namespace BaseDeDatosBOA
     public partial class Procesadores : Form
     {
         private CLogica logica;
-        List<Procesador> procesadores = null;
+        List<Procesador> procesador = null;
 
         public Procesadores()
         {
             logica = new CLogica();
             InitializeComponent();
+            logica.TurnOffLabels(label2, label3);//agregado
+            logica.TurnOffTxtB(txtIdProcesador, txtMarca, txtModelo);//agregado
 
             ValidadorForm.AgregarValidacion(btnInsertar, txtIdProcesador, txtMarca, txtModelo);
+            ValidadorForm.AgregarValidacion(btnModificar, txtIdProcesador, txtMarca, txtModelo);//agregado
         }
         public void LoadData()
         {
             try
             {
+                this.procesador = logica.ObtenerProcesadores();//agregado(creo)
                 List<Procesador> procesador = logica.ObtenerProcesadores();
                 dgvProcesadores.DataSource = procesador;
                 //dgvProcesadores.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(dgvVentas_DataBindingComplete);
@@ -63,6 +68,43 @@ namespace BaseDeDatosBOA
             }
             else
             {
+                bool checkId = logica.VerifyID(txtIdProcesador.Text, procesador, item => item.IdProcesador.ToString());
+                if (checkId == true)
+                {
+                    Procesador procesador = null;
+                    try
+                    {
+                        procesador = new Procesador
+                        {
+                            IdProcesador = txtIdProcesador.Text,
+                            Marca = txtMarca.Text,
+                            Modelo = txtModelo.Text,
+                        };
+                        logica.RegistrarProcesador(procesador);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+                //agregado
+                //logica.ClearTextBoxs(this.Controls.OfType<Guna2TextBox>().Where((button) => button.Name.ToString() != "txtIdRam").ToArray());
+                logica.ClearTextBoxs(this.Controls.OfType<Guna2TextBox>().ToArray());
+                txtIdProcesador.Enabled = true;
+                logica.TurnOffLabels(this.Controls.OfType<Label>().Where((label) => label.Name.ToString() != "label1").ToArray());
+                logica.TurnOffTxtB(this.Controls.OfType<Guna2TextBox>().Where((button) => button.Name.ToString() != "txtIdProcesador").ToArray());
+            }
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            bool checkFormat = logica.CheckAllFormats(txtIdProcesador.Text, @"^P\d+$");
+            if (checkFormat == false)
+            {
+                MessageBox.Show("error de formato en ID");
+            }
+            else
+            {
                 Procesador procesador = null;
                 try
                 {
@@ -72,31 +114,18 @@ namespace BaseDeDatosBOA
                         Marca = txtMarca.Text,
                         Modelo = txtModelo.Text,
                     };
-                    logica.RegistrarProcesador(procesador);
+                    logica.ModificarProcesadores(procesador);
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
-            }
-        }
-
-        private void btnModificar_Click(object sender, EventArgs e)
-        {
-            Procesador procesador = null;
-            try
-            {
-                procesador = new Procesador
-                {
-                    IdProcesador = txtIdProcesador.Text,
-                    Marca = txtMarca.Text,
-                    Modelo = txtModelo.Text,
-                };
-                logica.ModificarProcesadores(procesador);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
+                //agregado
+                txtIdProcesador.Enabled = true;
+                btnInsertar.Enabled = true;
+                logica.TurnOffLabels(this.Controls.OfType<Label>().Where((label) => label.Name.ToString() != "label1").ToArray());
+                logica.TurnOffTxtB(this.Controls.OfType<Guna2TextBox>().Where((button) => button.Name.ToString() != "txtIdProcesador").ToArray());
+                logica.ClearTextBoxs(this.Controls.OfType<Guna2TextBox>().ToArray());
             }
         }
 
@@ -130,41 +159,40 @@ namespace BaseDeDatosBOA
 
         private void txtIdProcesador_TextChanged(object sender, EventArgs e)
         {
+            logica.CambioAMayusculas(sender, e);
         }
 
         private void txtMarca_TextChanged(object sender, EventArgs e)
         {
+            logica.CambioAMayusculas(sender, e);
         }
 
         private void txtModelo_TextChanged(object sender, EventArgs e)
         {
+            logica.CambioAMayusculas(sender, e);
         }
 
         private void btnVerificar_Click(object sender, EventArgs e)
         {
-            bool checkId = logica.VerifyID(txtIdProcesador.Text, procesadores, item => item.IdProcesador.ToString());
+            bool checkId = logica.VerifyID(txtIdProcesador.Text, procesador, item => item.IdProcesador.ToString());
             if (checkId == true)
             {
-                txtMarca.Visible = true;
-                txtModelo.Visible = true;
-                label2.Visible = true;
-                label3.Visible = true;
 
+
+                logica.TurnOnLabels(this.Controls.OfType<Label>().Where((label) => label.Name.ToString() != "label1").ToArray());
+                logica.TurnOnTxtB(this.Controls.OfType<Guna2TextBox>().ToArray());
             }
             else
             {
-                for (int i = 0; i < procesadores.Count; i++)
+                for (int i = 0; i < procesador.Count; i++)
                 {
-                    if (procesadores[i].IdProcesador.ToString() == txtIdProcesador.Text)
+                    if (procesador[i].IdProcesador.ToString() == txtIdProcesador.Text)
                     {
-                        txtMarca.Visible = true;
-                        txtModelo.Visible = true;
-                        label2.Visible = true;
-                        label3.Visible = true;
-
-                        txtIdProcesador.Text = procesadores[i].IdProcesador.ToString();
-                        txtMarca.Text = procesadores[i].Marca.ToString();
-                        txtModelo.Text = procesadores[i].Modelo.ToString();
+                        logica.TurnOnLabels(this.Controls.OfType<Label>().Where((label) => label.Name.ToString() != "label1").ToArray());
+                        logica.TurnOnTxtB(this.Controls.OfType<Guna2TextBox>().ToArray());
+                        txtIdProcesador.Text = procesador[i].IdProcesador.ToString();
+                        txtMarca.Text = procesador[i].Marca.ToString();
+                        txtModelo.Text = procesador[i].Modelo.ToString();
 
 
                         txtIdProcesador.Enabled = false;

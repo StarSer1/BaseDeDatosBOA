@@ -168,5 +168,10 @@ namespace BaseDeDatosBOA
                     break;
             }
         }
+
+        private void txtId_TextChanged(object sender, EventArgs e)
+        {
+            logica.CambioAMayusculas(sender, e);
+        }
     }
 }

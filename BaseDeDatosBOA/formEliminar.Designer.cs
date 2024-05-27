@@ -37,6 +37,7 @@
             // 
             this.btnEliminar.CheckedState.Parent = this.btnEliminar;
             this.btnEliminar.CustomImages.Parent = this.btnEliminar;
+            this.btnEliminar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(89)))), ((int)(((byte)(97)))));
             this.btnEliminar.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnEliminar.ForeColor = System.Drawing.Color.White;
             this.btnEliminar.HoverState.Parent = this.btnEliminar;
@@ -65,13 +66,14 @@
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(100, 26);
             this.txtId.TabIndex = 2;
+            this.txtId.TextChanged += new System.EventHandler(this.txtId_TextChanged);
             // 
             // Eliminar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(252)))), ((int)(((byte)(229)))));
-            this.ClientSize = new System.Drawing.Size(257, 259);
+            this.ClientSize = new System.Drawing.Size(257, 198);
             this.Controls.Add(this.txtId);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnEliminar);

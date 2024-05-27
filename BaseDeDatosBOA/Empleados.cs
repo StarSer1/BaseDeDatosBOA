@@ -1,5 +1,6 @@
 ﻿using BOAEntidad;
 using BOALogica;
+using Guna.UI2.WinForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,12 +23,18 @@ namespace BaseDeDatosBOA
         {
             logica = new CLogica();
             InitializeComponent();
+
+            logica.TurnOffLabels(label2, label3, label4, label5, label6);//agregado
+            logica.TurnOffTxtB(txtIdEmp, txtNombre, txtApellidoP, txtApellidoM, txtRFC, txtSueldo);//agregado
+
+            ValidadorForm.AgregarValidacion(btnModificar, txtIdEmp, txtNombre, txtApellidoP, txtApellidoM, txtRFC, txtSueldo);//agregado
         }
         public void LoadData()
         {
             try
             {
-                List<Empleado> empleados = logica.ObtenerEmpleado();
+                empleados = logica.ObtenerEmpleado();
+                empleados = logica.ObtenerEmpleado();//agregado
                 dgvEmpleado.DataSource = empleados;
                 //dgvEmpleado.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(dgvVentas_DataBindingComplete);
 
@@ -48,6 +55,46 @@ namespace BaseDeDatosBOA
             }
             else
             {
+                bool checkId = logica.VerifyID(txtIdEmp.Text, empleados, item => item.IdEmpleado.ToString());
+                if (checkId == true)
+                {
+                    Empleado empleado = null;
+                    try
+                    {
+                        empleado = new Empleado
+                        {
+                            IdEmpleado = txtIdEmp.Text,
+                            Nombre = txtNombre.Text,
+                            ApellidoP = txtApellidoP.Text,
+                            ApellidoM = txtApellidoM.Text,
+                            RFC = txtRFC.Text,
+                            Sueldo = int.Parse(txtSueldo.Text),
+                        };
+                        logica.RegistrarEmpleado(empleado);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+                //agregado
+                //logica.ClearTextBoxs(this.Controls.OfType<Guna2TextBox>().Where((button) => button.Name.ToString() != "txtIdRam").ToArray());
+                logica.ClearTextBoxs(this.Controls.OfType<Guna2TextBox>().ToArray());
+                txtIdEmp.Enabled = true;
+                logica.TurnOffLabels(this.Controls.OfType<Label>().Where((label) => label.Name.ToString() != "label1").ToArray());
+                logica.TurnOffTxtB(this.Controls.OfType<Guna2TextBox>().Where((button) => button.Name.ToString() != "txtIdEmp").ToArray());
+            }
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            bool checkFormat = logica.CheckAllFormats(txtIdEmp.Text, @"^E\d+$");
+            if (checkFormat == false)
+            {
+                MessageBox.Show("error de formato en ID");
+            }
+            else
+            {
                 Empleado empleado = null;
                 try
                 {
@@ -60,34 +107,18 @@ namespace BaseDeDatosBOA
                         RFC = txtRFC.Text,
                         Sueldo = int.Parse(txtSueldo.Text),
                     };
-                    logica.RegistrarEmpleado(empleado);
+                    logica.ModificarEmpleado(empleado);
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
-            }
-        }
-
-        private void btnModificar_Click(object sender, EventArgs e)
-        {
-            Empleado empleado = null;
-            try
-            {
-                empleado = new Empleado
-                {
-                    IdEmpleado = txtIdEmp.Text,
-                    Nombre = txtNombre.Text,
-                    ApellidoP = txtApellidoP.Text,
-                    ApellidoM = txtApellidoM.Text,
-                    RFC = txtRFC.Text,
-                    Sueldo = int.Parse(txtSueldo.Text),
-                };
-                logica.ModificarEmpleado(empleado);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
+                //agregado
+                txtIdEmp.Enabled = true;
+                btnInsertar.Enabled = true;
+                logica.TurnOffLabels(this.Controls.OfType<Label>().Where((label) => label.Name.ToString() != "label1").ToArray());
+                logica.TurnOffTxtB(this.Controls.OfType<Guna2TextBox>().Where((button) => button.Name.ToString() != "txtIdEmp").ToArray());
+                logica.ClearTextBoxs(this.Controls.OfType<Guna2TextBox>().ToArray());
             }
         }
 
@@ -123,29 +154,35 @@ namespace BaseDeDatosBOA
         {
             logica.SoloNumeros(sender, e);
         }
-       
+
         private void txtIdEmp_TextChanged(object sender, EventArgs e)
         {
+            logica.CambioAMayusculas(sender, e);
         }
 
         private void txtNombre_TextChanged(object sender, EventArgs e)
         {
+            logica.CambioAMayusculas(sender, e);
         }
 
         private void txtApellidoP_TextChanged(object sender, EventArgs e)
         {
+            logica.CambioAMayusculas(sender, e);
         }
 
         private void txtApellidoM_TextChanged(object sender, EventArgs e)
         {
+            logica.CambioAMayusculas(sender, e);
         }
 
         private void txtRFC_TextChanged(object sender, EventArgs e)
         {
+            logica.CambioAMayusculas(sender, e);
         }
 
         private void txtSueldo_TextChanged(object sender, EventArgs e)
         {
+            logica.CambioAMayusculas(sender, e);
         }
 
         private void btnVerificar_Click(object sender, EventArgs e)
@@ -153,18 +190,8 @@ namespace BaseDeDatosBOA
             bool checkId = logica.VerifyID(txtIdEmp.Text, empleados, item => item.IdEmpleado.ToString());
             if (checkId == true)
             {
-                txtApellidoM.Visible = true;
-                txtApellidoP.Visible = true;
-                txtIdEmp.Visible = true;
-                txtNombre.Visible = true;
-                txtRFC.Visible = true;
-                txtSueldo.Visible = true;
-
-                label2.Visible = true;
-                label3.Visible = true;
-                label4.Visible = true;
-                label5.Visible = true;
-                label6.Visible = true;
+                logica.TurnOnLabels(this.Controls.OfType<Label>().Where((label) => label.Name.ToString() != "label1").ToArray());
+                logica.TurnOnTxtB(this.Controls.OfType<Guna2TextBox>().ToArray());
             }
             else
             {
@@ -172,18 +199,10 @@ namespace BaseDeDatosBOA
                 {
                     if (empleados[i].IdEmpleado.ToString() == txtIdEmp.Text)
                     {
-                        txtApellidoM.Visible = true;
-                        txtApellidoP.Visible = true;
-                        txtIdEmp.Visible = true;
-                        txtNombre.Visible = true;
-                        txtRFC.Visible = true;
-                        txtSueldo.Visible = true;
+                        logica.TurnOnLabels(this.Controls.OfType<Label>().Where((label) => label.Name.ToString() != "label1").ToArray());
+                        logica.TurnOnTxtB(this.Controls.OfType<Guna2TextBox>().ToArray());
 
-                        label2.Visible = true;
-                        label3.Visible = true;
-                        label4.Visible = true;
-                        label5.Visible = true;
-                        label6.Visible = true;
+
 
                         txtApellidoM.Text = empleados[i].ApellidoM.ToString();
                         txtApellidoP.Text = empleados[i].ApellidoP.ToString();

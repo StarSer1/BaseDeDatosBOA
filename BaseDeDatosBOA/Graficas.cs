@@ -23,14 +23,18 @@ namespace BaseDeDatosBOA
             logica = new CLogica();
             InitializeComponent();
 
+            logica.TurnOffLabels(label2, label3, label4, label5);//agregado
+            logica.TurnOffTxtB(txtMarca, txtModelo, txtTipo, txtVram);//agregado
+
             ValidadorForm.AgregarValidacion(btnInsertar, txtIdGrafica, txtMarca, txtModelo, txtTipo, txtVram);
+            ValidadorForm.AgregarValidacion(btnModificar, txtIdGrafica, txtMarca, txtModelo, txtTipo, txtVram);//agregado
         }
         public void LoadData()
         {
             try
             {
-                List<Grafica> grafica = logica.ObtenerGraficas();
-                dgvGraficas.DataSource = grafica;
+                graficas = logica.ObtenerGraficas();
+                dgvGraficas.DataSource = graficas;
                 //dgvVentas.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(dgvVentas_DataBindingComplete);
             }
             catch (Exception ex)
@@ -74,43 +78,71 @@ namespace BaseDeDatosBOA
         private void btnInsertar_Click(object sender, EventArgs e)
         {
             bool checkFormat = logica.CheckAllFormats(txtIdGrafica.Text, @"^G\d+$");
-            Grafica grafica = null;
-            try
+            if (checkFormat == false)
             {
-                grafica = new Grafica
-                {
-                    IdGrafica = txtIdGrafica.Text,
-                    Marca = txtMarca.Text,
-                    Modelo = txtModelo.Text,
-                    Tipo = txtTipo.Text,
-                    Vram = int.Parse(txtVram.Text),
-                };
-                logica.RegistrarGrafica(grafica);
+                MessageBox.Show("error de formato en ID");
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
+                bool checkId = logica.VerifyID(txtIdGrafica.Text, graficas, item => item.IdGrafica.ToString());
+                if (checkId == true)
+                {
+                    Grafica grafica = null;
+                    try
+                    {
+                        grafica = new Grafica
+                        {
+                            IdGrafica = txtIdGrafica.Text,
+                            Marca = txtMarca.Text,
+                            Modelo = txtModelo.Text,
+                            Tipo = txtTipo.Text,
+                            Vram = int.Parse(txtVram.Text),
+                        };
+                        logica.RegistrarGrafica(grafica);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+                logica.ClearTextBoxs(txtIdGrafica, txtMarca, txtModelo, txtTipo, txtVram);
+                txtIdGrafica.Enabled = true;
+                logica.TurnOffLabels(label2, label3, label4, label5);
+                logica.TurnOffTxtB(txtMarca, txtModelo, txtTipo, txtVram);
             }
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            Grafica grafica = null;
-            try
+            bool checkFormat = logica.CheckAllFormats(txtIdGrafica.Text, @"^G\d+$");
+            if (checkFormat == false)
             {
-                grafica = new Grafica
-                {
-                    IdGrafica = txtIdGrafica.Text,
-                    Marca = txtMarca.Text,
-                    Modelo = txtModelo.Text,
-                    Tipo = txtTipo.Text,
-                    Vram = int.Parse(txtVram.Text),
-                };
-                logica.ModificarGraficas(grafica);
+                MessageBox.Show("error de formato en ID");
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
+                Grafica grafica = null;
+                try
+                {
+                    grafica = new Grafica
+                    {
+                        IdGrafica = txtIdGrafica.Text,
+                        Marca = txtMarca.Text,
+                        Modelo = txtModelo.Text,
+                        Tipo = txtTipo.Text,
+                        Vram = int.Parse(txtVram.Text),
+                    };
+                    logica.ModificarGraficas(grafica);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                txtIdGrafica.Enabled = true;
+                btnInsertar.Enabled = true;
+                logica.TurnOffLabels(label2, label3, label4, label5);
+                logica.TurnOffTxtB(txtMarca, txtModelo, txtTipo, txtVram);
+                logica.ClearTextBoxs(txtIdGrafica, txtMarca, txtModelo, txtTipo, txtVram);
             }
         }
 
@@ -143,22 +175,27 @@ namespace BaseDeDatosBOA
 
         private void txtIdGrafica_TextChanged(object sender, EventArgs e)
         {
+            logica.CambioAMayusculas(sender, e);
         }
 
         private void txtMarca_TextChanged(object sender, EventArgs e)
         {
+            logica.CambioAMayusculas(sender, e);
         }
 
         private void txtModelo_TextChanged(object sender, EventArgs e)
         {
+            logica.CambioAMayusculas(sender, e);
         }
 
         private void txtTipo_TextChanged(object sender, EventArgs e)
         {
+            logica.CambioAMayusculas(sender, e);
         }
 
         private void txtVram_TextChanged(object sender, EventArgs e)
         {
+            logica.CambioAMayusculas(sender, e);
         }
 
         private void btnVerificar_Click(object sender, EventArgs e)
@@ -166,14 +203,8 @@ namespace BaseDeDatosBOA
             bool checkId = logica.VerifyID(txtIdGrafica.Text, graficas, item => item.IdGrafica.ToString());
             if (checkId == true)
             {
-                txtMarca.Visible = true;
-                txtModelo.Visible = true;
-                txtTipo.Visible = true;
-                txtVram.Visible = true;
-                label2.Visible = true;
-                label3.Visible = true;
-                label4.Visible = true;
-                label5.Visible = true;
+                logica.TurnOnLabels(label2, label3, label4, label5);
+                logica.TurnOnTxtB(txtIdGrafica, txtMarca, txtModelo, txtTipo, txtVram);
             }
             else
             {
@@ -181,14 +212,8 @@ namespace BaseDeDatosBOA
                 {
                     if (graficas[i].IdGrafica.ToString() == txtIdGrafica.Text)
                     {
-                        txtMarca.Visible = true;
-                        txtModelo.Visible = true;
-                        txtTipo.Visible = true;
-                        txtVram.Visible = true;
-                        label2.Visible = true;
-                        label3.Visible = true;
-                        label4.Visible = true;
-                        label5.Visible = true;
+                        logica.TurnOnLabels(label2, label3, label4, label5);
+                        logica.TurnOnTxtB(txtIdGrafica, txtMarca, txtModelo, txtTipo, txtVram);
 
                         txtIdGrafica.Text = graficas[i].IdGrafica.ToString();
                         txtMarca.Text = graficas[i].Marca.ToString();

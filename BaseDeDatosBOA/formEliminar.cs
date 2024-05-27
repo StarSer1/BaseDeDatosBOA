@@ -34,5 +34,10 @@ namespace BaseDeDatosBOA
             logica.Eliminar(txtId.Text, tablaDeDondeViene);
             MessageBox.Show("Eliminado");
         }
+
+        private void txtId_TextChanged(object sender, EventArgs e)
+        {
+            logica.CambioAMayusculas(sender, e);
+        }
     }
 }
