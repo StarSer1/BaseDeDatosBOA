@@ -333,10 +333,10 @@
             this.dgvFuentesDePoder.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgvFuentesDePoder.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10.5F);
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(89)))), ((int)(((byte)(97)))));
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvFuentesDePoder.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
@@ -353,6 +353,7 @@
             this.dgvFuentesDePoder.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvFuentesDePoder.Location = new System.Drawing.Point(27, 68);
             this.dgvFuentesDePoder.Name = "dgvFuentesDePoder";
+            this.dgvFuentesDePoder.ReadOnly = true;
             this.dgvFuentesDePoder.RowHeadersVisible = false;
             this.dgvFuentesDePoder.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvFuentesDePoder.Size = new System.Drawing.Size(680, 501);
@@ -365,13 +366,13 @@
             this.dgvFuentesDePoder.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
             this.dgvFuentesDePoder.ThemeStyle.BackColor = System.Drawing.Color.White;
             this.dgvFuentesDePoder.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.dgvFuentesDePoder.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.dgvFuentesDePoder.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
             this.dgvFuentesDePoder.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgvFuentesDePoder.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Segoe UI", 10.5F);
             this.dgvFuentesDePoder.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
             this.dgvFuentesDePoder.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.dgvFuentesDePoder.ThemeStyle.HeaderStyle.Height = 20;
-            this.dgvFuentesDePoder.ThemeStyle.ReadOnly = false;
+            this.dgvFuentesDePoder.ThemeStyle.ReadOnly = true;
             this.dgvFuentesDePoder.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
             this.dgvFuentesDePoder.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgvFuentesDePoder.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 10.5F);

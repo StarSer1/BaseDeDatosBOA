@@ -389,7 +389,7 @@
             this.dgvAlmacenamiento.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvAlmacenamiento.EnableHeadersVisualStyles = false;
             this.dgvAlmacenamiento.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.dgvAlmacenamiento.Location = new System.Drawing.Point(27, 68);
+            this.dgvAlmacenamiento.Location = new System.Drawing.Point(28, 69);
             this.dgvAlmacenamiento.Name = "dgvAlmacenamiento";
             this.dgvAlmacenamiento.RowHeadersVisible = false;
             this.dgvAlmacenamiento.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
