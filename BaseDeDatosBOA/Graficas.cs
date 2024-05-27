@@ -129,10 +129,51 @@ namespace BaseDeDatosBOA
             formConsulta.tablaDeDondeViene = "GRAFICA";
             formConsulta.ShowDialog();
         }
+        //Validaciones para rellenar txtbox
+        private void ValidateTextBoxes()
+        {
+            if (!string.IsNullOrWhiteSpace(txtIdGrafica.Text) &&
+                !string.IsNullOrWhiteSpace(txtMarca.Text) &&
+                !string.IsNullOrWhiteSpace(txtModelo.Text) &&
+                !string.IsNullOrWhiteSpace(txtTipo.Text) &&
+                !string.IsNullOrWhiteSpace(txtVram.Text))
+            {
+                btnInsertar.Enabled = true;
+            }
+            else
+            {
+                btnInsertar.Enabled = false;
+            }
+        }
 
         private void txtVram_KeyPress(object sender, KeyPressEventArgs e)
         {
             logica.SoloNumeros(sender, e);
+        }
+
+        private void txtIdGrafica_TextChanged(object sender, EventArgs e)
+        {
+            ValidateTextBoxes();
+        }
+
+        private void txtMarca_TextChanged(object sender, EventArgs e)
+        {
+            ValidateTextBoxes();
+        }
+
+        private void txtModelo_TextChanged(object sender, EventArgs e)
+        {
+            ValidateTextBoxes();
+        }
+
+        private void txtTipo_TextChanged(object sender, EventArgs e)
+        {
+            ValidateTextBoxes();
+        }
+
+        private void txtVram_TextChanged(object sender, EventArgs e)
+        {
+            ValidateTextBoxes();
         }
     }
 }

@@ -103,5 +103,50 @@ namespace BaseDeDatosBOA
             formConsulta.tablaDeDondeViene = "CLIENTES";
             formConsulta.ShowDialog();
         }
+        private void ValidateTextBoxes()
+        {
+            if (!string.IsNullOrWhiteSpace(txtApellidoM.Text) &&
+                !string.IsNullOrWhiteSpace(txtApellidoP.Text) &&
+                !string.IsNullOrWhiteSpace(txtCorreo.Text) &&
+                !string.IsNullOrWhiteSpace(txtIdCliente.Text) &&
+                !string.IsNullOrWhiteSpace(txtNombre.Text))
+            {
+                btnInsertar.Enabled = true;
+            }
+            else
+            {
+                btnInsertar.Enabled = false;
+            }
+        }
+
+        private void txtIdCliente_TextChanged(object sender, EventArgs e)
+        {
+            ValidateTextBoxes();
+        }
+
+        private void txtNombre_TextChanged(object sender, EventArgs e)
+        {
+            ValidateTextBoxes();
+        }
+
+        private void txtApellidoP_TextChanged(object sender, EventArgs e)
+        {
+            ValidateTextBoxes();
+        }
+
+        private void txtApellidoM_TextChanged(object sender, EventArgs e)
+        {
+            ValidateTextBoxes();
+        }
+
+        private void txtCorreo_TextChanged(object sender, EventArgs e)
+        {
+            ValidateTextBoxes();
+        }
+
+        private void btnVerificar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

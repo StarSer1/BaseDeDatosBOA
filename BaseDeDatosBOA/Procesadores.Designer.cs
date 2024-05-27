@@ -44,6 +44,7 @@
             this.txtMarca = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtIdProcesador = new Guna.UI2.WinForms.Guna2TextBox();
             this.dgvProcesadores = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.btnVerificar = new Guna.UI2.WinForms.Guna2ImageButton();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProcesadores)).BeginInit();
             this.SuspendLayout();
@@ -133,6 +134,7 @@
             // 
             this.btnInsertar.CheckedState.Parent = this.btnInsertar;
             this.btnInsertar.CustomImages.Parent = this.btnInsertar;
+            this.btnInsertar.Enabled = false;
             this.btnInsertar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(89)))), ((int)(((byte)(97)))));
             this.btnInsertar.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnInsertar.ForeColor = System.Drawing.Color.White;
@@ -182,6 +184,7 @@
             this.txtModelo.ShadowDecoration.Parent = this.txtModelo;
             this.txtModelo.Size = new System.Drawing.Size(149, 31);
             this.txtModelo.TabIndex = 33;
+            this.txtModelo.TextChanged += new System.EventHandler(this.txtModelo_TextChanged);
             // 
             // txtMarca
             // 
@@ -204,6 +207,7 @@
             this.txtMarca.ShadowDecoration.Parent = this.txtMarca;
             this.txtMarca.Size = new System.Drawing.Size(149, 31);
             this.txtMarca.TabIndex = 32;
+            this.txtMarca.TextChanged += new System.EventHandler(this.txtMarca_TextChanged);
             // 
             // txtIdProcesador
             // 
@@ -224,8 +228,9 @@
             this.txtIdProcesador.PlaceholderText = "";
             this.txtIdProcesador.SelectedText = "";
             this.txtIdProcesador.ShadowDecoration.Parent = this.txtIdProcesador;
-            this.txtIdProcesador.Size = new System.Drawing.Size(149, 31);
+            this.txtIdProcesador.Size = new System.Drawing.Size(108, 31);
             this.txtIdProcesador.TabIndex = 31;
+            this.txtIdProcesador.TextChanged += new System.EventHandler(this.txtIdProcesador_TextChanged);
             // 
             // dgvProcesadores
             // 
@@ -284,12 +289,25 @@
             this.dgvProcesadores.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvProcesadores.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             // 
+            // btnVerificar
+            // 
+            this.btnVerificar.CheckedState.Parent = this.btnVerificar;
+            this.btnVerificar.HoverState.Parent = this.btnVerificar;
+            this.btnVerificar.Image = global::BaseDeDatosBOA.Properties.Resources.cheque;
+            this.btnVerificar.ImageSize = new System.Drawing.Size(25, 25);
+            this.btnVerificar.Location = new System.Drawing.Point(968, 70);
+            this.btnVerificar.Name = "btnVerificar";
+            this.btnVerificar.PressedState.Parent = this.btnVerificar;
+            this.btnVerificar.Size = new System.Drawing.Size(30, 29);
+            this.btnVerificar.TabIndex = 50;
+            // 
             // Procesadores
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(252)))), ((int)(((byte)(229)))));
             this.ClientSize = new System.Drawing.Size(1031, 575);
+            this.Controls.Add(this.btnVerificar);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -325,5 +343,6 @@
         private Guna.UI2.WinForms.Guna2TextBox txtMarca;
         private Guna.UI2.WinForms.Guna2TextBox txtIdProcesador;
         private Guna.UI2.WinForms.Guna2DataGridView dgvProcesadores;
+        private Guna.UI2.WinForms.Guna2ImageButton btnVerificar;
     }
 }

@@ -115,5 +115,35 @@ namespace BaseDeDatosBOA
             formConsulta.tablaDeDondeViene = "PROCESADOR";
             formConsulta.ShowDialog();
         }
+
+        //Validaciones para rellenar txtbox
+        private void ValidateTextBoxes()
+        {
+            if (!string.IsNullOrWhiteSpace(txtIdProcesador.Text) &&
+                !string.IsNullOrWhiteSpace(txtMarca.Text) &&
+                !string.IsNullOrWhiteSpace(txtModelo.Text))
+            {
+                btnInsertar.Enabled = true;
+            }
+            else
+            {
+                btnInsertar.Enabled = false;
+            }
+        }
+
+        private void txtIdProcesador_TextChanged(object sender, EventArgs e)
+        {
+            ValidateTextBoxes();
+        }
+
+        private void txtMarca_TextChanged(object sender, EventArgs e)
+        {
+            ValidateTextBoxes();
+        }
+
+        private void txtModelo_TextChanged(object sender, EventArgs e)
+        {
+            ValidateTextBoxes();
+        }
     }
 }

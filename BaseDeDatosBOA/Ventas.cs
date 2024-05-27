@@ -137,5 +137,64 @@ namespace BaseDeDatosBOA
         {
             logica.SoloNumeros(sender, e);
         }
+
+        //Validaciones para rellenar txtbox
+        private void ValidateTextBoxes()
+        {
+            if (!string.IsNullOrWhiteSpace(txtDescuento.Text) &&
+                !string.IsNullOrWhiteSpace(txtFechaCliente.Text) &&
+                !string.IsNullOrWhiteSpace(txtIdCliente.Text) &&
+                !string.IsNullOrWhiteSpace(txtIdComputadora.Text) &&
+                !string.IsNullOrWhiteSpace(txtIdEmpleado.Text) &&
+                !string.IsNullOrWhiteSpace(txtIdVenta.Text) &&
+                !string.IsNullOrWhiteSpace(txtPrecioBase.Text) &&
+                !string.IsNullOrWhiteSpace(txtPrecioFinal.Text))
+            {
+                btnInsertar.Enabled = true;
+            }
+            else
+            {
+                btnInsertar.Enabled = false;
+            }
+        }
+        private void txtIdVenta_TextChanged(object sender, EventArgs e)
+        {
+            ValidateTextBoxes();
+        }
+
+        private void txtIdEmpleado_TextChanged(object sender, EventArgs e)
+        {
+            ValidateTextBoxes();
+        }
+
+        private void txtIdComputadora_TextChanged(object sender, EventArgs e)
+        {
+            ValidateTextBoxes();
+        }
+
+        private void txtIdCliente_TextChanged(object sender, EventArgs e)
+        {
+            ValidateTextBoxes();
+        }
+
+        private void txtFechaCliente_TextChanged(object sender, EventArgs e)
+        {
+            ValidateTextBoxes();
+        }
+
+        private void txtPrecioFinal_TextChanged(object sender, EventArgs e)
+        {
+            ValidateTextBoxes();
+        }
+
+        private void txtPrecioBase_TextChanged(object sender, EventArgs e)
+        {
+            ValidateTextBoxes();
+        }
+
+        private void txtDescuento_TextChanged(object sender, EventArgs e)
+        {
+            ValidateTextBoxes();
+        }
     }
 }

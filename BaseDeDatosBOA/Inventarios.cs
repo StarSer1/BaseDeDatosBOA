@@ -15,17 +15,26 @@ namespace BaseDeDatosBOA
     public partial class Inventarios : Form
     {
         private CLogica logica;
+        List<Inventario> inventarios = null;
 
         public Inventarios()
         {
             logica = new CLogica();
             InitializeComponent();
+            txtIdComputadora.Visible = false;
+            txtFechaLlegada.Visible = false;
+            txtPrecioLLegada.Visible = false;
+            txtStock.Visible = false;
+            label2.Visible = false;
+            label3.Visible = false;
+            label4.Visible = false;
+            label5.Visible = false;
         }
         public void LoadData()
         {
             try
             {
-                List<Inventario> inventarios= logica.ObtenerInventarios();
+                inventarios = logica.ObtenerInventarios();
                 dgvVentas.DataSource = inventarios;
                 //dgvVentas.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(dgvVentas_DataBindingComplete);
             }
@@ -42,22 +51,30 @@ namespace BaseDeDatosBOA
         }
         private void btnInsertar_Click(object sender, EventArgs e)
         {
-            Inventario inventario = null;
-            try
+            bool checkFormat = logica.CheckAllFormats(txtIdInventario.Text, @"^V\d+$");
+            if (checkFormat == false)
             {
-                inventario = new Inventario
-                {
-                    IdInventario = txtIdInventario.Text,
-                    IdComputadora = txtIdComputadora.Text,
-                    FechaLlegada = txtFechaLlegada.Text,
-                    PrecioLlegada = int.Parse(txtPrecioLLegada.Text),
-                    Stock = int.Parse(txtStock.Text)
-                };
-                logica.RegistrarInventario(inventario);
+                MessageBox.Show("error de formato en ID");
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
+                Inventario inventario = null;
+                try
+                {
+                    inventario = new Inventario
+                    {
+                        IdInventario = txtIdInventario.Text,
+                        IdComputadora = txtIdComputadora.Text,
+                        FechaLlegada = txtFechaLlegada.Text,
+                        PrecioLlegada = int.Parse(txtPrecioLLegada.Text),
+                        Stock = int.Parse(txtStock.Text)
+                    };
+                    logica.RegistrarInventario(inventario);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
 
@@ -107,6 +124,68 @@ namespace BaseDeDatosBOA
         private void txtPrecioLLegada_KeyPress(object sender, KeyPressEventArgs e)
         {
             logica.SoloNumeros(sender, e);
+        }
+
+        //Validaciones para rellenar txtbox
+        private void ValidateTextBoxes()
+        {
+            if (!string.IsNullOrWhiteSpace(txtFechaLlegada.Text) &&
+                !string.IsNullOrWhiteSpace(txtIdComputadora.Text) &&
+                !string.IsNullOrWhiteSpace(txtIdInventario.Text) &&
+                !string.IsNullOrWhiteSpace(txtPrecioLLegada.Text) &&
+                !string.IsNullOrWhiteSpace(txtStock.Text))
+            {
+                btnInsertar.Enabled = true;
+            }
+            else
+            {
+                btnInsertar.Enabled = false;
+            }
+        }
+
+        private void txtIdInventario_TextChanged(object sender, EventArgs e)
+        {
+            ValidateTextBoxes();
+        }
+
+        private void txtIdComputadora_TextChanged(object sender, EventArgs e)
+        {
+            ValidateTextBoxes();
+        }
+
+        private void txtFechaLlegada_TextChanged(object sender, EventArgs e)
+        {
+            ValidateTextBoxes();
+        }
+
+        private void txtPrecioLLegada_TextChanged(object sender, EventArgs e)
+        {
+            ValidateTextBoxes();
+        }
+
+        private void txtStock_TextChanged(object sender, EventArgs e)
+        {
+            ValidateTextBoxes();
+        }
+
+        private void btnVerificar_Click(object sender, EventArgs e)
+        {
+            bool checkId = logica.VerifyID(txtIdInventario.Text, inventarios, item => item.IdInventario.ToString());
+            if (checkId == true)
+            {
+                txtIdComputadora.Visible = true;
+                txtFechaLlegada.Visible = true;
+                txtPrecioLLegada.Visible = true;
+                txtStock.Visible = true;
+                label2.Visible = true;
+                label3.Visible = true;
+                label4.Visible = true;
+                label5.Visible = true;
+            }
+            else
+            {
+                txtIdInventario.Clear();
+            }
         }
     }
 }

@@ -72,6 +72,27 @@ namespace BaseDeDatosBOA
             }
         }
 
+        private void ValidateTextBoxes()
+        {
+            if (!string.IsNullOrWhiteSpace(txtCapacidad.Text) &&
+                !string.IsNullOrWhiteSpace(txtFrecuencia.Text) &&
+                !string.IsNullOrWhiteSpace(txtIdAlmacenamiento.Text) &&
+                !string.IsNullOrWhiteSpace(txtMarca.Text) &&
+                !string.IsNullOrWhiteSpace(txtTipo.Text) &&
+                !string.IsNullOrWhiteSpace(txtVelocidadTrans.Text))
+            {
+                btnInsertar.Enabled = true;
+            }
+            else
+            {
+                btnInsertar.Enabled = false;
+            }
+        }
+        private void textBox_TextChanged(object sender, EventArgs e)
+        {
+            ValidateTextBoxes();
+        }
+
         private void btnModificar_Click(object sender, EventArgs e)
         {
             Almacenamiento almacenamiento = null;
@@ -125,6 +146,41 @@ namespace BaseDeDatosBOA
         private void txtCapacidad_KeyPress(object sender, KeyPressEventArgs e)
         {
             logica.SoloNumeros(sender, e);
+        }
+
+        private void txtIdAlmacenamiento_TextChanged(object sender, EventArgs e)
+        {
+            ValidateTextBoxes();
+        }
+
+        private void txtMarca_TextChanged(object sender, EventArgs e)
+        {
+            ValidateTextBoxes();
+        }
+
+        private void txtTipo_TextChanged(object sender, EventArgs e)
+        {
+            ValidateTextBoxes();
+        }
+
+        private void txtCapacidad_TextChanged(object sender, EventArgs e)
+        {
+            ValidateTextBoxes();
+        }
+
+        private void txtFrecuencia_TextChanged(object sender, EventArgs e)
+        {
+            ValidateTextBoxes();
+        }
+
+        private void txtVelocidadTrans_TextChanged(object sender, EventArgs e)
+        {
+            ValidateTextBoxes();
+        }
+
+        private void btnVerificar_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

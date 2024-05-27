@@ -110,5 +110,52 @@ namespace BaseDeDatosBOA
         {
             logica.SoloNumeros(sender, e);
         }
+        //Validaciones para rellenar txtbox
+        private void ValidateTextBoxes()
+        {
+            if (!string.IsNullOrWhiteSpace(txtApellidoM.Text) &&
+                !string.IsNullOrWhiteSpace(txtApellidoP.Text) &&
+                !string.IsNullOrWhiteSpace(txtIdEmp.Text) &&
+                !string.IsNullOrWhiteSpace(txtNombre.Text) &&
+                !string.IsNullOrWhiteSpace(txtRFC.Text) &&
+                !string.IsNullOrWhiteSpace(txtSueldo.Text))
+            
+            {
+                btnInsertar.Enabled = true;
+            }
+            else
+            {
+                btnInsertar.Enabled = false;
+            }
+        }
+        private void txtIdEmp_TextChanged(object sender, EventArgs e)
+        {
+            ValidateTextBoxes();
+        }
+
+        private void txtNombre_TextChanged(object sender, EventArgs e)
+        {
+            ValidateTextBoxes();
+        }
+
+        private void txtApellidoP_TextChanged(object sender, EventArgs e)
+        {
+            ValidateTextBoxes();
+        }
+
+        private void txtApellidoM_TextChanged(object sender, EventArgs e)
+        {
+            ValidateTextBoxes();
+        }
+
+        private void txtRFC_TextChanged(object sender, EventArgs e)
+        {
+            ValidateTextBoxes();
+        }
+
+        private void txtSueldo_TextChanged(object sender, EventArgs e)
+        {
+            ValidateTextBoxes();
+        }
     }
 }

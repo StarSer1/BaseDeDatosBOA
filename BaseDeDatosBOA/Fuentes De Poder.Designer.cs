@@ -50,6 +50,7 @@
             this.dgvFuentesDePoder = new Guna.UI2.WinForms.Guna2DataGridView();
             this.txtModelo = new Guna.UI2.WinForms.Guna2TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.btnVerificar = new Guna.UI2.WinForms.Guna2ImageButton();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFuentesDePoder)).BeginInit();
             this.SuspendLayout();
@@ -161,6 +162,7 @@
             // 
             this.btnInsertar.CheckedState.Parent = this.btnInsertar;
             this.btnInsertar.CustomImages.Parent = this.btnInsertar;
+            this.btnInsertar.Enabled = false;
             this.btnInsertar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(89)))), ((int)(((byte)(97)))));
             this.btnInsertar.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnInsertar.ForeColor = System.Drawing.Color.White;
@@ -210,6 +212,7 @@
             this.txtCertificacion.ShadowDecoration.Parent = this.txtCertificacion;
             this.txtCertificacion.Size = new System.Drawing.Size(149, 31);
             this.txtCertificacion.TabIndex = 35;
+            this.txtCertificacion.TextChanged += new System.EventHandler(this.txtCertificacion_TextChanged);
             // 
             // txtTipo
             // 
@@ -232,6 +235,7 @@
             this.txtTipo.ShadowDecoration.Parent = this.txtTipo;
             this.txtTipo.Size = new System.Drawing.Size(149, 31);
             this.txtTipo.TabIndex = 34;
+            this.txtTipo.TextChanged += new System.EventHandler(this.txtTipo_TextChanged);
             // 
             // txtPotencia
             // 
@@ -254,6 +258,7 @@
             this.txtPotencia.ShadowDecoration.Parent = this.txtPotencia;
             this.txtPotencia.Size = new System.Drawing.Size(149, 31);
             this.txtPotencia.TabIndex = 33;
+            this.txtPotencia.TextChanged += new System.EventHandler(this.txtPotencia_TextChanged);
             this.txtPotencia.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPotencia_KeyPress);
             // 
             // txtMarca
@@ -277,6 +282,7 @@
             this.txtMarca.ShadowDecoration.Parent = this.txtMarca;
             this.txtMarca.Size = new System.Drawing.Size(149, 31);
             this.txtMarca.TabIndex = 32;
+            this.txtMarca.TextChanged += new System.EventHandler(this.txtMarca_TextChanged);
             // 
             // txtIdFuentePoder
             // 
@@ -297,8 +303,9 @@
             this.txtIdFuentePoder.PlaceholderText = "";
             this.txtIdFuentePoder.SelectedText = "";
             this.txtIdFuentePoder.ShadowDecoration.Parent = this.txtIdFuentePoder;
-            this.txtIdFuentePoder.Size = new System.Drawing.Size(149, 31);
+            this.txtIdFuentePoder.Size = new System.Drawing.Size(113, 31);
             this.txtIdFuentePoder.TabIndex = 31;
+            this.txtIdFuentePoder.TextChanged += new System.EventHandler(this.txtIdFuentePoder_TextChanged);
             // 
             // dgvFuentesDePoder
             // 
@@ -378,6 +385,7 @@
             this.txtModelo.ShadowDecoration.Parent = this.txtModelo;
             this.txtModelo.Size = new System.Drawing.Size(149, 31);
             this.txtModelo.TabIndex = 33;
+            this.txtModelo.TextChanged += new System.EventHandler(this.txtModelo_TextChanged);
             // 
             // label6
             // 
@@ -390,12 +398,25 @@
             this.label6.TabIndex = 43;
             this.label6.Text = "Modelo";
             // 
+            // btnVerificar
+            // 
+            this.btnVerificar.CheckedState.Parent = this.btnVerificar;
+            this.btnVerificar.HoverState.Parent = this.btnVerificar;
+            this.btnVerificar.Image = global::BaseDeDatosBOA.Properties.Resources.cheque;
+            this.btnVerificar.ImageSize = new System.Drawing.Size(25, 25);
+            this.btnVerificar.Location = new System.Drawing.Point(967, 68);
+            this.btnVerificar.Name = "btnVerificar";
+            this.btnVerificar.PressedState.Parent = this.btnVerificar;
+            this.btnVerificar.Size = new System.Drawing.Size(30, 29);
+            this.btnVerificar.TabIndex = 50;
+            // 
             // Fuentes_De_Poder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(252)))), ((int)(((byte)(229)))));
             this.ClientSize = new System.Drawing.Size(1031, 575);
+            this.Controls.Add(this.btnVerificar);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -443,5 +464,6 @@
         private Guna.UI2.WinForms.Guna2DataGridView dgvFuentesDePoder;
         private Guna.UI2.WinForms.Guna2TextBox txtModelo;
         private System.Windows.Forms.Label label6;
+        private Guna.UI2.WinForms.Guna2ImageButton btnVerificar;
     }
 }

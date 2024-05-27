@@ -48,6 +48,7 @@
             this.txtMarca = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtIdGrafica = new Guna.UI2.WinForms.Guna2TextBox();
             this.dgvGraficas = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.btnVerificar = new Guna.UI2.WinForms.Guna2ImageButton();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGraficas)).BeginInit();
             this.SuspendLayout();
@@ -159,6 +160,7 @@
             // 
             this.btnInsertar.CheckedState.Parent = this.btnInsertar;
             this.btnInsertar.CustomImages.Parent = this.btnInsertar;
+            this.btnInsertar.Enabled = false;
             this.btnInsertar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(89)))), ((int)(((byte)(97)))));
             this.btnInsertar.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnInsertar.ForeColor = System.Drawing.Color.White;
@@ -208,6 +210,7 @@
             this.txtVram.ShadowDecoration.Parent = this.txtVram;
             this.txtVram.Size = new System.Drawing.Size(149, 31);
             this.txtVram.TabIndex = 35;
+            this.txtVram.TextChanged += new System.EventHandler(this.txtVram_TextChanged);
             this.txtVram.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtVram_KeyPress);
             // 
             // txtTipo
@@ -231,6 +234,7 @@
             this.txtTipo.ShadowDecoration.Parent = this.txtTipo;
             this.txtTipo.Size = new System.Drawing.Size(149, 31);
             this.txtTipo.TabIndex = 34;
+            this.txtTipo.TextChanged += new System.EventHandler(this.txtTipo_TextChanged);
             // 
             // txtModelo
             // 
@@ -253,6 +257,7 @@
             this.txtModelo.ShadowDecoration.Parent = this.txtModelo;
             this.txtModelo.Size = new System.Drawing.Size(149, 31);
             this.txtModelo.TabIndex = 33;
+            this.txtModelo.TextChanged += new System.EventHandler(this.txtModelo_TextChanged);
             // 
             // txtMarca
             // 
@@ -275,6 +280,7 @@
             this.txtMarca.ShadowDecoration.Parent = this.txtMarca;
             this.txtMarca.Size = new System.Drawing.Size(149, 31);
             this.txtMarca.TabIndex = 32;
+            this.txtMarca.TextChanged += new System.EventHandler(this.txtMarca_TextChanged);
             // 
             // txtIdGrafica
             // 
@@ -295,8 +301,9 @@
             this.txtIdGrafica.PlaceholderText = "";
             this.txtIdGrafica.SelectedText = "";
             this.txtIdGrafica.ShadowDecoration.Parent = this.txtIdGrafica;
-            this.txtIdGrafica.Size = new System.Drawing.Size(149, 31);
+            this.txtIdGrafica.Size = new System.Drawing.Size(114, 31);
             this.txtIdGrafica.TabIndex = 31;
+            this.txtIdGrafica.TextChanged += new System.EventHandler(this.txtIdGrafica_TextChanged);
             // 
             // dgvGraficas
             // 
@@ -355,12 +362,25 @@
             this.dgvGraficas.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvGraficas.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             // 
+            // btnVerificar
+            // 
+            this.btnVerificar.CheckedState.Parent = this.btnVerificar;
+            this.btnVerificar.HoverState.Parent = this.btnVerificar;
+            this.btnVerificar.Image = global::BaseDeDatosBOA.Properties.Resources.cheque;
+            this.btnVerificar.ImageSize = new System.Drawing.Size(25, 25);
+            this.btnVerificar.Location = new System.Drawing.Point(969, 68);
+            this.btnVerificar.Name = "btnVerificar";
+            this.btnVerificar.PressedState.Parent = this.btnVerificar;
+            this.btnVerificar.Size = new System.Drawing.Size(30, 29);
+            this.btnVerificar.TabIndex = 50;
+            // 
             // Graficas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(252)))), ((int)(((byte)(229)))));
             this.ClientSize = new System.Drawing.Size(1031, 575);
+            this.Controls.Add(this.btnVerificar);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -404,5 +424,6 @@
         private Guna.UI2.WinForms.Guna2TextBox txtMarca;
         private Guna.UI2.WinForms.Guna2TextBox txtIdGrafica;
         private Guna.UI2.WinForms.Guna2DataGridView dgvGraficas;
+        private Guna.UI2.WinForms.Guna2ImageButton btnVerificar;
     }
 }

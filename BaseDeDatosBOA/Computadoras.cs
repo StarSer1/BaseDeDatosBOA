@@ -60,25 +60,36 @@ namespace BaseDeDatosBOA
 
         private void btnInsertar_Click(object sender, EventArgs e)
         {
-            Computadora computadora = null;
-            try
+            List<Almacenamiento> alma = logica.ObtenerAlmacenamientos();
+            List<Ram> ram = logica.ObtenerRam();
+            List<Procesador> proce = logica.ObtenerProcesadores();
+            List<Grafica> graf = logica.ObtenerGraficas();
+            List<TarjetaMadre> tarjMadre = logica.ObtenerTarjetaMadres();
+            List<FuentePoder> fuentePod = logica.ObtenerFuentesDePoder();
+
+            bool checkExistence = logica.CheckExistenciaComputadora(txtIdRam.Text, txtIdProcesador.Text, txtIdGrafica.Text, txtIdAlmacenamiento.Text, txtIdTarjetaMadre.Text, txtIdFuentePoder.Text, ram, proce, graf, alma, tarjMadre, fuentePod);
+            if (checkExistence == true)
             {
-                computadora = new Computadora
+                Computadora computadora = null;
+                try
                 {
-                    IdComputadora = txtIdComputadora.Text,
-                    Modelo = txtModelo.Text,
-                    IdRam = txtIdRam.Text,
-                    IdProcesador = txtIdProcesador.Text,
-                    IdGrafica = txtIdGrafica.Text,
-                    IdAlmacenamiento = txtIdAlmacenamiento.Text,
-                    IdTarjetaMadre = txtIdTarjetaMadre.Text,
-                    IdFuentePoder = txtIdFuentePoder.Text
-                };
-                logica.RegistrarComputadora(computadora);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
+                    computadora = new Computadora
+                    {
+                        IdComputadora = txtIdComputadora.Text,
+                        Modelo = txtModelo.Text,
+                        IdRam = txtIdRam.Text,
+                        IdProcesador = txtIdProcesador.Text,
+                        IdGrafica = txtIdGrafica.Text,
+                        IdAlmacenamiento = txtIdAlmacenamiento.Text,
+                        IdTarjetaMadre = txtIdTarjetaMadre.Text,
+                        IdFuentePoder = txtIdFuentePoder.Text
+                    };
+                    logica.RegistrarComputadora(computadora);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
 
@@ -126,6 +137,70 @@ namespace BaseDeDatosBOA
             Consulta formConsulta = new Consulta();
             formConsulta.tablaDeDondeViene = "COMPUTADORA";
             formConsulta.ShowDialog();
+        }
+
+        //Validaciones para rellenar txtbox
+        private void ValidateTextBoxes()
+        {
+            if (!string.IsNullOrWhiteSpace(txtIdAlmacenamiento.Text) &&
+                !string.IsNullOrWhiteSpace(txtIdComputadora.Text) &&
+                !string.IsNullOrWhiteSpace(txtIdFuentePoder.Text) &&
+                !string.IsNullOrWhiteSpace(txtIdGrafica.Text) &&
+                !string.IsNullOrWhiteSpace(txtIdProcesador.Text) &&
+                !string.IsNullOrWhiteSpace(txtIdRam.Text) &&
+                !string.IsNullOrWhiteSpace(txtIdTarjetaMadre.Text) &&
+                !string.IsNullOrWhiteSpace(txtModelo.Text))
+            {
+                btnInsertar.Enabled = true;
+            }
+            else
+            {
+                btnInsertar.Enabled = false;
+            }
+        }
+        private void textBox_TextChanged(object sender, EventArgs e)
+        {
+            ValidateTextBoxes();
+        }
+
+        private void txtIdComputadora_TextChanged(object sender, EventArgs e)
+        {
+            ValidateTextBoxes();
+        }
+
+        private void txtModelo_TextChanged(object sender, EventArgs e)
+        {
+            ValidateTextBoxes();
+        }
+
+        private void txtIdRam_TextChanged(object sender, EventArgs e)
+        {
+            ValidateTextBoxes();
+        }
+
+        private void txtIdProcesador_TextChanged(object sender, EventArgs e)
+        {
+            ValidateTextBoxes();
+        }
+
+        private void txtIdGrafica_TextChanged(object sender, EventArgs e)
+        {
+            ValidateTextBoxes();
+        }
+
+        private void txtIdAlmacenamiento_TextChanged(object sender, EventArgs e)
+        {
+            ValidateTextBoxes();
+        }
+
+        private void txtIdTarjetaMadre_TextChanged(object sender, EventArgs e)
+        {
+            ValidateTextBoxes();
+        }
+
+        private void txtIdFuentePoder_TextChanged(object sender, EventArgs e)
+        {
+            ValidateTextBoxes();
         }
     }
 }

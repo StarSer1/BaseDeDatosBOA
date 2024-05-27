@@ -109,5 +109,53 @@ namespace BaseDeDatosBOA
         {
             logica.SoloNumeros(sender, e);
         }
+
+        //Validaciones para rellenar txtbox
+        private void ValidateTextBoxes()
+        {
+            if (!string.IsNullOrWhiteSpace(txtDimensiones.Text) &&
+                !string.IsNullOrWhiteSpace(txtIdModelo.Text) &&
+                !string.IsNullOrWhiteSpace(txtIdTarjetaMadre.Text) &&
+                !string.IsNullOrWhiteSpace(txtMarca.Text) &&
+                !string.IsNullOrWhiteSpace(txtRanurasDIMM.Text) &&
+                !string.IsNullOrWhiteSpace(txtSocket.Text))
+            {
+                btnInsertar.Enabled = true;
+            }
+            else
+            {
+                btnInsertar.Enabled = false;
+            }
+        }
+
+        private void txtIdTarjetaMadre_TextChanged(object sender, EventArgs e)
+        {
+            ValidateTextBoxes();
+        }
+
+        private void txtMarca_TextChanged(object sender, EventArgs e)
+        {
+            ValidateTextBoxes();
+        }
+
+        private void txtIdModelo_TextChanged(object sender, EventArgs e)
+        {
+            ValidateTextBoxes();
+        }
+
+        private void txtRanurasDIMM_TextChanged(object sender, EventArgs e)
+        {
+            ValidateTextBoxes();
+        }
+
+        private void txtSocket_TextChanged(object sender, EventArgs e)
+        {
+            ValidateTextBoxes();
+        }
+
+        private void txtDimensiones_TextChanged(object sender, EventArgs e)
+        {
+            ValidateTextBoxes();
+        }
     }
 }

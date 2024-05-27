@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using BOAEntidad;
 using BOADatos;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace BOALogica
 {
@@ -212,6 +213,66 @@ namespace BOALogica
                 e.Handled = true;
             }
         }
+        public bool VerifyID<T>(string id, List<T> datos, Func<T, string> getId)
+        {
+            bool pass = false;
+            foreach (var item in datos)
+            {
+                if (getId(item) == id)
+                {
+                    MessageBox.Show("ID Repetido");
+                    pass = false;
+                    break;
+                }
+                else
+                {
+                    pass = true;
+                }
+            }
+            return pass;
+        }
+        public bool CheckAllFormats(string id, string patron)
+        {
+            Regex regx = new Regex(patron);
+            return regx.IsMatch(id);
+        }
+
+        public bool CheckExistence<T>(string id, List<T> items, Func<T, string> getId, string errorMessage)
+        {
+            foreach (var item in items)
+            {
+                if (getId(item) == id)
+                {
+                    return true;
+                }
+            }
+            MessageBox.Show(errorMessage);
+            return false;
+        }
+
+        public bool CheckExistenciaComputadora(string idR, string idP, string idG, string idA, string idT, string idF, List<Ram> rams, List<Procesador> procesadores, List<Grafica> graficas, List<Almacenamiento> almacenamientos, List<TarjetaMadre> tarjetaMadres, List<FuentePoder> fuentesPoder)
+        {
+            bool pass = CheckExistence(idR, rams, ram => ram.IdRam, "La RAM ingresada no se encuentra en la base de datos");
+            if (!pass) return false;
+
+            pass = CheckExistence(idP, procesadores, procesador => procesador.IdProcesador, "El procesador ingresado no se encuentra en la base de datos");
+            if (!pass) return false;
+
+            pass = CheckExistence(idG, graficas, grafica => grafica.IdGrafica, "La tarjeta gráfica ingresada no se encuentra en la base de datos");
+            if (!pass) return false;
+
+            pass = CheckExistence(idA, almacenamientos, almacenamiento => almacenamiento.IdAlmacenamiento, "El almacenamiento ingresado no se encuentra en la base de datos");
+            if (!pass) return false;
+
+            pass = CheckExistence(idT, tarjetaMadres, tarjetaMadre => tarjetaMadre.IdTarjetaMadre, "La tarjeta madre ingresada no se encuentra en la base de datos");
+            if (!pass) return false;
+
+            pass = CheckExistence(idF, fuentesPoder, fuentePoder => fuentePoder.IdFuentePoder, "La fuente de poder ingresada no se encuentra en la base de datos");
+            if (!pass) return false;
+
+            return true;
+        }
+
         public void RevisionDeDatos()
         {
 
